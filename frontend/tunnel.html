@@ -63,6 +63,35 @@
           <div id="source-provenance" class="provenance"></div>
         </details>
       </section>
+      <section class="control-section geology-section" aria-label="地质模型示意">
+        <div class="section-heading"><div><div class="eyebrow">04 / GEOLOGICAL LINKS</div><h2>地质模型示意 <span id="geology-count" class="count">0</span></h2></div><span class="unverified-tag">未验证</span></div>
+        <p class="geology-caution">跨断面对应关系为示意假设，岩性分区仍为 unknown。</p>
+        <div class="form-grid geology-controls">
+          <label class="full">显示内容<select id="geology-mode" data-testid="geology-mode"><option value="none">仅断面</option><option value="fracture">裂隙连接</option><option value="lithology">岩性界面</option><option value="both">同时显示</option></select></label>
+          <button id="geology-build" data-testid="geology-build" type="button" class="button primary full" disabled>⌁ 连接相邻断面</button>
+          <label class="full range-label">连接透明度 <output id="geology-opacity-value">35%</output><input id="geology-opacity" data-testid="geology-opacity" type="range" min="0.05" max="0.9" step="0.01" value="0.35" aria-label="地质连接透明度"></label>
+          <label class="check full"><input id="geology-source-lines" data-testid="geology-source-lines" type="checkbox" checked>显示源对象边界</label>
+        </div>
+        <p id="geology-summary" class="hint">加入至少两个断面后，可将识别对象连接为示意面。</p>
+        <details class="disclosure geology-advanced"><summary>自动配对设置</summary><div class="form-grid">
+          <label class="full">每类、每对相邻断面连接上限<input id="geology-max-pair" data-testid="geology-max-pair" type="number" min="1" max="12" step="1" value="6"></label>
+          <label class="full">归一化匹配距离上限<input id="geology-max-distance" data-testid="geology-max-distance" type="number" min="0.01" max="2" step="0.05" value="0.5"></label>
+        </div><p class="hint">按图像位置和形状进行候选配对，距离是图像归一化值，不代表地质可信度。</p></details>
+        <details id="geology-manual" class="disclosure"><summary>手动指定对应对象</summary>
+          <button id="geology-read-objects" data-testid="geology-read-objects" type="button" class="button secondary wide" disabled>读取源对象</button>
+          <form id="geology-manual-form" class="form-grid">
+            <label class="full">连接种类<select id="geology-manual-kind" data-testid="geology-manual-kind"><option value="fracture">裂隙迹线</option><option value="lithology">岩性候选分区边界</option></select></label>
+            <label class="full">起点断面<select id="geology-from-section" data-testid="geology-from-section"></select></label>
+            <label class="full">起点对象<select id="geology-from-object" data-testid="geology-from-object"></select></label>
+            <label class="full">终点断面<select id="geology-to-section" data-testid="geology-to-section"></select></label>
+            <label class="full">终点对象<select id="geology-to-object" data-testid="geology-to-object"></select></label>
+            <label class="check full"><input id="geology-manual-reverse" type="checkbox">反向配对终点对象</label>
+            <button id="geology-manual-add" data-testid="geology-manual-add" class="button secondary full" type="submit" disabled>＋ 添加示意连接</button>
+          </form><p id="geology-manual-hint" class="hint">先读取源对象，再手动指定两个断面之间的对应关系。</p>
+        </details>
+        <details id="geology-list-details" class="disclosure"><summary>管理连接 <span id="geology-list-count">0 条</span></summary><div id="geology-connection-list" data-testid="geology-connection-list" class="geology-connection-list"><p class="list-empty">尚未生成示意连接。</p></div></details>
+        <details id="geology-warnings-details" class="disclosure" hidden><summary>对象与配对说明 <span id="geology-warning-count"></span></summary><ul id="geology-warnings" class="geology-warnings"></ul></details>
+      </section>
       <footer class="controls-footer">场景保存在本机，可随时继续编辑。<br>原照片与识别成果只读引用，互不覆盖。</footer>
     </aside>
     <section class="stage" aria-label="隧道三维场景">
@@ -76,6 +105,7 @@
         <div id="tunnel-viewport" data-testid="tunnel-viewport" class="tunnel-viewport">
           <div id="empty-state" class="empty-state"><div class="empty-tunnel" aria-hidden="true">▱</div><strong>让不同里程的掌子面，在同一隧道中相遇</strong><p>先在左侧创建场景，再加入已有照片或综合素描。<br>仅需里程和示意尺寸，无需精确隧道模型。</p><span>旋转 · 缩放 · 点击断面查看来源</span></div>
           <div class="scene-watermark">SCHEMATIC / 示意展示</div>
+          <div id="geology-legend" data-testid="geology-legend" class="geology-legend" hidden><strong>地质连接示意 <span id="geology-legend-count"></span></strong><div><span id="geology-fracture-key"><i class="fracture-swatch"></i>裂隙连接</span><span id="geology-lithology-key"><i class="lithology-swatch"></i>岩性候选界面</span></div><small>对应关系未验证 · 非实测地质体</small></div>
           <div id="selected-caption" class="selected-caption" hidden></div>
         </div>
         <div class="view-settings">

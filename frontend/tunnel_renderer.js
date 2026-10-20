@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "./vendor/OrbitControls.js";
 import { sectionPosition, profilePoints, formatChainage, niceStep } from "./tunnel_geometry.js";
+import { GeologyLayer } from "./geology_renderer.js";
 
 // All coordinates below describe an illustrative display, not a survey model.
 // World +X increases chainage; +Y is up; +Z is right looking toward +X.
@@ -46,6 +47,7 @@ export class TunnelRenderer {
     this.environment = new THREE.Group();
     this.sections = new THREE.Group();
     this.scene.add(this.environment, this.sections);
+    this.geology = new GeologyLayer(this);
     this.raycaster = new THREE.Raycaster();
     this.pointerDown = event => { this.pointerStart = [event.clientX, event.clientY]; };
     this.pointerUp = event => this.pick(event);
@@ -161,7 +163,7 @@ export class TunnelRenderer {
       for (const promise of this.textureCache.values()) promise.then(texture => texture.dispose()).catch(() => {});
       this.textureCache.clear();
     }
-    if (!data) { this.render(); return; }
+    if (!data) { this.geology.update(null); this.render(); return; }
     this.buildTunnel(data);
     const count = new Map();
     for (const section of data.sections) {
@@ -196,6 +198,7 @@ export class TunnelRenderer {
       this.sections.add(label);
       this.sectionMeshes.set(section.id, {mesh, frame, group, label, section});
     }
+    this.geology.update(data);
     if (changedScene) this.setView("perspective");
     this.render();
     await this.applyTextures(version);
@@ -243,6 +246,7 @@ export class TunnelRenderer {
       entry.frame.material.color.setHex(sectionId === id ? 0x009a9f : 0x81969d);
       entry.frame.material.opacity = sectionId === id ? 1 : .65;
     }
+    this.geology.updateVisibility(this.sceneData, this.view, id);
     if (this.view === "front") this.setView("front");
     else this.render();
   }
@@ -274,6 +278,7 @@ export class TunnelRenderer {
       const visible = entry.section.visible && (view !== "front" || !selected || entry === selected);
       entry.group.visible = visible; entry.label.visible = visible;
     }
+    this.geology.updateVisibility(data, view, this.selectedId);
     const center = view === "front" && selected ? selected.group.position.clone() : new THREE.Vector3(length / 2, data.height_m * .35, 0);
     const span = Math.max(length * .55, data.width_m * 1.5, data.height_m * 1.6);
     this.camera.far = Math.max(2000, span * 30);
@@ -316,12 +321,14 @@ export class TunnelRenderer {
     context.drawImage(source, 0, 0);
     const size = Math.max(14, Math.round(canvas.width / 65));
     context.fillStyle = "rgba(255,255,255,.94)";
-    context.fillRect(0, canvas.height - size * 3.6, canvas.width, size * 3.6);
+    const hasGeology = this.sceneData?.geology?.connections?.length > 0;
+    context.fillRect(0, canvas.height - size * (hasGeology ? 5 : 3.6), canvas.width, size * (hasGeology ? 5 : 3.6));
     context.fillStyle = "#395761";
     context.font = `${size}px "Microsoft YaHei", sans-serif`;
     context.fillText("流程示意 · 非测量模型 · 断面显示尺寸不构成图像标定", size, canvas.height - size * 2, canvas.width - size * 2);
     const containsDemo = this.sceneData?.sections.some(section => section.demo_copy);
     context.fillText(containsDemo ? "含同源重复示意断面，不能据此推断地质连续性。" : "直线隧道 · 按输入里程摆放 · 朝向与投影尚未校核", size, canvas.height - size * .65, canvas.width - size * 2);
+    if (hasGeology) context.fillText("橙：候选裂隙连接 / 蓝绿：候选区域边界连接 · 跨断面对应与延伸面均未验证", size, canvas.height - size * 3.4, canvas.width - size * 2);
     canvas.toBlob(blob => {
       if (!blob) return;
       const url = URL.createObjectURL(blob), link = document.createElement("a");
@@ -337,6 +344,7 @@ export class TunnelRenderer {
     this.renderer.domElement.removeEventListener("pointerdown", this.pointerDown);
     this.renderer.domElement.removeEventListener("pointerup", this.pointerUp);
     this.clearGroup(this.environment); this.clearGroup(this.sections);
+    this.geology.dispose();
     for (const promise of this.textureCache.values()) promise.then(texture => texture.dispose()).catch(() => {});
     this.renderer.dispose(); this.renderer.domElement.remove(); this.status.remove();
   }
