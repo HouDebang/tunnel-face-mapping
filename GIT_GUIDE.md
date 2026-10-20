@@ -49,14 +49,24 @@ git switch -c restore/baseline-20261020 baseline-20261020
 
 ## GitHub 同步
 
-本地提交和标签可离线使用。远程仓库连接后，以 `git remote -v` 查看真实地址：
+远程仓库为 **Private（私有）**：[HouDebang/tunnel-face-mapping](https://github.com/HouDebang/tunnel-face-mapping)。`origin` 已连接该仓库，初始基准与后续提交可通过同一条主分支同步。本地提交和标签也可离线使用。
+
+保存新版本后执行：
 
 ```powershell
 git push -u origin main
 git push origin --tags
 ```
 
-GitHub HTTPS 推送使用 Git Credential Manager 的浏览器授权或令牌，不使用账号登录密码。不要把密码、令牌写进远程 URL、配置文件或提交记录。项目 `.git/config` 中仅保存作者身份和非敏感 Git 设置。
+GitHub HTTPS 推送已使用 GitHub 官方 CLI 的浏览器授权，凭据存放在 Windows 系统凭据存储中。当前项目的 Git credential helper 调用本机已配置的 CLI，不需要把账号密码填入 Git。不要把密码、令牌写进远程 URL、配置文件或提交记录。项目 `.git/config` 中仅保存作者身份、工具路径和非敏感 Git 设置。
+
+本机浏览器使用 `127.0.0.1:18780` 代理；Git 也已按相同地址配置，仅作用于本项目的 GitHub HTTPS 连接。代理端口变化时更新此设置；不再需要代理时删除该项：
+
+```powershell
+git config --local --unset http.https://github.com/.proxy
+```
+
+克隆到其他电脑时，需要在那台电脑重新进行 GitHub CLI 或 Git Credential Manager 授权，本机凭据不会随代码上传。
 
 如果普通终端提示找不到 `git`，本机 Codex 已附带 Git，可在 PowerShell 临时加入当前窗口的 PATH：
 
