@@ -1,0 +1,46 @@
+# Detection parameters use WORKING pixels. Vector lengths use ORIGINAL pixels.
+preprocessing:
+  max_dimension: 1280
+  enhance: true
+  clahe_clip: 2.0
+  clahe_grid: 8
+face:
+  algorithm: central_texture
+  mode: auto
+  allow_full_image_fallback: true
+  min_area_ratio: 0.2
+  max_area_ratio: 0.98
+  grabcut_iterations: 5
+  grabcut_margin: 0.05
+lithology:
+  algorithm: kmeans
+  clusters: 4
+  slic_segments: 120
+  slic_compactness: 10.0
+  min_region_area_ratio: 0.01
+  min_region_pixels: 80
+  merge_color_distance: 12.0
+  spatial_weight: 0.15
+  max_regions: 80
+  random_seed: 0
+fracture:
+  algorithm: blackhat_hessian
+  clahe_clip: 2.0
+  blackhat_radius: 7
+  frangi_sigma_min: 1.0
+  frangi_sigma_max: 4.0
+  frangi_scale_count: 4
+  threshold: 0.20
+  min_component_area: 20
+  min_elongation: 2.0
+  min_line_length: 15.0
+  noise_sigma: 1.0
+  line_response_percentile: 85
+  max_width_ratio: 0.25
+vectorization:
+  min_length_px: 15.0
+  simplify_tolerance_px: 1.0
+calibration:
+  meters_per_pixel: null
+  planar_approximation_acknowledged: false
+  description: null

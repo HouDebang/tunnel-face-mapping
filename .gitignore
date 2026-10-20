@@ -1,0 +1,40 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+# Generated runs, uploads and historical manual backups stay on this computer.
+/outputs/*
+!/outputs/README.md
+/backups/
+
+# Only the reproducible synthetic example belongs to source control.
+/examples/*
+!/examples/synthetic_face.png
+!/examples/synthetic_face.json
+!/examples/README.md
+
+# Local credentials, environments and large model weights.
+.env
+.env.*
+!.env.example
+.ssh/
+*.pem
+*.key
+*.pt
+*.pth
+*.onnx
+*.safetensors
+
+# Build, test and editor artifacts.
+build/
+dist/
+*.log
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+Thumbs.db
+desktop.ini

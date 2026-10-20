@@ -1,0 +1,11 @@
+{
+  "synthetic": true,
+  "generator": "procedural_rock_texture_v1",
+  "seed": 7,
+  "width": 640,
+  "height": 480,
+  "purpose": "software smoke test and reproducibility; not real-image recognition accuracy validation",
+  "ground_truth_available": false,
+  "supplied_to_detector": "RGB image only; no generator masks or line coordinates",
+  "sha256": "7334353d3b519b97c0d179693b3bc2c80fa15539e60f48b41003241d35b5ac4b"
+}
