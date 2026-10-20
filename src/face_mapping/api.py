@@ -163,6 +163,9 @@ def create_app(workspace_root: Path | None = None) -> FastAPI:
         path=get_workspace().download_path(task_id)
         return FileResponse(path,media_type="application/zip",filename=f"face_mapping_{task_id[:8]}.zip",headers={"Cache-Control":"no-store"})
 
+    from .tunnel_scenes import register_tunnel_routes
+    register_tunnel_routes(app, get_workspace)
+
     frontend = project/"frontend"
     if frontend.is_dir():
         app.mount("/",StaticFiles(directory=frontend,html=True),name="frontend")

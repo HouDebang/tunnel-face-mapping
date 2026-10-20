@@ -1,2 +1,4 @@
 * text=auto eol=lf
 *.bat text eol=crlf
+# Keep vendored upstream code byte-for-byte; do not apply project whitespace checks.
+frontend/vendor/** -whitespace

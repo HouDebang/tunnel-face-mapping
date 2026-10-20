@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>岩面 · 隧道三维展示</title>
+  <link rel="stylesheet" href="/tunnel.css">
+  <script type="importmap">{"imports":{"three":"/vendor/three.module.js","three/addons/":"/vendor/"}}</script>
+  <script type="module" src="/tunnel.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a id="back-workbench" class="brand" href="/"><span class="brand-mark" aria-hidden="true">▱</span><span><strong>岩面 <span>/ 隧道三维</span></strong><small>TUNNEL SECTIONS · SPATIAL VIEW</small></span></a>
+    <div class="top-actions"><span class="demo-badge">流程示意 · 非测量模型</span><a id="back-identification" class="button secondary" href="/">← 单张识别</a></div>
+  </header>
+  <main class="workspace">
+    <aside class="controls" aria-label="隧道与断面控制栏">
+      <section class="control-section scene-section">
+        <div class="eyebrow">01 / TUNNEL SCENE</div><div class="section-heading"><h2>隧道场景</h2><button id="scene-new" data-testid="scene-new" class="text-button">＋ 新建</button></div>
+        <label class="sr-only" for="scene-select">选择已保存场景</label><select id="scene-select" data-testid="scene-select"><option value="">选择已保存的场景</option></select>
+        <details id="scene-settings" class="disclosure" open>
+          <summary>隧道设置 <span>直线中线 · 示意断面</span></summary>
+          <form id="scene-form" class="form-grid">
+            <label class="full">场景名称<input id="scene-name" name="name" value="隧道里程展示示意" maxlength="120" required></label>
+            <label class="full">里程前缀<input id="chainage-prefix" name="chainage_prefix" value="K" maxlength="16" required></label>
+            <label>起始里程 / m<input id="start-chainage" name="start_chainage_m" type="number" value="0" step="any" required></label>
+            <label>终止里程 / m<input id="end-chainage" name="end_chainage_m" type="number" value="100" step="any" required></label>
+            <label>示意宽度 / m<input id="tunnel-width" name="width_m" type="number" value="12" min="0.1" step="any" required></label>
+            <label>示意高度 / m<input id="tunnel-height" name="height_m" type="number" value="9" min="0.1" step="any" required></label>
+            <button id="scene-save" data-testid="scene-save" class="button primary full" type="submit">创建场景</button>
+          </form>
+        </details>
+      </section>
+      <section class="control-section">
+        <div class="eyebrow">02 / ADD SECTION</div><h2>加入掌子面</h2>
+        <form id="add-section-form" class="form-grid">
+          <label class="full">已有照片与识别任务<select id="source-task" data-testid="source-task" required><option value="">选择已有任务</option></select></label>
+          <label class="full">成果来源<select id="source-kind" data-testid="source-kind"><option value="sketch">最新有效综合素描</option><option value="original">原始照片</option></select></label>
+          <label class="full">放置里程 / m<input id="section-chainage" data-testid="section-chainage" type="number" value="50" step="any" required></label>
+          <button id="section-add" data-testid="section-add" type="submit" class="button primary full" disabled>＋ 添加断面</button>
+        </form>
+        <button id="demo-layout" data-testid="demo-layout" class="button secondary wide" disabled>⌁ 生成三断面示意排布</button>
+        <p class="hint demo-hint">示意排布会将同一成果重复放在 3 处，仅演示空间效果，不代表三个里程的实际观测。</p>
+      </section>
+      <section class="control-section sections-section">
+        <div class="section-heading"><div><div class="eyebrow">03 / SECTIONS</div><h2>断面列表 <span id="section-count" class="count">0</span></h2></div><span class="subtle">点击定位与编辑</span></div>
+        <div id="section-list" data-testid="section-list" class="section-list"><p class="list-empty">加入断面后，在这里管理位置与显隐。</p></div>
+        <details id="section-settings" class="disclosure" hidden>
+          <summary>所选断面参数</summary>
+          <form id="placement-form" class="form-grid">
+            <label class="full">断面名称<input id="placement-label" maxlength="120" required></label>
+            <label class="full">里程 / m<input id="placement-chainage" type="number" step="any" required></label>
+            <label>显示宽度 / m<input id="placement-width" type="number" min="0.1" step="any" required></label>
+            <label>显示高度 / m<input id="placement-height" type="number" min="0.1" step="any" required></label>
+            <label>横向偏移 / m<input id="placement-u" type="number" step="any" required></label>
+            <label>竖向偏移 / m<input id="placement-v" type="number" step="any" required></label>
+            <label class="full">平面内旋转 / °<input id="placement-rotation" type="number" step="any" required></label>
+            <label class="check full"><input id="placement-flip" type="checkbox">左右翻转</label>
+            <button id="placement-save" data-testid="placement-save" class="button primary full" type="submit">保存摆放</button>
+          </form>
+          <p class="hint">这些尺寸只用于示意摆放，不改变原始识别参数。</p>
+          <div id="source-provenance" class="provenance"></div>
+        </details>
+      </section>
+      <footer class="controls-footer">场景保存在本机，可随时继续编辑。<br>原照片与识别成果只读引用，互不覆盖。</footer>
+    </aside>
+    <section class="stage" aria-label="隧道三维场景">
+      <div class="stage-heading"><div><div class="eyebrow">SPATIAL VIEW / 里程与掌子面</div><h1 id="scene-title">建立你的隧道断面序列</h1><p id="scene-description">从一张照片到多个里程，直观查看掌子面素描在隧道中的位置。</p></div><span id="scene-status" role="status" class="status">连接中</span></div>
+      <div id="error-banner" role="alert" class="error-banner" hidden><span id="error-message"></span><button id="dismiss-error" type="button" aria-label="关闭错误提示">×</button></div>
+      <div class="viewer-card">
+        <div class="viewer-toolbar">
+          <div class="segmented" aria-label="断面图层"><button id="layer-sketch" data-layer="sketch" class="active" aria-pressed="true">综合素描</button><button id="layer-original" data-layer="original" aria-pressed="false">原始照片</button></div>
+          <div class="export-actions"><button id="export-scene" data-testid="export-scene" class="text-button" disabled>↓ 场景 JSON</button><button id="save-screenshot" data-testid="save-screenshot" class="text-button" disabled>↓ 保存截图</button></div>
+        </div>
+        <div id="tunnel-viewport" data-testid="tunnel-viewport" class="tunnel-viewport">
+          <div id="empty-state" class="empty-state"><div class="empty-tunnel" aria-hidden="true">▱</div><strong>让不同里程的掌子面，在同一隧道中相遇</strong><p>先在左侧创建场景，再加入已有照片或综合素描。<br>仅需里程和示意尺寸，无需精确隧道模型。</p><span>旋转 · 缩放 · 点击断面查看来源</span></div>
+          <div class="scene-watermark">SCHEMATIC / 示意展示</div>
+          <div id="selected-caption" class="selected-caption" hidden></div>
+        </div>
+        <div class="view-settings">
+          <div class="view-buttons" aria-label="相机视图"><button id="view-perspective" data-view="perspective" class="active">透视</button><button id="view-front" data-view="front">正视</button><button id="view-side" data-view="side">侧视</button><button id="view-top" data-view="top">俯视</button><button id="view-reset">重置</button></div>
+          <div class="opacity-controls"><label class="check"><input id="shell-visible" type="checkbox" checked>隧道外壳</label><label>外壳<input id="shell-opacity" type="range" min="0" max="0.5" step="0.01" value="0.14" aria-label="隧道外壳透明度"></label><label>断面<input id="section-opacity" type="range" min="0.1" max="1" step="0.01" value="0.96" aria-label="断面透明度"></label></div>
+        </div>
+      </div>
+      <div class="scene-footnotes"><span><i></i>里程定位 · 断面独立摆放 · 历史成果引用</span><span>拖动旋转 / 滚轮缩放 / 右键拖动平移</span></div>
+      <div id="demo-notice" class="demo-notice" hidden>场景含重复示意断面。同一来源图像的重复排布仅用于展示流程，不能据此推断地质连续性。</div>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

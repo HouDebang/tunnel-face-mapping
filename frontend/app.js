@@ -128,6 +128,7 @@ function renderNavigation() {
 }
 function renderTaskHeader() {
   const task=state.task;
+  $("open-tunnel").href=task ? `/tunnel.html?task=${encodeURIComponent(task.id)}` : "/tunnel.html";
   $("photo-name").textContent=task?.filename || "尚未加载照片";
   $("photo-name").title=task?.filename || "";
   $("photo-meta").textContent=task ? `${task.width} × ${task.height} px  ·  TASK ${shortId(task.id)}  ·  SHA256 ${String(task.sha256 || "").slice(0,12)}…` : "上传 JPG / PNG，开始一次新的识别任务";
