@@ -806,23 +806,49 @@ export class RealView {
     this.drawFeed("fused", this.camera);
   }
 
-  /** 渲染一次到离屏画布，再按 cover 规则拷贝到目标 2D 画布。 */
+  /** 渲染一次并拷贝到目标 2D 画布。
+   *  主画面与画中画比例不同：在共享缓冲里按目标比例取子视口，避免拉伸或裁掉视野。 */
   drawFeed(key, camera) {
     const target = this.targets[key];
     if (!target || !camera) return;
     const { canvas, context } = target;
-    const width = canvas.width, height = canvas.height;
-    if (!width || !height) return;
-    this.renderer.render(this.scene, camera);
+    const cw = canvas.width, ch = canvas.height;
+    if (!cw || !ch) return;
+
     const source = this.renderer.domElement;
-    const sw = source.width, sh = source.height;
-    const scale = Math.max(width / sw, height / sh);
-    const cw = width / scale, ch = height / scale;
-    context.drawImage(source, (sw - cw) / 2, (sh - ch) / 2, cw, ch, 0, 0, width, height);
+    const bw = source.width, bh = source.height;
+    const targetAspect = cw / ch;
+    const bufferAspect = bw / bh;
+
+    let vw = bw, vh = bh;
+    if (Math.abs(targetAspect - bufferAspect) > 0.02) {
+      if (targetAspect < bufferAspect) { vw = Math.round(bh * targetAspect); vh = bh; }
+      else { vw = bw; vh = Math.round(bw / targetAspect); }
+      vw = Math.min(vw, bw);
+      vh = Math.min(vh, bh);
+    }
+
+    camera.aspect = targetAspect;
+    camera.updateProjectionMatrix();
+
+    const scissored = vw !== bw || vh !== bh;
+    this.renderer.setViewport(0, 0, vw, vh);
+    this.renderer.setScissorTest(scissored);
+    this.renderer.setScissor(0, 0, vw, vh);
+    this.renderer.render(this.scene, camera);
+    // WebGL 视口原点在左下，drawImage 原点在左上。
+    context.drawImage(source, 0, bh - vh, vw, vh, 0, 0, cw, ch);
   }
 
   resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const mainKey = this.activeKey || "fused";
+    const mainElement = this.targets[mainKey]?.element;
+    const mw = Math.max(1, mainElement?.clientWidth || 800);
+    const mh = Math.max(1, mainElement?.clientHeight || 450);
+    const bw = Math.min(1600, Math.max(480, Math.round(mw * dpr)));
+    const bh = Math.min(1200, Math.max(270, Math.round(mh * dpr)));
+    this.renderer.setSize(bw, bh, false);
     for (const target of Object.values(this.targets)) {
       const width = Math.max(1, target.element.clientWidth);
       const height = Math.max(1, target.element.clientHeight);

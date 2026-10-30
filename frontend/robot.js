@@ -211,12 +211,6 @@ function renderStatus() {
   else if (mission.paused) { realState.textContent = "已暂停"; live.classList.add("warn"); }
   else if (mission.state === "S11") { realState.textContent = "任务完成"; live.classList.add("on"); }
   else { realState.textContent = "待机"; }
-
-  $("real-foot").textContent = mission.state === "S8"
-    ? "停车 · 三相机采集中"
-    : mission.state === "S6" ? "行进中 · 履带驱动"
-    : mission.state === "S7" || mission.state === "S9" || mission.state === "S10" || mission.state === "S11" ? "停车 · 装置待机"
-    : "停车 · 装置关闭";
 }
 
 function renderLog() {
@@ -497,6 +491,65 @@ function bind() {
   window.addEventListener("resize", () => { virtualView?.resize(); realView?.resize(); });
 }
 
+// ---------------------------------------------------------------- 现场三路视角
+// 主画面默认是融合第三人称；另外两路作为右上角小图，点击即与主画面交换。
+const FEED_META = {
+  fused: { label: "融合第三人称", foot: "由监控与机载视角合成的第三人称视角" },
+  monitor: { label: "固定监控 CAM-01", foot: "观察点固定 · 机器人移动" },
+  fpv: { label: "机器人第一人称 CAM-C", foot: "机载前视相机 · 随机器人移动" },
+};
+const FEED_ORDER = ["fused", "monitor", "fpv"];
+const feedCards = {};
+let activeFeed = "fused";
+
+function makeFeedCard(key, tagText, tagId) {
+  const card = document.createElement("div");
+  card.className = "rb-feed-card";
+  card.dataset.feed = key;
+  card.title = `${FEED_META[key].label} · 点击切换主视角`;
+  const tag = document.createElement("span");
+  tag.className = "rb-feed-tag";
+  if (tagId) tag.id = tagId;
+  tag.textContent = tagText;
+  const hint = document.createElement("span");
+  hint.className = "rb-feed-hint";
+  card.append(tag, hint);
+  card.addEventListener("click", () => setActiveFeed(key));
+  return card;
+}
+
+function setActiveFeed(key) {
+  if (!key || key === activeFeed || !feedCards[key]) return;
+  activeFeed = key;
+  layoutFeeds();
+  toast(`主画面已切换到${FEED_META[key].label}`);
+}
+
+function layoutFeeds() {
+  const main = $("site-main");
+  const pip = $("site-pip");
+  if (!main || !pip) return;
+  for (const key of FEED_ORDER) {
+    const card = feedCards[key];
+    if (!card) continue;
+    const isMain = key === activeFeed;
+    card.classList.toggle("is-main", isMain);
+    card.classList.toggle("is-pip", !isMain);
+    const hint = card.querySelector(".rb-feed-hint");
+    if (hint) hint.textContent = isMain ? "" : "点击切换";
+    (isMain ? main : pip).append(card);
+  }
+  const label = $("site-label");
+  if (label) label.textContent = FEED_META[activeFeed].label;
+  const foot = $("real-foot");
+  if (foot) foot.textContent = FEED_META[activeFeed].foot;
+  if (realView) {
+    realView.activeKey = activeFeed;
+    realView.controls.enabled = activeFeed === "fused";
+    requestAnimationFrame(() => realView.resize());
+  }
+}
+
 // ---------------------------------------------------------------- 初始化
 async function boot() {
   mission.subscribe((type, payload) => {
@@ -566,11 +619,11 @@ async function boot() {
   }
 
   try {
-    realView = new RealView({
-      monitor: $("view-monitor"),
-      fpv: $("view-fpv"),
-      fused: $("view-fused"),
-    });
+    feedCards.fused = makeFeedCard("fused", "融合第三人称");
+    feedCards.monitor = makeFeedCard("monitor", "CAM-01 · --:--:--", "osd-monitor");
+    feedCards.fpv = makeFeedCard("fpv", "CAM-C · REC ●");
+    realView = new RealView(feedCards);
+    layoutFeeds();
     await realView.loadRobot();
     realView.setStatus("idle");
   } catch (error) {

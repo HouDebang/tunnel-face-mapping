@@ -70,7 +70,7 @@
 
 /* ---------- 中央双场景 ---------- */
 .rb-center { padding: 12px; display: flex; flex-direction: column; gap: 10px; min-width: 0; min-height: 0; overflow: hidden; }
-.rb-views { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; flex: 1; min-height: 0; }
+.rb-views { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); gap: 12px; flex: 1; min-height: 0; }
 .rb-view {
   display: flex; flex-direction: column; min-width: 0; min-height: 0;
   border: 1px solid var(--line); border-radius: 7px; background: var(--paper); overflow: hidden;
@@ -91,11 +91,36 @@
 .rb-canvas-real { background: #10171a; }
 .rb-canvas canvas { display: block; }
 .rb-feed { display: block; width: 100%; height: 100%; touch-action: none; }
-.rb-view-site { border-top: 2px solid #cfe4e6; }
-.rb-osd {
-  position: absolute; left: 8px; bottom: 6px; z-index: 2;
-  font-size: 9px; letter-spacing: .5px; color: #d9e9ee;
-  text-shadow: 0 1px 3px #000a; font-variant-numeric: tabular-nums; pointer-events: none;
+
+/* ---------- 现场执行：主画面 + 右上角画中画 ---------- */
+.rb-site { position: relative; }
+.rb-site-main { position: absolute; inset: 0; }
+.rb-site-pip {
+  position: absolute; top: 10px; right: 10px; z-index: 3;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.rb-feed-card { position: relative; overflow: hidden; border-radius: 6px; background: #0b1214; }
+.rb-feed-card.is-main { width: 100%; height: 100%; }
+.rb-feed-card.is-pip {
+  width: 172px; height: 97px; border: 1px solid #ffffff2e; cursor: pointer;
+  box-shadow: 0 6px 18px #00000099; transition: border-color .12s, transform .12s;
+}
+.rb-feed-card.is-pip:hover { border-color: #8fd3dd; transform: translateY(-1px); }
+.rb-feed-card canvas { display: block; width: 100%; height: 100%; }
+.rb-feed-tag {
+  position: absolute; left: 6px; bottom: 4px; z-index: 2;
+  font-size: 9px; letter-spacing: .3px; color: #e2eef2;
+  text-shadow: 0 1px 3px #000c; font-variant-numeric: tabular-nums; pointer-events: none;
+}
+.rb-feed-hint {
+  position: absolute; right: 6px; bottom: 4px; z-index: 2;
+  font-size: 8px; color: #9fc3cc; text-shadow: 0 1px 3px #000c; pointer-events: none;
+}
+.rb-site-label {
+  position: absolute; left: 10px; top: 8px; z-index: 3;
+  font-size: 9px; letter-spacing: .4px; color: #dbe9ee;
+  background: #0d1a1ecc; border: 1px solid #ffffff26; border-radius: 3px; padding: 2px 6px;
+  pointer-events: none;
 }
 .rb-badge {
   font-size: 9px; color: #5f818a; background: #eef5f6; border: 1px solid #dbe8ea;
