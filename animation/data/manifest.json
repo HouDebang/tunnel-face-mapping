@@ -1,0 +1,7 @@
+{
+  "face_source": "examples/real_face_RK4_970.jpg",
+  "result_source": "outputs/real_RK4_970",
+  "trace_total": 3035,
+  "region_total": 10,
+  "display_traces": 110
+}

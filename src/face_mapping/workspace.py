@@ -168,6 +168,11 @@ class Workspace:
     def _config_part(self, config, stage_id):
         if stage_id=="result_export":
             return config
+        if stage_id=="geometry_calculation":
+            # Geometry owns both the scale and the image-observable submodule
+            # settings.  Include both in the cache key so changing camera
+            # azimuth or the attitude length filter cannot reuse stale stats.
+            return {"calibration": config["calibration"], "geometry": config.get("geometry", {})}
         section = SPEC[stage_id]["section"]
         if stage_id=="sketch_rendering":
             section = "calibration"
@@ -180,8 +185,18 @@ class Workspace:
             record = valid_records.get(dependency)
             dependencies[dependency] = ({"cache_key":record["cache_key"],"artifacts":{a["name"]:a["sha256"] for a in record["artifacts"]}} if record else {"unavailable":states[dependency]["status"]})
         source = self.root/task["id"]/task["source_name"]
+        judgment_hash = None
+        if stage_id == "result_export":
+            judgment_state = self.root / ".lithology-judgment" / "tasks" / task["id"] / "state.json"
+            if judgment_state.is_file():
+                try:
+                    judgment_hash = file_sha256(judgment_state)
+                except OSError:
+                    judgment_hash = "unreadable"
         return _digest({"stage":stage_id,"input_sha256":file_sha256(source),"parameters":self._config_part(task["config"],stage_id),
-                        "implementation":self._implementation_hash(stage_id),"dependencies":dependencies,"coordinates":"original_image_pixel_centers_v1"})
+                        "implementation":self._implementation_hash(stage_id),"dependencies":dependencies,
+                        "judgment_state_sha256":judgment_hash,
+                        "coordinates":"original_image_pixel_centers_v1"})
 
     def _fresh(self, task):
         """Rehash artifacts before reuse; directory existence alone proves nothing."""

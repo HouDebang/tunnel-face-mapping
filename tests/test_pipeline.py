@@ -52,6 +52,7 @@ def test_end_to_end_artifacts_and_data_roundtrip(completed_run):
         "lithology_mask.png", "lithology_overlay.png", "lithology_regions.json",
         "fracture_mask.png", "fracture_overlay.png", "fracture_skeleton.png",
         "fracture_traces.json", "geological_sketch.png", "parameters.csv",
+        "geological_sketch_form.json", "geological_sketch_form.csv",
         "results.json", "quality_report.json", "manifest.json", "execution.log",
     }
     assert expected <= {p.name for p in folder.iterdir()}
@@ -59,6 +60,9 @@ def test_end_to_end_artifacts_and_data_roundtrip(completed_run):
     assert decoded.model_dump() == result.model_dump()
     assert decoded.coordinate_system == "original_image_pixels"
     assert [step.status for step in decoded.quality.steps] == ["ok"] * 9
+    form = json.loads((folder / "geological_sketch_form.json").read_text(encoding="utf-8"))
+    assert len(form["fields"]) == 28
+    assert all({"value", "status", "source"} <= set(field) for field in form["fields"])
     region_document = json.loads((folder / "lithology_regions.json").read_text(encoding="utf-8"))
     trace_document = json.loads((folder / "fracture_traces.json").read_text(encoding="utf-8"))
     assert region_document["regions"] == [r.model_dump() for r in result.lithology_regions]
@@ -74,6 +78,10 @@ def test_end_to_end_artifacts_and_data_roundtrip(completed_run):
     assert result.statistics.total_length_m is None
     assert result.statistics.observation_area_m2 is None
     assert result.statistics.p21_per_m is None
+    assert set(result.statistics.details["submodules"]) == {"roughness", "aperture", "layer_attitude"}
+    assert result.statistics.mean_roughness_index is not None
+    assert result.statistics.mean_aperture_px is not None
+    assert result.statistics.dip_deg is None
     assert all(region.category == "unknown" and region.area_m2 is None for region in result.lithology_regions)
 
 

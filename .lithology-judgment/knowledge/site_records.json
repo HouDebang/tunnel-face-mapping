@@ -1,0 +1,1348 @@
+{
+  "schema_version": "2.3",
+  "kind": "site_records",
+  "status": "available",
+  "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+  "source_refs": [
+    {
+      "path": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "sha256": "64de1f9ea6cac411f83d28eaa40a80493ac4acbd95b25217325b61e5e18e7cde"
+    },
+    {
+      "path": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\01技术资料\\任务包\\T01_28字段摄影测量可获取性分类_最小任务包.txt",
+      "sha256": "7264768bba5c463838ab07a907d62990810631dc7f5e7a0782993d7ec2c1cf86"
+    }
+  ],
+  "records": [
+    {
+      "record_id": "A-F01",
+      "field": "工程名称",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "note": "项目资料带入，影像不提供。",
+      "excerpt": "工程名称",
+      "example_value": "侨城东路北延通道2标****",
+      "option_values": [
+        "侨城东路北延通道2标****"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.928634+00:00"
+    },
+    {
+      "record_id": "A-F02",
+      "field": "工程部位",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "note": "洞别、里程和台阶由任务记录带入；定位成果可辅助核验。",
+      "excerpt": "工程部位",
+      "example_value": "*****",
+      "option_values": [
+        "*****",
+        "试验条件",
+        "掌子面开挖排险后"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.928634+00:00"
+    },
+    {
+      "record_id": "A-F03",
+      "field": "试验条件",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "note": "施工及检测流程记录确认。",
+      "excerpt": "试验条件",
+      "example_value": "工程部位",
+      "option_values": [
+        "工程部位",
+        "*****",
+        "掌子面开挖排险后"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.929633+00:00"
+    },
+    {
+      "record_id": "A-F04",
+      "field": "委托编号",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "note": "委托资料带入。",
+      "excerpt": "委托编号",
+      "example_value": "/",
+      "option_values": [
+        "/",
+        "检测日期",
+        "****年**月**日"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.929633+00:00"
+    },
+    {
+      "record_id": "A-F05",
+      "field": "检测日期",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "note": "检测任务记录；照片时间仅供核验。",
+      "excerpt": "检测日期",
+      "example_value": "委托编号",
+      "option_values": [
+        "委托编号",
+        "/",
+        "****年**月**日"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.929633+00:00"
+    },
+    {
+      "record_id": "A-F06",
+      "field": "检测依据",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "note": "项目采用的标准。",
+      "excerpt": "检测依据",
+      "example_value": "JTG/T3660-2020",
+      "option_values": [
+        "JTG/T3660-2020",
+        "判定依据",
+        "JTG3370/-2018"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.929633+00:00"
+    },
+    {
+      "record_id": "A-F07",
+      "field": "判定依据",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "note": "项目采用的标准。",
+      "excerpt": "判定依据",
+      "example_value": "检测依据",
+      "option_values": [
+        "检测依据",
+        "JTG/T3660-2020",
+        "JTG3370/-2018"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.929633+00:00"
+    },
+    {
+      "record_id": "A-F08",
+      "field": "主要仪器设备名称",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "note": "设备台账和采集记录。",
+      "excerpt": "主要仪器设备名称",
+      "example_value": "地质罗盘、钢卷尺",
+      "option_values": [
+        "地质罗盘、钢卷尺",
+        "设备编号",
+        "SD-0008、SD-0034"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.929633+00:00"
+    },
+    {
+      "record_id": "A-F09",
+      "field": "设备编号",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "note": "设备台账。",
+      "excerpt": "设备编号",
+      "example_value": "主要仪器设备名称",
+      "option_values": [
+        "主要仪器设备名称",
+        "地质罗盘、钢卷尺",
+        "SD-0008、SD-0034"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.929633+00:00"
+    },
+    {
+      "record_id": "A-F10",
+      "field": "岩土类型（名称）",
+      "category": "影像辅助",
+      "obtainability": "影像辅助",
+      "note": "颜色、纹理和颗粒外观；岩性名称需地质资料或岩样鉴定。",
+      "excerpt": "",
+      "example_value": "岩性指标",
+      "option_values": [
+        "岩性指标",
+        "******中粒花岗岩"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.929633+00:00"
+    },
+    {
+      "record_id": "A-F11",
+      "field": "岩石硬度",
+      "category": "需外部测试或鉴定",
+      "obtainability": "需外部测试或鉴定",
+      "note": "现场鉴定或强度试验，不能从几何模型直接测定。",
+      "excerpt": "岩石硬度",
+      "example_value": "极硬岩□",
+      "option_values": [
+        "极硬岩□",
+        "硬岩□",
+        "较软岩□",
+        "软岩  □",
+        "极软岩□"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.929633+00:00"
+    },
+    {
+      "record_id": "A-F12",
+      "field": "掌子面状态",
+      "category": "影像辅助",
+      "obtainability": "影像辅助",
+      "note": "同一岩面多期影像可提供变形和掉块证据；自稳状态需工程判断。",
+      "excerpt": "掌子面状态",
+      "example_value": "稳定□",
+      "option_values": [
+        "稳定□",
+        "较稳定□",
+        "随时间松弛掉块□",
+        "自稳困难需及时支护 □",
+        "正面不能自稳，需超前支护□"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.929633+00:00"
+    },
+    {
+      "record_id": "A-F13",
+      "field": "地质构造影响程度",
+      "category": "影像辅助",
+      "obtainability": "影像辅助",
+      "note": "结构面和破碎带外观证据；影响程度需地质判读。",
+      "excerpt": "地质构造影响程度",
+      "example_value": "岩体完整状态",
+      "option_values": [
+        "岩体完整状态",
+        "轻微□",
+        "较重□",
+        "严重□",
+        "极严重□"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.930633+00:00"
+    },
+    {
+      "record_id": "A-F14",
+      "field": "间距（m）",
+      "category": "条件可量测",
+      "obtainability": "条件可量测",
+      "note": "同组面确认且几何充分时测法向间距；只有迹线时仅输出二维表观间距。",
+      "excerpt": "",
+      "example_value": "地质结构",
+      "option_values": [
+        "地质结构",
+        ">1.5 □",
+        "1.5～0.6 □",
+        "0.6～0.2 □",
+        "0.2～0.06 □",
+        "<0.06 □"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.930633+00:00"
+    },
+    {
+      "record_id": "A-F15",
+      "field": "延伸性",
+      "category": "部分可量测",
+      "obtainability": "部分可量测",
+      "note": "可见迹线长度、连续段和截断状态；不等于完整延续范围或原表等级。",
+      "excerpt": "延伸性",
+      "example_value": "极差 £",
+      "option_values": [
+        "极差 £",
+        "差 □",
+        "中等 □",
+        "好 □",
+        "极好 □"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.930633+00:00"
+    },
+    {
+      "record_id": "A-F16",
+      "field": "粗糙度",
+      "category": "部分可量测",
+      "obtainability": "部分可量测",
+      "note": "真实结构面露面的起伏；需采样尺度、方向和噪声检核，不能直接给 JRC。",
+      "excerpt": "粗糙度",
+      "example_value": "明显台阶状□",
+      "option_values": [
+        "明显台阶状□",
+        "粗糙波纹状□",
+        "平整光滑有擦痕 □",
+        "平整光滑□"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.930633+00:00"
+    },
+    {
+      "record_id": "A-F17",
+      "field": "张开性（mm）",
+      "category": "部分可量测",
+      "obtainability": "部分可量测",
+      "note": "两壁边界可见且分辨率足够处的局部表观开口；充填性质另行确认。",
+      "excerpt": "",
+      "example_value": "密闭 <0.1 □",
+      "option_values": [
+        "密闭 <0.1 □",
+        "部分张开 0.1～0.5 □",
+        "张开 0.5～1.0 □",
+        "无充填张开 >1.0□",
+        "黏土充填 □"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.930633+00:00"
+    },
+    {
+      "record_id": "A-F18",
+      "field": "风化程度",
+      "category": "影像辅助",
+      "obtainability": "影像辅助",
+      "note": "变色和表面破坏证据；正式等级需现场确认。",
+      "excerpt": "风化程度",
+      "example_value": "未风化 □",
+      "option_values": [
+        "未风化 □",
+        "微风化  □",
+        "中风化 □",
+        "强风化 □",
+        "全风化 □"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.930633+00:00"
+    },
+    {
+      "record_id": "A-F19",
+      "field": "完整状态",
+      "category": "影像辅助",
+      "obtainability": "影像辅助",
+      "note": "裂隙分布和表面块度；不能以表面裂隙密度替代 RQD 或完整性系数。",
+      "excerpt": "岩体完整状态",
+      "example_value": "地质构造影响程度",
+      "option_values": [
+        "地质构造影响程度",
+        "轻微□",
+        "较重□",
+        "严重□",
+        "极严重□",
+        "完整□",
+        "较完整 □",
+        "较破碎 □",
+        "破碎 □",
+        "极破碎□"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.930633+00:00"
+    },
+    {
+      "record_id": "A-F20",
+      "field": "岩层产状",
+      "category": "条件可量测",
+      "obtainability": "条件可量测",
+      "note": "确认真层理、有足够层面几何并完成定向后量测；节理产状不得替代岩层产状。",
+      "excerpt": "岩层产状",
+      "example_value": "围岩级别",
+      "option_values": [
+        "围岩级别",
+        "I □",
+        "II □",
+        "III □",
+        "IV □",
+        "V □",
+        "Ⅵ □"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.930633+00:00"
+    },
+    {
+      "record_id": "A-F21",
+      "field": "围岩级别",
+      "category": "需综合评价",
+      "obtainability": "需综合评价",
+      "note": "结合强度、完整性、地下水、主要软弱结构面及应力资料判定。",
+      "excerpt": "围岩级别",
+      "example_value": "岩层产状",
+      "option_values": [
+        "岩层产状",
+        "I □",
+        "II □",
+        "III □",
+        "IV □",
+        "V □",
+        "Ⅵ □"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.930633+00:00"
+    },
+    {
+      "record_id": "A-F22",
+      "field": "岩体含水状态/渗水量",
+      "category": "需现场测量",
+      "obtainability": "需现场测量",
+      "note": "干湿和滴流外观可辅助；L/min·10m 流量需实测。",
+      "excerpt": "",
+      "example_value": "",
+      "option_values": [],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.931629+00:00"
+    },
+    {
+      "record_id": "A-F23",
+      "field": "开挖工作面素描图",
+      "category": "组合成果生成",
+      "obtainability": "组合成果生成",
+      "note": "摄影测量提供正射底图和几何定位；地质界线、迹线和符号需识别及复核。",
+      "excerpt": "开挖工作面素描图及地质简要描述",
+      "example_value": "地质简要描述",
+      "option_values": [
+        "地质简要描述"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.931629+00:00"
+    },
+    {
+      "record_id": "A-F24",
+      "field": "地质简要描述",
+      "category": "辅助生成",
+      "obtainability": "辅助生成",
+      "note": "根据已核实的量测、地质判读及现场资料组织文字。",
+      "excerpt": "开挖工作面素描图及地质简要描述",
+      "example_value": "开挖工作面素描图",
+      "option_values": [
+        "开挖工作面素描图"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.931629+00:00"
+    },
+    {
+      "record_id": "A-F25",
+      "field": "附加声明",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "note": "模板及实际检测情况。",
+      "excerpt": "附加声明",
+      "example_value": "附加声明",
+      "option_values": [],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.931629+00:00"
+    },
+    {
+      "record_id": "A-F26",
+      "field": "记录人",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "note": "人员账号或签字流程。",
+      "excerpt": "记录人：",
+      "example_value": "监理员：",
+      "option_values": [
+        "监理员：",
+        "年",
+        "月",
+        "日"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.931629+00:00"
+    },
+    {
+      "record_id": "A-F27",
+      "field": "监理员",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "note": "监理确认或签字流程。",
+      "excerpt": "监理员：",
+      "example_value": "记录人：",
+      "option_values": [
+        "记录人：",
+        "年",
+        "月",
+        "日"
+      ],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.931629+00:00"
+    },
+    {
+      "record_id": "A-F28",
+      "field": "签署日期",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "note": "签署流程记录。",
+      "excerpt": "",
+      "example_value": "",
+      "option_values": [],
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "source_kind": "project_sample_workbook",
+      "updated_at": "2026-10-27T18:49:36.931629+00:00"
+    }
+  ],
+  "categories": [
+    "影像辅助",
+    "条件可量测",
+    "管理信息",
+    "组合成果生成",
+    "辅助生成",
+    "部分可量测",
+    "需外部测试或鉴定",
+    "需现场测量",
+    "需综合评价"
+  ],
+  "notice": "字段定义、选项值和可获取性分类来自项目样表与 T01 任务包；空白或占位值不代表已验证现场事实。",
+  "updated_at": "2026-10-27T18:49:36.931629+00:00",
+  "ontology": {
+    "id": "ontology:site-geological-sketch:v1",
+    "label": "掌子面地质素描字段本体",
+    "version": "1.0",
+    "classes": [
+      {
+        "id": "class:GeologicalSketchRecord",
+        "label": "掌子面地质素描记录",
+        "parent": "class:Entity"
+      },
+      {
+        "id": "class:Field",
+        "label": "记录字段",
+        "parent": "class:Entity"
+      },
+      {
+        "id": "class:AdministrativeField",
+        "label": "管理信息字段",
+        "parent": "class:Field"
+      },
+      {
+        "id": "class:ImageObservationField",
+        "label": "影像辅助字段",
+        "parent": "class:Field"
+      },
+      {
+        "id": "class:MeasurementField",
+        "label": "量测字段",
+        "parent": "class:Field"
+      },
+      {
+        "id": "class:ExternalEvidenceField",
+        "label": "外部测试/现场证据字段",
+        "parent": "class:Field"
+      },
+      {
+        "id": "class:DerivedResultField",
+        "label": "成果生成字段",
+        "parent": "class:Field"
+      },
+      {
+        "id": "class:Entity",
+        "label": "工程地质实体",
+        "parent": null
+      }
+    ],
+    "properties": [
+      {
+        "id": "property:has_field",
+        "label": "包含字段",
+        "domain": "class:GeologicalSketchRecord",
+        "range": "class:Field"
+      },
+      {
+        "id": "property:instance_of",
+        "label": "实例属于",
+        "domain": "class:Entity",
+        "range": "class:Entity"
+      },
+      {
+        "id": "property:requires_evidence",
+        "label": "需要证据",
+        "domain": "class:Field",
+        "range": "class:Field"
+      },
+      {
+        "id": "property:supports",
+        "label": "支持判读",
+        "domain": "class:Field",
+        "range": "class:Field"
+      },
+      {
+        "id": "property:derived_from",
+        "label": "派生自",
+        "domain": "class:Field",
+        "range": "class:Field"
+      },
+      {
+        "id": "property:complements",
+        "label": "互补",
+        "domain": "class:Field",
+        "range": "class:Field"
+      }
+    ],
+    "notice": "本体描述字段类型与证据关系；实例层保存项目记录表字段及其关系。"
+  },
+  "instance_layer": {
+    "records": [
+      {
+        "id": "instance:geological-sketch-record-schema",
+        "label": "项目掌子面地质素描记录表",
+        "class": "class:GeologicalSketchRecord",
+        "source": "项目地质素描记录表-样表.xlsx"
+      },
+      {
+        "id": "field:A-F01",
+        "label": "工程名称",
+        "class": "class:AdministrativeField",
+        "record_id": "A-F01",
+        "category": "管理信息",
+        "obtainability": "管理信息"
+      },
+      {
+        "id": "field:A-F02",
+        "label": "工程部位",
+        "class": "class:AdministrativeField",
+        "record_id": "A-F02",
+        "category": "管理信息",
+        "obtainability": "管理信息"
+      },
+      {
+        "id": "field:A-F03",
+        "label": "试验条件",
+        "class": "class:AdministrativeField",
+        "record_id": "A-F03",
+        "category": "管理信息",
+        "obtainability": "管理信息"
+      },
+      {
+        "id": "field:A-F04",
+        "label": "委托编号",
+        "class": "class:AdministrativeField",
+        "record_id": "A-F04",
+        "category": "管理信息",
+        "obtainability": "管理信息"
+      },
+      {
+        "id": "field:A-F05",
+        "label": "检测日期",
+        "class": "class:AdministrativeField",
+        "record_id": "A-F05",
+        "category": "管理信息",
+        "obtainability": "管理信息"
+      },
+      {
+        "id": "field:A-F06",
+        "label": "检测依据",
+        "class": "class:AdministrativeField",
+        "record_id": "A-F06",
+        "category": "管理信息",
+        "obtainability": "管理信息"
+      },
+      {
+        "id": "field:A-F07",
+        "label": "判定依据",
+        "class": "class:AdministrativeField",
+        "record_id": "A-F07",
+        "category": "管理信息",
+        "obtainability": "管理信息"
+      },
+      {
+        "id": "field:A-F08",
+        "label": "主要仪器设备名称",
+        "class": "class:AdministrativeField",
+        "record_id": "A-F08",
+        "category": "管理信息",
+        "obtainability": "管理信息"
+      },
+      {
+        "id": "field:A-F09",
+        "label": "设备编号",
+        "class": "class:AdministrativeField",
+        "record_id": "A-F09",
+        "category": "管理信息",
+        "obtainability": "管理信息"
+      },
+      {
+        "id": "field:A-F10",
+        "label": "岩土类型（名称）",
+        "class": "class:ImageObservationField",
+        "record_id": "A-F10",
+        "category": "影像辅助",
+        "obtainability": "影像辅助"
+      },
+      {
+        "id": "field:A-F11",
+        "label": "岩石硬度",
+        "class": "class:ExternalEvidenceField",
+        "record_id": "A-F11",
+        "category": "需外部测试或鉴定",
+        "obtainability": "需外部测试或鉴定"
+      },
+      {
+        "id": "field:A-F12",
+        "label": "掌子面状态",
+        "class": "class:ImageObservationField",
+        "record_id": "A-F12",
+        "category": "影像辅助",
+        "obtainability": "影像辅助"
+      },
+      {
+        "id": "field:A-F13",
+        "label": "地质构造影响程度",
+        "class": "class:ImageObservationField",
+        "record_id": "A-F13",
+        "category": "影像辅助",
+        "obtainability": "影像辅助"
+      },
+      {
+        "id": "field:A-F14",
+        "label": "间距（m）",
+        "class": "class:MeasurementField",
+        "record_id": "A-F14",
+        "category": "条件可量测",
+        "obtainability": "条件可量测"
+      },
+      {
+        "id": "field:A-F15",
+        "label": "延伸性",
+        "class": "class:MeasurementField",
+        "record_id": "A-F15",
+        "category": "部分可量测",
+        "obtainability": "部分可量测"
+      },
+      {
+        "id": "field:A-F16",
+        "label": "粗糙度",
+        "class": "class:MeasurementField",
+        "record_id": "A-F16",
+        "category": "部分可量测",
+        "obtainability": "部分可量测"
+      },
+      {
+        "id": "field:A-F17",
+        "label": "张开性（mm）",
+        "class": "class:MeasurementField",
+        "record_id": "A-F17",
+        "category": "部分可量测",
+        "obtainability": "部分可量测"
+      },
+      {
+        "id": "field:A-F18",
+        "label": "风化程度",
+        "class": "class:ImageObservationField",
+        "record_id": "A-F18",
+        "category": "影像辅助",
+        "obtainability": "影像辅助"
+      },
+      {
+        "id": "field:A-F19",
+        "label": "完整状态",
+        "class": "class:ImageObservationField",
+        "record_id": "A-F19",
+        "category": "影像辅助",
+        "obtainability": "影像辅助"
+      },
+      {
+        "id": "field:A-F20",
+        "label": "岩层产状",
+        "class": "class:MeasurementField",
+        "record_id": "A-F20",
+        "category": "条件可量测",
+        "obtainability": "条件可量测"
+      },
+      {
+        "id": "field:A-F21",
+        "label": "围岩级别",
+        "class": "class:ExternalEvidenceField",
+        "record_id": "A-F21",
+        "category": "需综合评价",
+        "obtainability": "需综合评价"
+      },
+      {
+        "id": "field:A-F22",
+        "label": "岩体含水状态/渗水量",
+        "class": "class:ExternalEvidenceField",
+        "record_id": "A-F22",
+        "category": "需现场测量",
+        "obtainability": "需现场测量"
+      },
+      {
+        "id": "field:A-F23",
+        "label": "开挖工作面素描图",
+        "class": "class:DerivedResultField",
+        "record_id": "A-F23",
+        "category": "组合成果生成",
+        "obtainability": "组合成果生成"
+      },
+      {
+        "id": "field:A-F24",
+        "label": "地质简要描述",
+        "class": "class:DerivedResultField",
+        "record_id": "A-F24",
+        "category": "辅助生成",
+        "obtainability": "辅助生成"
+      },
+      {
+        "id": "field:A-F25",
+        "label": "附加声明",
+        "class": "class:AdministrativeField",
+        "record_id": "A-F25",
+        "category": "管理信息",
+        "obtainability": "管理信息"
+      },
+      {
+        "id": "field:A-F26",
+        "label": "记录人",
+        "class": "class:AdministrativeField",
+        "record_id": "A-F26",
+        "category": "管理信息",
+        "obtainability": "管理信息"
+      },
+      {
+        "id": "field:A-F27",
+        "label": "监理员",
+        "class": "class:AdministrativeField",
+        "record_id": "A-F27",
+        "category": "管理信息",
+        "obtainability": "管理信息"
+      },
+      {
+        "id": "field:A-F28",
+        "label": "签署日期",
+        "class": "class:AdministrativeField",
+        "record_id": "A-F28",
+        "category": "管理信息",
+        "obtainability": "管理信息"
+      }
+    ],
+    "relations": [
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F01",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F01",
+        "target": "class:AdministrativeField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F02",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F02",
+        "target": "class:AdministrativeField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F03",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F03",
+        "target": "class:AdministrativeField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F04",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F04",
+        "target": "class:AdministrativeField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F05",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F05",
+        "target": "class:AdministrativeField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F06",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F06",
+        "target": "class:AdministrativeField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F07",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F07",
+        "target": "class:AdministrativeField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F08",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F08",
+        "target": "class:AdministrativeField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F09",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F09",
+        "target": "class:AdministrativeField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F10",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F10",
+        "target": "class:ImageObservationField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F11",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F11",
+        "target": "class:ExternalEvidenceField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F12",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F12",
+        "target": "class:ImageObservationField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F13",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F13",
+        "target": "class:ImageObservationField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F14",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F14",
+        "target": "class:MeasurementField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F15",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F15",
+        "target": "class:MeasurementField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F16",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F16",
+        "target": "class:MeasurementField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F17",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F17",
+        "target": "class:MeasurementField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F18",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F18",
+        "target": "class:ImageObservationField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F19",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F19",
+        "target": "class:ImageObservationField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F20",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F20",
+        "target": "class:MeasurementField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F21",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F21",
+        "target": "class:ExternalEvidenceField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F22",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F22",
+        "target": "class:ExternalEvidenceField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F23",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F23",
+        "target": "class:DerivedResultField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F24",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F24",
+        "target": "class:DerivedResultField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F25",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F25",
+        "target": "class:AdministrativeField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F26",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F26",
+        "target": "class:AdministrativeField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F27",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F27",
+        "target": "class:AdministrativeField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "instance:geological-sketch-record-schema",
+        "target": "field:A-F28",
+        "predicate": "has_field"
+      },
+      {
+        "source": "field:A-F28",
+        "target": "class:AdministrativeField",
+        "predicate": "instance_of"
+      },
+      {
+        "source": "field:A-F02",
+        "target": "field:A-F23",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F02",
+        "target": "field:A-F24",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F10",
+        "target": "field:A-F11",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F10",
+        "target": "field:A-F18",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F10",
+        "target": "field:A-F21",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F10",
+        "target": "field:A-F24",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F12",
+        "target": "field:A-F19",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F12",
+        "target": "field:A-F21",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F12",
+        "target": "field:A-F13",
+        "predicate": "complements"
+      },
+      {
+        "source": "field:A-F13",
+        "target": "field:A-F20",
+        "predicate": "requires_evidence"
+      },
+      {
+        "source": "field:A-F13",
+        "target": "field:A-F14",
+        "predicate": "requires_evidence"
+      },
+      {
+        "source": "field:A-F13",
+        "target": "field:A-F15",
+        "predicate": "requires_evidence"
+      },
+      {
+        "source": "field:A-F13",
+        "target": "field:A-F16",
+        "predicate": "requires_evidence"
+      },
+      {
+        "source": "field:A-F13",
+        "target": "field:A-F17",
+        "predicate": "requires_evidence"
+      },
+      {
+        "source": "field:A-F13",
+        "target": "field:A-F21",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F20",
+        "target": "field:A-F13",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F20",
+        "target": "field:A-F23",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F14",
+        "target": "field:A-F19",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F14",
+        "target": "field:A-F21",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F15",
+        "target": "field:A-F19",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F15",
+        "target": "field:A-F13",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F16",
+        "target": "field:A-F13",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F16",
+        "target": "field:A-F17",
+        "predicate": "complements"
+      },
+      {
+        "source": "field:A-F17",
+        "target": "field:A-F13",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F17",
+        "target": "field:A-F16",
+        "predicate": "complements"
+      },
+      {
+        "source": "field:A-F18",
+        "target": "field:A-F19",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F18",
+        "target": "field:A-F21",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F19",
+        "target": "field:A-F21",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F19",
+        "target": "field:A-F24",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F22",
+        "target": "field:A-F21",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F22",
+        "target": "field:A-F24",
+        "predicate": "supports"
+      },
+      {
+        "source": "field:A-F21",
+        "target": "field:A-F10",
+        "predicate": "derived_from"
+      },
+      {
+        "source": "field:A-F21",
+        "target": "field:A-F11",
+        "predicate": "derived_from"
+      },
+      {
+        "source": "field:A-F21",
+        "target": "field:A-F19",
+        "predicate": "derived_from"
+      },
+      {
+        "source": "field:A-F21",
+        "target": "field:A-F22",
+        "predicate": "derived_from"
+      },
+      {
+        "source": "field:A-F21",
+        "target": "field:A-F13",
+        "predicate": "derived_from"
+      },
+      {
+        "source": "field:A-F23",
+        "target": "field:A-F02",
+        "predicate": "derived_from"
+      },
+      {
+        "source": "field:A-F23",
+        "target": "field:A-F10",
+        "predicate": "derived_from"
+      },
+      {
+        "source": "field:A-F23",
+        "target": "field:A-F13",
+        "predicate": "derived_from"
+      },
+      {
+        "source": "field:A-F23",
+        "target": "field:A-F20",
+        "predicate": "derived_from"
+      },
+      {
+        "source": "field:A-F24",
+        "target": "field:A-F10",
+        "predicate": "derived_from"
+      },
+      {
+        "source": "field:A-F24",
+        "target": "field:A-F12",
+        "predicate": "derived_from"
+      },
+      {
+        "source": "field:A-F24",
+        "target": "field:A-F19",
+        "predicate": "derived_from"
+      },
+      {
+        "source": "field:A-F24",
+        "target": "field:A-F21",
+        "predicate": "derived_from"
+      },
+      {
+        "source": "field:A-F24",
+        "target": "field:A-F22",
+        "predicate": "derived_from"
+      }
+    ]
+  }
+}

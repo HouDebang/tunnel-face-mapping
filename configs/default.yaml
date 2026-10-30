@@ -44,3 +44,6 @@ calibration:
   meters_per_pixel: null
   planar_approximation_acknowledged: false
   description: null
+geometry:
+  image_axis_azimuth_deg: null
+  attitude_min_trace_length_px: 0.0

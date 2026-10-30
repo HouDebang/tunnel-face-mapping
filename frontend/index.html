@@ -6,12 +6,14 @@
   <meta name="color-scheme" content="light">
   <title>岩面 · 掌子面地质识别工作台</title>
   <link rel="stylesheet" href="/style.css">
-  <script src="/app.js" defer></script>
+  <link rel="stylesheet" href="/kb.css?v=graph4">
+  <script src="/vendor/force-graph.min.js?v=1" defer></script>
+  <script src="/app.js?v=graph4" defer></script>
 </head>
 <body>
   <header class="topbar">
-    <div class="brand"><span class="brand-mark" aria-hidden="true">▱</span><div><h1>岩面 <span>/ 地质识别工作台</span></h1><p>TUNNEL FACE MAPPING · LOCAL WORKSPACE</p></div><span class="version">MVP / 02</span></div>
-    <div class="top-actions"><span id="connection" class="connection"><i></i>连接中</span><label class="button secondary upload-button" for="upload-input"><span aria-hidden="true">＋</span> 上传照片</label><input id="upload-input" data-testid="upload-input" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" hidden><button id="run-all" data-testid="run-all" class="button primary" disabled><span aria-hidden="true">▷</span> 运行全部步骤</button><button id="export-top" data-testid="download-package" class="button secondary" disabled>↓ 导出成果</button></div>
+    <div class="brand"><span class="brand-mark" aria-hidden="true">▱</span><div><h1>岩面 <span>/ 地质识别工作台</span></h1><p>TUNNEL FACE MAPPING · LOCAL WORKSPACE</p></div><span class="version">MVP / 03</span></div>
+    <div class="top-actions"><span id="connection" class="connection"><i></i>连接中</span><button id="open-knowledge" data-testid="open-knowledge" class="button secondary" title="查看已内嵌的项目岩性知识库与记录表字段">知识库</button><button id="open-provider" data-testid="open-provider" class="button secondary" title="配置 OpenAI 兼容大模型接口">大模型</button><label class="button secondary upload-button" for="upload-input"><span aria-hidden="true">＋</span> 上传照片</label><input id="upload-input" data-testid="upload-input" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" hidden><button id="run-all" data-testid="run-all" class="button primary" disabled><span aria-hidden="true">▷</span> 运行全部步骤</button><button id="export-top" data-testid="download-package" class="button secondary" disabled>↓ 导出成果</button></div>
   </header>
   <nav class="workspace-switcher" aria-label="工作台模式"><a href="/" class="active" aria-current="page">单张识别</a><a id="open-tunnel" data-testid="open-tunnel" href="/tunnel.html">隧道三维 <span>里程与断面示意 ↗</span></a></nav>
   <div class="taskbar">
@@ -20,9 +22,18 @@
   </div>
   <main class="workbench">
     <aside class="steps-panel"><div class="panel-eyebrow">PROCESS / 处理流程</div><nav id="stage-nav" aria-label="识别处理步骤"></nav><div class="steps-note"><span class="note-icon">ⓘ</span><p>本地计算 · 逐步可追溯<br><span>候选识别结果需人工核验</span></p></div></aside>
-    <aside class="parameters-panel"><div class="parameters-heading"><div><div class="panel-eyebrow">PARAMETERS / 算法参数</div><h2 id="parameter-title">输入信息</h2></div><span id="config-revision" class="revision">REV —</span></div><div id="parameter-content" class="parameter-content"></div><div class="parameter-actions"><div id="dirty-note" class="dirty-note" hidden>● 参数尚未保存，运行时将自动保存</div><label class="force-label"><input id="force-run" type="checkbox"> 强制重新计算 <span title="关闭时，参数与输入内容一致的有效结果将被复用">ⓘ</span></label><button id="run-stage" data-testid="run-current-stage" class="button primary wide" disabled>▷ 运行当前步骤</button><button id="run-downstream" data-testid="run-downstream" class="button secondary wide" disabled>运行受影响的后续步骤</button><div class="parameter-small-actions"><button id="restore-defaults" class="text-button" disabled>恢复本步默认值</button><button id="save-config" class="text-button" disabled>保存参数</button></div><button id="show-logs" class="text-button wide">查看本步骤执行日志 ↗</button><p class="parameter-hint">参数由 Python 数据契约校验。每次运行独立留档，过期结果保留以供回查。</p></div></aside>
     <section class="main-panel">
       <div class="stage-heading"><div><div class="panel-eyebrow" id="stage-eyebrow">00 / SOURCE IMAGE</div><h2 id="stage-title">原始照片</h2><p id="stage-description">保留原始照片与文件信息，为所有处理步骤提供统一输入。</p></div><span id="stage-status" class="status-pill pending">未运行</span></div>
+      <div class="stage-actions">
+        <div class="stage-actions-status"><span id="dirty-note" class="dirty-note" hidden>● 参数尚未保存，运行时将自动保存</span></div>
+        <div class="stage-actions-buttons">
+          <label class="force-label"><input id="force-run" type="checkbox"> 强制重新计算 <span title="关闭时，参数与输入内容一致的有效结果将被复用">ⓘ</span></label>
+          <button id="restore-defaults" class="text-button" disabled>恢复本步默认值</button>
+          <button id="save-config" class="text-button" disabled>保存参数</button>
+          <button id="run-downstream" data-testid="run-downstream" class="button secondary" disabled>运行受影响的后续步骤</button>
+          <button id="run-stage" data-testid="run-current-stage" class="button primary" disabled>▷ 运行当前步骤</button>
+        </div>
+      </div>
       <div id="quality-banner" class="quality-banner" role="status" hidden></div>
       <div id="historical-banner" class="quality-banner historical" hidden></div>
       <div class="viewer-toolbar"><div class="compare-label"><span class="live-dot"></span> 双图对照 <span class="subtle">/ 原始分辨率查看</span></div><div class="view-tools"><button id="zoom-out" class="icon-button" aria-label="缩小图像" title="缩小">−</button><span id="zoom-label">100%</span><button id="zoom-in" class="icon-button" aria-label="放大图像" title="放大">＋</button><button id="reset-view" class="text-button">重置视图</button><button id="save-image" class="text-button" disabled>↓ 保存图像</button></div></div>
@@ -30,8 +41,33 @@
         <article class="image-card"><div class="image-card-head"><span><i class="image-dot input-dot"></i> 输入图像</span><small id="input-name">原始照片</small></div><div id="input-viewport" class="viewport" aria-label="输入图像查看区"><div class="image-transform"><img id="input-image" alt="当前步骤输入图像" draggable="false"></div><div class="viewer-empty"><span class="empty-image-icon">▧</span><strong>把掌子面照片放在这里</strong><p>拖入照片，或点击右上角「上传照片」</p><small>JPG / JPEG / PNG · 本地处理</small></div></div><div class="image-card-foot"><span id="input-dimensions">—</span><span>滚轮缩放 · 拖动平移</span></div></article>
         <article class="image-card"><div class="image-card-head"><span><i class="image-dot output-dot"></i> <span id="output-label">当前步骤结果</span></span><select id="artifact-select" data-testid="artifact-select" aria-label="切换输出图像"><option value="">等待运行</option></select></div><div id="output-viewport" class="viewport" aria-label="步骤结果图像查看区"><div class="image-transform"><img id="output-image" alt="当前步骤输出图像" draggable="false"><canvas id="sketch-canvas" hidden></canvas></div><div class="viewer-empty"><span class="empty-image-icon">⌁</span><strong id="output-empty-title">处理结果将在这里显示</strong><p id="output-empty-description">上传照片后，按左侧流程逐步运行</p></div><span id="stale-watermark" class="stale-watermark" hidden>历史结果 · 当前配置已失效</span></div><div class="image-card-foot"><span id="output-dimensions">—</span><span id="execution-time">尚无执行记录</span></div></article>
       </div>
+      <div id="judgment-legend" class="judgment-legend-output" hidden></div>
       <div id="sketch-layers" class="layer-controls" hidden><strong>显示图层</strong><label><input type="checkbox" data-layer="face" checked> 有效区域</label><label><input type="checkbox" data-layer="lithology" checked> 岩性候选区</label><label><input type="checkbox" data-layer="fractures" checked> 裂隙迹线</label><label><input type="checkbox" data-layer="labels" checked> 对象编号</label><small>仅改变视图，计算结果保持不变</small></div>
-      <section class="results-panel"><div class="results-header"><div class="result-tabs" role="tablist" aria-label="结果信息"><button class="result-tab active" data-tab="summary" role="tab" aria-selected="true">结果概览</button><button class="result-tab" data-tab="objects" role="tab" aria-selected="false">对象数据</button><button class="result-tab" data-tab="files" role="tab" aria-selected="false">输出文件 <span id="file-count">0</span></button><button class="result-tab" data-tab="logs" role="tab" aria-selected="false">执行日志</button></div><select id="execution-select" data-testid="execution-select" aria-label="选择阶段历史执行记录"><option value="">当前有效结果</option></select></div><div id="result-content" class="result-content" role="tabpanel"></div></section>
+      <section class="console" aria-label="步骤控制台">
+        <div class="console-header">
+          <div class="console-tabs" role="tablist" aria-label="步骤控制台">
+            <button class="console-tab active" data-tab="parameters" role="tab" aria-selected="true">算法参数</button>
+            <button class="console-tab" data-tab="substeps" role="tab" id="tab-substeps" aria-selected="false">子步骤<span id="substeps-count" class="tab-count"></span></button>
+            <button class="console-tab" data-tab="summary" role="tab" aria-selected="false">结果概览</button>
+            <button class="console-tab" data-tab="objects" role="tab" aria-selected="false">对象数据</button>
+            <button class="console-tab" data-tab="files" role="tab" aria-selected="false">输出文件 <span id="file-count" class="tab-count">0</span></button>
+            <button class="console-tab" data-tab="logs" role="tab" aria-selected="false">执行日志</button>
+          </div>
+          <div class="console-meta"><span id="config-revision" class="revision">REV —</span><select id="execution-select" data-testid="execution-select" aria-label="选择阶段历史执行记录"><option value="">当前有效结果</option></select></div>
+        </div>
+        <div class="console-body">
+          <div class="console-pane" id="pane-parameters">
+            <div class="pane-head"><span class="panel-eyebrow">PARAMETERS / 算法参数</span><h3 id="parameter-title">输入信息</h3></div>
+            <div id="parameter-content" class="parameter-content"></div>
+          </div>
+          <div class="console-pane" id="pane-substeps" hidden>
+            <div id="substeps-content"></div>
+          </div>
+          <div class="console-pane" id="pane-results" hidden>
+            <div id="result-content" class="result-content" role="tabpanel"></div>
+          </div>
+        </div>
+      </section>
       <footer class="workspace-footer"><span><i class="live-dot"></i> 图像坐标：左上角原点 · X 向右 / Y 向下</span><span>图像方向 ≠ 地质走向或倾角</span></footer>
     </section>
   </main>

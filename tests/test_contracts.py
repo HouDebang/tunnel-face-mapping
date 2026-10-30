@@ -36,6 +36,8 @@ def test_config_strict_units():
         PipelineConfig.model_validate({"calibration":{"meters_per_pixel":.001}})
     with pytest.raises(ValidationError):
         PipelineConfig.model_validate({"calibration":{"meters_per_pixel":float('nan'),"planar_approximation_acknowledged":True}})
+    configured = PipelineConfig.model_validate({"geometry":{"image_axis_azimuth_deg":30,"attitude_min_trace_length_px":12}})
+    assert configured.geometry.image_axis_azimuth_deg == 30
     assert load_config("configs/default.yaml")==PipelineConfig()
 
 

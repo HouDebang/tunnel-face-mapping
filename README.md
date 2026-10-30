@@ -18,6 +18,33 @@
 
 可在“手动指定对应对象”中先“读取源对象”，再选择两端断面和对象；也可在连接列表调整显隐、反向配对、移除。摆放变换会同步更新模型面，JSON 导出保留对象来源、对应关系和设置。缺失或无法证明版本一致的分支会报告原因；不会用最新重跑结果替换旧素描几何。岩性仍为 `unknown`，连接面仅是用户指定或算法提出的对应假设，不是实测裂隙延伸面或已验证的连续岩性体。详见 [GEOLOGY_LINKS_REPORT.md](GEOLOGY_LINKS_REPORT.md)。
 
+## 岩性分割与判定
+
+工作台布局：左栏只保留 8 步流程导航；中间是「标题 + 操作条 + 双图对照 + 控制台」。岩性步骤的二级栏直接是四个子步骤：**岩性分割、算法判定、大模型调用知识库、综合判定**；每个面板只显示本子步骤的参数和结果。知识库与大模型配置放在顶栏按钮打开的抽屉里，不占步骤面板。通用输出文件和执行日志不作为普通用户主选项，成果导出提供可在线修改的 28 字段素描表。
+
+一级步骤仍是 8 步（预处理、掌子面分割、**岩性分割与判定**、裂隙分割、迹线识别、几何参数计算、综合地质素描、成果导出）。**岩性分割与判定内部拆成 4 个子步骤**，可单独运行、也可顺序运行：
+
+| 子步骤 | 产出 | 说明 |
+|---|---|---|
+| 01 岩性分割 | 区域几何与 Mask | 复用岩性区域分割阶段；标签图定区域、原图取像素，不用彩色叠加图 |
+| 02 算法判定 | 岩类/岩性概率与细候选 | 测量亮度、彩度、纹理粗糙度、颗粒反差、定向性、条带性、颗粒尺度，与知识库视觉档案比对；概率为相似度 softmax 归一后的相对支持度（温度 0.15），不是统计校准概率 |
+| 03 大模型调用知识库 | 知识证据与大模型判读 | 按候选检索两套知识库，把区域裁剪、候选和证据提交 OpenAI 兼容接口 |
+| 04 综合判定 | 确定结论或需复核 | 大模型结论与算法岩类一致 → `confirmed`；不一致 → `conflict`；只有算法 → `provisional`；概率不足 → `inconclusive` |
+
+子步骤之间是显式依赖：分割变更会让 02–04 显示 `stale`，算法判定重跑会让 03–04 失效，重跑大模型只让 04 失效。因此调整判别不会让几何统计失效，重跑分割也不会悄悄沿用旧判定。
+
+知识库在页面内查看：顶栏 **知识库**，或判别步骤里的 **打开知识图谱**（深链 `/?kb=rocks`、`/?kb=graph`）。抽屉含岩性分类库（54 条，可分组、搜索、展开看识别要点与特征条）、记录表字段（28 项，含 T01 可获取性分类与样表示例值）和关系图谱。知识库 A 已拆成本体层（记录、字段类别、证据属性）与实例层（29 个实例节点：记录表实例 + 28 字段，101 条关系），字段之间可查看支持、派生、互补和证据依赖。构建与校验见 `tools/build_knowledge.py`，服务启动按来源哈希自动重建。
+
+图谱存储支持 Neo4j。默认继续使用本地 JSON，配置 `FACE_MAPPING_NEO4J_URI`、`FACE_MAPPING_NEO4J_USER`、`FACE_MAPPING_NEO4J_PASSWORD` 后，在知识库抽屉点击 **同步 Neo4j**，节点会写入 `FaceMappingNode`，关系写入 `FACE_MAPPING_RELATION`。关系图谱页现在直接将后端返回的节点和边绘制为可点击的 SVG 网络图，并按本体、字段、岩性、分类、别名和视觉档案区分颜色；点击节点可查看其类型、层级、ID，岩性节点可展开来源与视觉档案。网页版 Neo4j AuraDB 也可以直接使用：URI 填实例凭据中的 `neo4j+s://...`，用户名、密码和数据库名按 Aura 控制台提供的凭据填写。先安装驱动：`\.venv\Scripts\python.exe -m pip install -e ".[neo4j]"`。可用 `docker compose --env-file .env.neo4j -f docker-compose.neo4j.yml up -d` 启动本地 Neo4j，首次使用请复制并修改 `.env.neo4j.example`。**读取策略**：`GET /api/knowledge/graph` 默认返回本地 JSON 投影（与 Neo4j 中的内容同源，毫秒级），只有显式传 `?source=neo4j` 或设置 `FACE_MAPPING_GRAPH_BACKEND=neo4j` + `FACE_MAPPING_GRAPH_READ_REMOTE=1` 时才走远程读取；状态探测结果缓存 30 s 并落盘，页面渲染不再等待 AuraDB 往返。
+
+大模型为可选增强：OpenAI 兼容接口、Base URL、模型、温度和鉴权方式（`bearer` / `header` / `api_key`）均可在页面配置，Key 只存后端。未配置或不可达时综合判定停留在 `provisional`，界面显示最近一次连通性测试的网关原文与处置建议。当前工作区已保存 `https://agi.tongji.edu.cn/v1`、模型 `DeepSeek-V4.1-Flash`，最近一次后端连通性记录为 HTTP 200；模型是否支持图像输入仍以网关实际返回为准。详细来源、模型依据与限制见 [LITHOLOGY_JUDGMENT_REPORT.md](LITHOLOGY_JUDGMENT_REPORT.md)。
+
+大模型配置写入当前工作区的 `outputs/workbench/.lithology-judgment/providers.json`，接口地址和模型名称可在页面修改；查询配置接口只返回是否已配置 Key，不返回 Key 本身。
+
+隧道三维页面的模型图下方提供 **项目知识对话**。对话会组合当前场景的里程断面、地质连接、断面来源任务与岩性判别结果，并检索项目知识库和 Neo4j 关系。向量索引保存在 `.lithology-judgment/knowledge/vector_index.json` 与 `vector_index.npz`；在页面点击 **重建索引**，或调用 `POST /api/knowledge/vector/rebuild`。如果没有可用的 Embedding 模型，界面会明确显示 `关键词回退`，不会伪造向量结果。对话历史按场景保存到 `.tunnel-scenes/<scene-id>/chat.json`，接口为 `GET/DELETE /api/tunnel-scenes/{scene_id}/chat/history`，提问接口为 `POST /api/tunnel-scenes/{scene_id}/chat`。
+
+调用遵循同济平台的 OpenAI Chat Completions 规范：Bearer 鉴权、`stream=false`、`temperature`、`top_p`、`max_tokens` 和可选 `reasoning_effort`；“读取模型列表”直接调用 `/v1/models`，模型 ID 不再写死在前端。模型不支持 JSON Schema 或图像内容时，后端按 JSON mode、文本 JSON 顺序降级，并保留实际调用模式。
+
 ## 启动可视化工作台
 
 Windows 在项目根目录执行（已安装本机 `.venv` 时可直接运行最后一行）：
@@ -29,6 +56,16 @@ py -3.12 -m venv .venv
 ```
 
 然后在浏览器打开 **http://127.0.0.1:8000**。也可双击根目录 `start.bat` 启动服务；Ctrl+C 停止服务。默认单进程、单算法工作线程，请勿使用 `--workers` 多进程指向同一个工作区。不同照片可排队；同一照片运行时拒绝重复提交和参数修改。
+
+若需要确认浏览器连接的确实是当前后端，可在服务启动后执行：
+
+```powershell
+.\.venv\Scripts\python.exe tools\check_backend_runtime.py
+```
+
+该命令同时报告 Python 导入路径、后端健康版本和 `/api/schema` 是否包含 `geometry` 字段。`start.bat` 会先检查本地包，并使用 `--app-dir src` 启动当前源码。
+
+如果通过受保护的 Cloudflare Tunnel 访问，需要在启动服务前显式允许 Tunnel 主机名，例如：`$env:FACE_MAPPING_ALLOWED_HOSTS="process-movements-oral-plane.trycloudflare.com"`。默认不允许公网 Host；隧道地址变化后应同步更新该变量并重启服务。公网入口仍应使用邮箱验证或其他访问控制。
 
 上传 `examples/real_face_RK4_970.jpg` 即可复现实测。照片按内容验证，支持常规 JPEG、含 MPO 扩展的相机 JPEG 主图和 PNG；限制 32 MiB、4000 万像素，拒绝损坏、全黑/全白及空间常量图。JPEG/MPO 只分析主图，不进行多视图重建。上传后立即显示 EXIF 校正后的原图并保存源字节 SHA256。
 
@@ -57,7 +94,9 @@ py -3.12 -m venv .venv
 | GET `/api/tasks/{id}/artifacts/{artifact_id}` | 不透明 ID 文件读取；历史需 `?history=执行ID` |
 | GET `/api/tasks/{id}/logs`、`/download` | 运行日志与当前成果 ZIP |
 
-执行接口返回 HTTP 202 和作业 ID。重复操作/过期 ZIP 返回 409，非法图像/参数返回 4xx 和结构化错误。下载过期成果时，前端先生成当前有效导出，再请求真实 ZIP；API 直接下载过期包会被拒绝。完整交互和测试记录见 [WORKBENCH_REPORT.md](WORKBENCH_REPORT.md)。本轮完整测试 78 项通过，另完成真实浏览器的上传、调参、失效、历史、失败恢复和 ZIP 下载验证，截图与记录在 `outputs/browser_validation/`。
+执行接口返回 HTTP 202 和作业 ID。重复操作/过期 ZIP 返回 409，非法图像/参数返回 4xx 和结构化错误。下载过期成果时，前端先生成当前有效导出，再请求真实 ZIP；API 直接下载过期包会被拒绝。完整交互和测试记录见 [WORKBENCH_REPORT.md](WORKBENCH_REPORT.md)。当前全量回归 **171 项通过**（含岩性判别 12 项与知识本体、图谱存储）；Windows 控制台若为 GBK 代码页，跑 CLI 子进程测试前请先 `set PYTHONIOENCODING=utf-8`，否则子进程输出编码断言会失败。知识库构建校验、路由检查和合成图端到端 CLI 冒烟已通过。
+
+判别与知识库接口：`GET /api/tasks/{id}/lithology-judgment/state`、`GET …/substages`、`POST …/substages/{segmentation|algorithm_classification|knowledge_llm|synthesis}/run`、`POST …/classify|retrieve|infer|run-all|run-pipeline`、`GET …/history|export|annotation`、`GET …/regions/{rid}/crop`、`GET/PUT /api/lithology-judgment/config[/{id}]`、`GET /api/lithology-judgment/models/{id}`、`POST /api/lithology-judgment/test-provider/{id}`、`GET /api/lithology-judgment/provider-status`、`GET /api/knowledge/overview|records|record/{id}|graph|search`、`GET /api/knowledge/graph/status`、`POST /api/knowledge/graph/sync`、`POST /api/knowledge/rebuild`、`GET /api/knowledge/vector/status`、`POST /api/knowledge/vector/rebuild`、`GET/DELETE /api/tunnel-scenes/{id}/chat/history`、`POST /api/tunnel-scenes/{id}/chat`。成果导出还会生成 `geological_sketch_form.json` 和 `geological_sketch_form.csv`，按 28 字段保存自动填充值、来源和复核状态。深链：`?task=<id>&stage=<step>&tab=<parameters|substeps|summary|objects|files|logs>`，`&substep=<segmentation|algorithm_classification|knowledge_llm|synthesis>`，以及 `?kb=rocks|fields|graph`、`?provider=1`。
 
 新增核心文件：`frontend/index.html/style.css/app.js`，`api.py`，`workspace.py`，`stage_graph.py`，`parameter_ui.py`，`stage_executor.py`，以及 `tests/test_api.py`、`test_workspace.py`、`test_stage_executor.py`。`pipeline.py` 负责 CLI 顺序编排，不再另写识别算法。
 
@@ -114,6 +153,18 @@ Python 3.10+ 可安装；本轮实测 Python 3.12。其他平台先使用 `pytho
 
 比例单位为 **米 / EXIF 校正后的原始像素**，不是工作图像像素。仅传比例、不承认平面近似时，程序拒绝运行。也可在 YAML 的 `calibration` 设置。程序不进行透视校正、镜头畸变校正或三维姿态反演，标定数值的可靠性由输入证据决定。
 
+几何子模块可直接通过 YAML 配置图像 X 轴的方位元数据和产状统计的最短迹线：
+
+```yaml
+geometry:
+  image_axis_azimuth_deg: 30.0   # 可选；没有定向资料时留空
+  attitude_min_trace_length_px: 20.0
+```
+
+运行完成后，`results.json` 的 `statistics.mean_roughness_index`、`mean_aperture_px`、`image_strike_deg`、`strike_azimuth_deg`、`dip_deg` 和 `statistics.details.submodules` 可直接被接口、前端和后处理读取。
+
+联调时可以使用临时比例尺，例如 `0.001 m/original px`（1 mm/px），并在 `calibration.description` 写明“演示假设，非现场标定”。该比例尺只用于查看米制长度、面积、P21 和张开性，不应写回默认配置或当作实测标定。
+
 ## 算法与集中配置
 
 配置由 Pydantic 验证，未知字段、非法范围、非有限数字均报错。全部可调参数位于 `configs/default.yaml`。固定算法常量和实际生效阈值也写入 `results.json.algorithms` / `face_region.json.details`。
@@ -151,6 +202,13 @@ GrabCut 假设照片中心属于岩面、边缘属于背景；中心有设备或
 - “裂隙数量”是过滤后的**候选图路径段数**，不是人工地质结构面条数。所有原始点列保存在 `points`；`display_points` 只用于绘图。长度为完整原始折线欧氏距离总和。
 - 端点方向与 PCA 方向均为轴向 `[0,180)` 度，从图像 +x 轴沿向下方向计正角。闭合迹线端点方向为 null；无唯一 PCA 主轴时也为 null。
 - `P21_px = sum(length_px) / face_pixel_area`，单位 `px^-1`。有标定 s 时，长度乘 s、面积乘 s²，`P21_m = sum(length_m) / area_m2`。未验证 ROI 时 `statistics_status=candidate`。
+- 几何阶段同时运行三个可审计子模块，并把摘要写入 `results.json.statistics`、`geometric_statistics.json` 和 `parameters.csv`：
+  - **粗糙度**：对每条候选迹线计算路径曲折度、转角 RMS 和可选灰度梯度，形成未标定的 `roughness_index`。该指标不是 JRC，需用现场剖面或标定样本校准。
+  - **张开性**：沿迹线从裂隙 Mask 的欧氏距离变换估计可见带宽，输出像素值；提供 `meters_per_pixel` 且满足平面近似确认时同步输出米/毫米候选值。它不等同于现场量缝或结构面真实开度。
+  - **岩层产状**：对候选迹线的轴向方向做长度加权圆统计，输出图像平面主方向、离散度和置信度。若配置 `geometry.image_axis_azimuth_deg`，再给出水平投影方位；单张二维照片不能推导真实倾角，`dip_deg` 保持 `null`，且结果标记为需确认真层理的候选观测。
+- 三个子模块的逐迹线结果保存在 `fractures[*]` 和 `statistics.details.submodules`。缺少裂隙 Mask 时张开性明确为 `unavailable`，不会用零值代替。
+- 工作台的“几何参数计算”现在按三个子模块组织：**粗糙度计算、张开性计算、岩层产状计算**。三个页签共享同一次 `geometry_calculation` 执行，分别查看输入、输出、状态、汇总值和逐迹线证据；“运行全部几何子模块”不会伪造三个独立后端任务。
+- 裂缝分割、迹线识别和几何参数计算适合在界面上归入“裂缝与几何分析”父流程，但后端继续保留三个 stage。三者分别对应 Mask 证据、骨架/迹线证据和测量统计证据，参数、缓存失效范围、失败定位和历史成果均不同。修改几何标定或产状参数时只重算几何阶段，合并执行会破坏这一边界。
 - 图层 ID 完整保存在 JSON。为避免覆盖照片，素描只标注最长的至多 80 条 F ID，并在图例明确数量；区域 ID 按实际区域内位置标注。所有原始迹线仍绘出。
 
 ## 工程结构
@@ -167,12 +225,19 @@ src/face_mapping/
   lithology.py               视觉特征分区、相邻合并
   fracture_detection.py      暗线候选检测与形态筛选
   vectorization.py           骨架图、逐边追踪和账目
-  geometry.py                Polygon、长度、方向、面积、密度
+  geometry.py                Polygon、长度、方向、面积、P21、粗糙度、张开性、候选产状
   visualization.py           独立图层及综合图绘制
   export.py                  JSON、CSV、SHA256
   pipeline.py                分阶段执行与局部失败隔离
-tests/                       几何、输入坐标与集成测试
+  workspace.py / api.py      任务存储、阶段调度与本地 API
+  stage_graph.py / stage_executor.py  阶段 DAG、缓存键与执行
+  lithology_judgment.py      岩性判别：区域裁剪、特征、分类器、检索、大模型
+  knowledge_base.py          知识库构建与查询（54 条岩性 + 28 字段 + 本体/实例图谱）
+  export.py / stage_executor.py  参数导出与 28 字段地质素描表自动填充
+configs/knowledge/           知识库种子（可按来源哈希重建）
+tests/                       几何、输入坐标、API、判别与知识库测试
 tools/generate_synthetic.py   可复现合成输入
+tools/build_knowledge.py      构建并校验知识库种子
 tools/verify_run.py           从磁盘独立重读并复核成果
 examples/                    真实与合成照片，及来源说明
 outputs/                     每次运行独立目录

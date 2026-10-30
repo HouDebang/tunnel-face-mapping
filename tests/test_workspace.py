@@ -157,6 +157,24 @@ def test_calibration_only_recomputes_measurement_and_display_not_detectors(works
     assert all(t["length_m"] == pytest.approx(t["length_px"] * .002) for t in result["fractures"])
 
 
+def test_geometry_orientation_change_recomputes_geometry_only(workspace, task):
+    first, _ = finish(workspace, task["id"])
+    before = ids(first)
+    changed = change(workspace, first, "geometry", image_axis_azimuth_deg=30.0)
+    assert changed["stages"]["geometry_calculation"]["status"] == "stale"
+    for stage in ("preprocessing", "face_detection", "lithology_segmentation",
+                  "fracture_segmentation", "trace_extraction"):
+        assert changed["stages"][stage]["status"] in VALID
+        assert ids(changed)[stage] == before[stage]
+    for stage in ("sketch_rendering", "result_export"):
+        assert changed["stages"][stage]["status"] == "stale"
+    rerun, _ = finish(workspace, task["id"])
+    assert ids(rerun)["geometry_calculation"] != before["geometry_calculation"]
+    result = workspace.results(task["id"])["result"]
+    assert result["statistics"]["strike_azimuth_deg"] is not None
+    assert result["statistics"]["dip_deg"] is None
+
+
 def test_cache_hit_has_no_extra_execution_and_results_do_not_mutate(workspace, task):
     first, _ = finish(workspace, task["id"])
     snapshots = [workspace.get_task(task["id"]) for _ in range(3)]

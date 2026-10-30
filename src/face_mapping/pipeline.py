@@ -49,7 +49,10 @@ def run_pipeline(input_path: str | Path, output_dir: str | Path,
         ("result_export", "06_structured_export", ()),
     )
     try:
-        with tempfile.TemporaryDirectory(prefix="face_mapping_stages_") as temporary:
+        # Keep ephemeral stage files beside the requested output.  This avoids
+        # platform sandbox/user-temp permission failures while preserving the
+        # same cleanup and immutable-stage semantics.
+        with tempfile.TemporaryDirectory(prefix="face_mapping_stages_", dir=str(output.parent)) as temporary:
             for stage, legacy_name, required in plan:
                 started = perf_counter()
                 description = str(source) if stage == "preprocessing" else "current original-coordinate stage artifacts"

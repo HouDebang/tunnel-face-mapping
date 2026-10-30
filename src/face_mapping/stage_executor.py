@@ -19,7 +19,8 @@ from skimage.segmentation import find_boundaries
 from .backends import SegmentationBackend
 from .config import PipelineConfig
 from .coordinates import resize_labels, resize_mask
-from .export import build_manifest, export_csv, file_sha256, verify_csv, write_json
+from .export import (build_manifest, export_csv, file_sha256, verify_csv,
+                     write_geological_sketch_form, write_json)
 from .geometry import (axial_direction_deg, calculate_statistics, mask_to_polygons,
                        polyline_length, principal_direction_deg)
 from .schemas import (COORDINATE_SYSTEM, FaceRegion, FractureTrace, GeometricStatistics,
@@ -38,7 +39,8 @@ CORE_ARTIFACTS = (
     "original.png", "preprocessed.png", "face_mask.png", "lithology_mask.png",
     "lithology_overlay.png", "lithology_regions.json", "fracture_mask.png",
     "fracture_overlay.png", "fracture_skeleton.png", "fracture_traces.json",
-    "geological_sketch.png", "parameters.csv",
+    "geological_sketch.png", "parameters.csv", "geological_sketch_form.json",
+    "geological_sketch_form.csv",
 )
 
 
@@ -184,7 +186,19 @@ def assemble_result(input_path: str | Path, config: PipelineConfig,
                           config=config.model_dump(), quality=quality)
 
 
-def write_result_bundle(output: Path, result: PipelineResult) -> None:
+def _load_workspace_judgment(output: Path):
+    """Load the current task-level judgement when export runs in a workbench."""
+    try:
+        task_dir = output.resolve().parents[1]
+        state_path = task_dir.parent / ".lithology-judgment" / "tasks" / task_dir.name / "state.json"
+        if state_path.is_file():
+            return json.loads(state_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError, IndexError):
+        pass
+    return None
+
+
+def write_result_bundle(output: Path, result: PipelineResult):
     """Persist and verify the current aggregate. Used by export and CLI finalization."""
     versions = {}
     for name in ("numpy", "opencv-python-headless", "scikit-image", "Pillow", "pydantic", "PyYAML"):
@@ -195,6 +209,7 @@ def write_result_bundle(output: Path, result: PipelineResult) -> None:
     write_json(output / "environment.json", versions)
     write_json(output / "config_used.json", result.config)
     export_csv(output / "parameters.csv", result)
+    form = write_geological_sketch_form(output, result, _load_workspace_judgment(output))
     result.quality.checks["csv_matches_result"] = verify_csv(output / "parameters.csv", result)
     result.quality.checks["core_artifacts_complete"] = all((output / name).is_file() for name in CORE_ARTIFACTS)
     invariants = ("csv_matches_result", "regions_inside_roi", "regions_cover_roi_without_overlap",
@@ -210,6 +225,7 @@ def write_result_bundle(output: Path, result: PipelineResult) -> None:
     write_json(output / "results.json", result)
     write_json(output / "quality_report.json", result.quality)
     build_manifest(output)
+    return form
 
 
 def execute_stage(stage_id: str, input_path: str | Path, output_dir: str | Path,
@@ -392,7 +408,19 @@ def execute_stage(stage_id: str, input_path: str | Path, output_dir: str | Path,
             trace_data = _data(dependencies, "trace_extraction")
             traces = [_trace_model(record).model_dump() for record in trace_data["fractures"]]
             labels = _labels(dependencies["lithology_segmentation"] / "lithology_mask.png") if lithology else None
-            statistics = calculate_statistics(traces, mask, labels, scale, face.verified)
+            # The geometry submodules use only optional evidence that is already
+            # persisted by upstream stages.  Keep them unavailable when an
+            # optional branch is absent instead of inventing zero measurements.
+            original = _rgb(dependencies["preprocessing"] / "original.png")
+            fracture_mask = (_mask(dependencies["fracture_segmentation"] / "fracture_mask.png")
+                             if "fracture_segmentation" in dependencies else None)
+            statistics = calculate_statistics(
+                traces, mask, labels, scale, face.verified,
+                image=original, fracture_mask=fracture_mask,
+                image_axis_azimuth_deg=config.geometry.image_axis_azimuth_deg,
+                attitude_min_trace_length_px=config.geometry.attitude_min_trace_length_px,
+            )
+            warnings.append("Geometry submodules are image-observable candidate metrics; roughness is not JRC, aperture is visible Mask width, and dip requires external 3-D orientation evidence.")
             statistics["lithology_region_count"] = len(regions) if regions is not None else None
             fractures = [_trace_model(record) for record in traces]
             height, width = mask.shape
@@ -443,8 +471,9 @@ def execute_stage(stage_id: str, input_path: str | Path, output_dir: str | Path,
                     target.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copyfile(source, target)
         result = assemble_result(input_path, config, dependencies)
-        write_result_bundle(output, result)
+        form = write_result_bundle(output, result)
         data["result"] = result.model_dump()
+        data["geological_sketch_form"] = form
         warnings = result.quality.warnings
         checks = result.quality.checks
         method = "schema_csv_json_sha256_export_v1"

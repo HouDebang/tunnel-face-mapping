@@ -49,22 +49,29 @@ def create_app(workspace_root: Path | None = None) -> FastAPI:
         yield
         await run_in_threadpool(get_workspace().close)
 
-    app = FastAPI(title="掌子面地质识别工作台",version="0.2.0",lifespan=lifespan)
+    app = FastAPI(title="掌子面地质识别工作台",version="0.3.0-geometry",lifespan=lifespan)
     app.state.workspace = workspace
-    app.add_middleware(TrustedHostMiddleware,allowed_hosts=["127.0.0.1","localhost","testserver","[::1]"])
+    allowed_hosts = ["127.0.0.1", "localhost", "testserver", "[::1]"]
+    configured_hosts = [item.strip() for item in os.environ.get("FACE_MAPPING_ALLOWED_HOSTS", "").split(",") if item.strip()]
+    app.add_middleware(TrustedHostMiddleware, allowed_hosts=allowed_hosts + configured_hosts)
 
     @app.middleware("http")
     async def local_origin(request: Request, call_next):
-        # Same-origin UI needs no CORS. Reject cross-site mutation of a local tool.
+        # Same-origin UI needs no CORS. Reject cross-site mutation while also
+        # allowing an explicitly configured public host (for example a tunnel).
         origin = request.headers.get("origin")
         if origin and request.method in {"POST","PUT","PATCH","DELETE"}:
             from urllib.parse import urlsplit
             parsed=urlsplit(origin)
-            if parsed.hostname not in {"127.0.0.1","localhost","::1","testserver"} or parsed.netloc!=request.headers.get("host"):
+            request_host = request.headers.get("host", "").lower()
+            if not parsed.hostname or parsed.netloc.lower() != request_host:
                 return JSONResponse(status_code=403,content={"error":{"code":"origin_rejected","message":"只接受工作台同源请求。"}})
         response=await call_next(request)
         if request.url.path.startswith("/api/") or request.url.path in {"/","/index.html","/style.css","/app.js"}:
-            response.headers["Cache-Control"]="no-store"
+            # Routes may opt into revalidation (ETag) for large immutable-ish
+            # artifacts; everything else stays uncached.
+            if "cache-control" not in response.headers:
+                response.headers["Cache-Control"]="no-store"
         response.headers["X-Content-Type-Options"]="nosniff"
         return response
 
@@ -90,7 +97,7 @@ def create_app(workspace_root: Path | None = None) -> FastAPI:
 
     @app.get("/api/health")
     def health():
-        return {"status":"ok","version":"0.2.0","execution_model":"single_process_single_worker","upload_limit_bytes":MAX_UPLOAD_BYTES}
+        return {"status":"ok","version":"0.3.0-geometry","execution_model":"single_process_single_worker","upload_limit_bytes":MAX_UPLOAD_BYTES}
 
     @app.get("/api/schema")
     def schema():
@@ -165,6 +172,10 @@ def create_app(workspace_root: Path | None = None) -> FastAPI:
 
     from .tunnel_scenes import register_tunnel_routes
     register_tunnel_routes(app, get_workspace)
+    from .tunnel_chat import register_tunnel_chat_routes
+    register_tunnel_chat_routes(app, get_workspace)
+    from .lithology_judgment import register_lithology_judgment_routes
+    register_lithology_judgment_routes(app, get_workspace)
 
     frontend = project/"frontend"
     if frontend.is_dir():

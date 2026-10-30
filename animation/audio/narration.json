@@ -1,0 +1,64 @@
+{
+  "voice": "zh-CN-YunyangNeural",
+  "rate": "-4%",
+  "pitch": "-2Hz",
+  "duration": 60.0,
+  "lines": [
+    {
+      "index": 1,
+      "start": 4.8,
+      "duration": 4.08,
+      "text": "设备自主启动，实时构建隧道三维地图。",
+      "wav": "vo_01.wav"
+    },
+    {
+      "index": 2,
+      "start": 10.6,
+      "duration": 4.7,
+      "text": "系统规划路径，机器人自主前往掌子面测量点。",
+      "wav": "vo_02.wav"
+    },
+    {
+      "index": 3,
+      "start": 15.5,
+      "duration": 5.14,
+      "text": "履带式移动平台沿隧道行进，精准抵达目标位置。",
+      "wav": "vo_03.wav"
+    },
+    {
+      "index": 4,
+      "start": 27.9,
+      "duration": 5.14,
+      "text": "测量位置已到达，摄影测量装置开始多视角采集。",
+      "wav": "vo_04.wav"
+    },
+    {
+      "index": 5,
+      "start": 33.7,
+      "duration": 4.51,
+      "text": "现场影像重建为正射影像与三维纹理模型。",
+      "wav": "vo_05.wav"
+    },
+    {
+      "index": 6,
+      "start": 40.8,
+      "duration": 3.67,
+      "text": "自动提取岩性分区与结构面迹线。",
+      "wav": "vo_06.wav"
+    },
+    {
+      "index": 7,
+      "start": 47.9,
+      "duration": 3.89,
+      "text": "生成标准化掌子面素描图与成果表。",
+      "wav": "vo_07.wav"
+    },
+    {
+      "index": 8,
+      "start": 53.8,
+      "duration": 4.37,
+      "text": "从自主采集到智能素描，形成完整闭环。",
+      "wav": "vo_08.wav"
+    }
+  ]
+}

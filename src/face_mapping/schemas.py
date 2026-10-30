@@ -66,6 +66,17 @@ class FractureTrace(Contract):
     length_m: float | None = None
     endpoint_direction_deg: float | None = None
     principal_direction_deg: float | None = None
+    roughness_index: float | None = None
+    roughness_status: str | None = None
+    tortuosity: float | None = None
+    angular_variability_deg: float | None = None
+    texture_gradient_rms: float | None = None
+    aperture_mean_px: float | None = None
+    aperture_max_px: float | None = None
+    aperture_mean_m: float | None = None
+    aperture_max_m: float | None = None
+    aperture_sample_count: int | None = None
+    aperture_status: str | None = None
     status: str = "candidate_fracture_trace"
 
 
@@ -78,6 +89,15 @@ class GeometricStatistics(Contract):
     total_length_m: float | None = None
     observation_area_m2: float | None = None
     p21_per_m: float | None = None
+    mean_roughness_index: float | None = None
+    mean_aperture_px: float | None = None
+    max_aperture_px: float | None = None
+    mean_aperture_m: float | None = None
+    max_aperture_m: float | None = None
+    image_strike_deg: float | None = None
+    strike_azimuth_deg: float | None = None
+    dip_deg: float | None = None
+    attitude_confidence: float | None = None
     statistics_status: str
     details: dict[str, Any] = Field(default_factory=dict)
 
@@ -102,6 +122,9 @@ class QualityReport(Contract):
         "Dark linear candidates can include shadows, drilling marks and texture; fracture accuracy is unvalidated.",
         "Automatic ROI has no verified semantic exclusion of equipment, people, lining or background.",
         "Image axial angles are not geological strike or dip.",
+        "Roughness is an uncalibrated trace shape/texture candidate index, not JRC.",
+        "Aperture is the visible fracture-band width from the Mask, not a field crack-gauge measurement.",
+        "Layer attitude is a candidate trace orientation; true bedding strike/dip requires confirmed bedding and 3-D orientation evidence.",
         "No labeled real-image accuracy evaluation has been performed by this pipeline.",
         "Default polygons follow exact raster cell boundaries; optional simplified display contours must not replace mask area.",
     ])
@@ -109,7 +132,7 @@ class QualityReport(Contract):
 
 class PipelineResult(Contract):
     schema_version: str = "1.0"
-    algorithm_version: str = "face_mapping_baseline_0.1.0"
+    algorithm_version: str = "face_mapping_baseline_0.2.0_geometry_submodules"
     coordinate_system: str = COORDINATE_SYSTEM
     status: str
     image: ImageMetadata | None = None

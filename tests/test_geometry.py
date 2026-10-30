@@ -6,6 +6,9 @@ import pytest
 
 from face_mapping.geometry import (
     axial_direction_deg,
+    calculate_aperture,
+    calculate_layer_attitude,
+    calculate_roughness,
     calculate_statistics,
     mask_to_polygons,
     polyline_length,
@@ -194,6 +197,43 @@ def test_missing_scale_and_empty_area_are_null_not_fabricated():
     assert stats["p21_per_m"] is None
     assert stats["p21_per_px"] is None
     assert stats["statistics_status"] == "candidate"
+
+
+def test_geometry_submodules_run_with_explicit_candidate_statuses():
+    traces = [
+        {"id": "F1", "points": [[1.5, 3.5], [3.5, 3.5], [4.5, 4.5]]},
+        {"id": "F2", "points": [[1.5, 7.5], [6.5, 7.5]]},
+    ]
+    fracture_mask = np.zeros((12, 12), dtype=bool)
+    fracture_mask[3:6, 1:5] = True
+    fracture_mask[7:9, 1:7] = True
+    roughness = calculate_roughness(traces)
+    aperture = calculate_aperture(traces, fracture_mask, meters_per_pixel=.01)
+    attitude = calculate_layer_attitude(traces)
+    assert roughness["trace_count"] == 2
+    assert roughness["per_trace"][0]["roughness_index"] > 0
+    assert aperture["mean_aperture_px"] is not None
+    assert aperture["mean_aperture_m"] is not None
+    assert 0 <= attitude["image_strike_deg"] < 15
+    assert attitude["dip_deg"] is None
+
+
+def test_statistics_exposes_geometry_submodules_without_changing_legacy_scalars():
+    mask = np.ones((5, 8), dtype=bool)
+    traces = [{"id": "F1", "points": [[1.5, 2.5], [6.5, 2.5]]}]
+    fracture_mask = np.zeros_like(mask)
+    fracture_mask[2:4, 1:7] = True
+    stats = calculate_statistics(traces, mask, None, meters_per_pixel=.01,
+                                 image=np.full((*mask.shape, 3), 100, dtype=np.uint8),
+                                 fracture_mask=fracture_mask)
+    assert stats["total_length_px"] == pytest.approx(5)
+    submodules = stats["details"]["submodules"]
+    assert set(submodules) == {"roughness", "aperture", "layer_attitude"}
+    assert submodules["aperture"]["status"] == "candidate_apparent_opening"
+    assert stats["mean_roughness_index"] is not None
+    assert stats["mean_aperture_m"] is not None
+    assert traces[0]["roughness_index"] is not None
+    assert traces[0]["aperture_mean_px"] is not None
 
 
 def test_geometry_input_validation():

@@ -1,7 +1,7 @@
 import {formatChainage as geometryChainage} from './tunnel_geometry.js';
 
 const $=id=>document.getElementById(id);
-const state={scene:null,scenes:[],tasks:[],selected:null,busy:false,renderer:null,layer:'sketch'};
+const state={scene:null,scenes:[],tasks:[],selected:null,busy:false,renderer:null,layer:'sketch',chat:{scene_id:null,messages:[],busy:false,index_status:null,error:null}};
 const defaults={name:'隧道里程展示示意',chainage_prefix:'K',start_chainage_m:0,end_chainage_m:100,width_m:12,height_m:9};
 const sceneFields={name:'scene-name',chainage_prefix:'chainage-prefix',start_chainage_m:'start-chainage',end_chainage_m:'end-chainage',width_m:'tunnel-width',height_m:'tunnel-height'};
 const placementFields={label:'placement-label',chainage_m:'placement-chainage',display_width_m:'placement-width',display_height_m:'placement-height',offset_u_m:'placement-u',offset_v_m:'placement-v',rotation_deg:'placement-rotation'};
@@ -10,11 +10,94 @@ let toastTimer;
 function element(tag,props={},children=[]){const el=document.createElement(tag);for(const [key,value]of Object.entries(props)){if(key==='text')el.textContent=value;else if(key==='class')el.className=value;else if(key==='checked')el.checked=value;else el.setAttribute(key,value);}for(const child of children)el.append(child);return el;}
 function unwrap(value){return value.scene||value;}
 function scenePath(){return `/api/tunnel-scenes/${encodeURIComponent(state.scene.id)}`;}
+function chatPath(suffix=''){return `${scenePath()}/chat${suffix}`;}
 function note(message){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,4200);}
 function status(message,kind='ready'){$('scene-status').textContent=message;$('scene-status').className=`status ${kind}`;}
 function showError(error){$('error-message').textContent=error.message||String(error);$('error-banner').hidden=false;status('操作未完成','error');}
 async function api(path,options={}){const response=await fetch(path,{cache:'no-store',...options,headers:{'Content-Type':'application/json',...(options.headers||{})}});let data;try{data=await response.json();}catch{throw new Error(`${path}：服务未返回有效 JSON（HTTP ${response.status}）`);}if(!response.ok){const e=data.error||{};const details=(e.details||[]).map(item=>`${(item.loc||[]).join('.')}: ${item.msg}`).join('；');throw new Error(`${e.message||data.detail||`请求失败（HTTP ${response.status}）`}${details?` · ${details}`:''}`);}return data;}
-function syncButtons(){const hasScene=!!state.scene,hasTask=!!$('source-task').value;for(const id of ['scene-new','scene-save','scene-select'])$(id).disabled=state.busy;for(const input of document.querySelectorAll('.controls input,.controls select'))input.disabled=state.busy;$('section-add').disabled=state.busy||!hasScene||!hasTask;$('demo-layout').disabled=state.busy||!hasScene||!hasTask;$('export-scene').disabled=state.busy||!hasScene;$('save-screenshot').disabled=state.busy||!hasScene||!state.renderer;$('placement-save').disabled=state.busy||!state.selected;for(const button of document.querySelectorAll('.section-row button,.section-row input,.geology-connection-row button,.geology-connection-row input'))button.disabled=state.busy;for(const id of ['geology-mode','geology-opacity','geology-source-lines'])$(id).disabled=state.busy||!hasScene;$('geology-build').disabled=state.busy||!hasScene||(state.scene.sections||[]).length<2;$('geology-read-objects').disabled=state.busy||!hasScene||!(state.scene.sections||[]).some(section=>section.visible!==false);$('geology-manual-add').disabled=state.busy||!manualConnectionReady();}
+function chatIndexText(payload){
+  if(!payload)return {text:'向量索引未检查',kind:''};
+  const status=payload.status||payload.state||'';
+  const mode=payload.mode||payload.retrieval_mode||payload.index_mode||'';
+  const count=payload.document_count??payload.docs??payload.count;
+  if(status==='failed'||status==='error')return {text:`向量索引不可用${payload.message?` · ${payload.message}`:''}`,kind:'failed'};
+  if(mode==='lexical_fallback'||status==='fallback')return {text:`关键词回退${count!==undefined?` · ${count} 条知识`:''}`,kind:'fallback'};
+  if(mode==='embedding'||status==='ready'||status==='completed')return {text:`向量检索${count!==undefined?` · ${count} 条知识`:''}`,kind:'ok'};
+  return {text:payload.message||'向量索引待构建',kind:''};
+}
+function renderChat(){
+  const target=$('chat-messages'); if(!target)return;
+  const messages=state.chat.messages||[];
+  if(!messages.length&&!state.chat.busy){target.replaceChildren(element('div',{class:'chat-empty',text:state.scene?'可以询问当前场景、里程断面、岩性判定和裂隙连接。':'创建或加载隧道场景后，可以询问当前项目的地质信息。'}));}
+  else {
+    const rows=messages.map(message=>{
+      const role=message.role==='user'?'user':'assistant';
+      const text=message.content||message.text||message.answer||message.message||'—';
+      const citations=Array.isArray(message.citations)?message.citations:[];
+      const meta=message.created_at||message.timestamp||message.retrieval?.mode;
+      return element('div',{class:`chat-message ${role}${message.error?' error':''}`},[
+        element('div',{class:'chat-bubble',text}),
+        citations.length?element('div',{class:'chat-citations'},citations.slice(0,8).map(item=>element('span',{class:'chat-citation',title:typeof item==='string'?item:(item.source||item.document_id||'知识来源')},typeof item==='string'?item:(item.title||item.document_id||item.source||'知识来源')))):null,
+        meta?element('div',{class:'chat-meta',text:String(meta)}):null
+      ]);
+    });
+    if(state.chat.busy)rows.push(element('div',{class:'chat-message assistant'},[element('div',{class:'chat-bubble',text:'正在检索项目知识并生成回答…'})]));
+    target.replaceChildren(...rows);target.scrollTop=target.scrollHeight;
+  }
+  const status=$('chat-index-status');if(status){const info=chatIndexText(state.chat.index_status);status.textContent=info.text;status.className=`chat-status ${info.kind}`;}
+  const clear=$('chat-clear');if(clear)clear.disabled=!messages.length||state.chat.busy||!state.scene;
+  const input=$('chat-input');if(input){input.disabled=!state.scene||state.chat.busy||state.busy;}
+  const send=$('chat-send');if(send)send.disabled=!state.scene||state.chat.busy||state.busy||!(input?.value||'').trim();
+  const rebuild=$('chat-rebuild-index');if(rebuild)rebuild.disabled=state.chat.busy||state.busy;
+}
+async function loadChatIndexStatus(){
+  // Do not block the conversation input while an old/local service is still
+  // rebuilding or does not expose the optional vector endpoint.
+  state.chat.index_status={status:'pending',message:'正在检查向量索引…'};
+  renderChat();
+  try{
+    const result=await Promise.race([
+      api('/api/knowledge/vector/status'),
+      new Promise((_,reject)=>setTimeout(()=>reject(new Error('索引状态检查超时，先使用关键词回退。')),5000))
+    ]);
+    state.chat.index_status=result;
+  } catch(error){state.chat.index_status={status:'failed',mode:'lexical_fallback',message:error.message};}
+  renderChat();
+}
+async function loadChatHistory(sceneId){
+  state.chat={scene_id:sceneId,messages:[],busy:false,index_status:state.chat.index_status,error:null};
+  try{const response=await api(`/api/tunnel-scenes/${encodeURIComponent(sceneId)}/chat/history`);state.chat.messages=response.messages||response.history||[];}
+  catch(error){state.chat.error=error.message;}
+  renderChat();
+}
+async function sendChat(event){
+  event?.preventDefault();
+  const input=$('chat-input'),message=(input?.value||'').trim();
+  if(!state.scene||!message||state.chat.busy)return;
+  state.chat.busy=true;state.chat.messages=[...(state.chat.messages||[]),{role:'user',content:message,created_at:new Date().toISOString()}];
+  if(input)input.value='';renderChat();syncButtons();
+  try{
+    const response=await api(chatPath(),{method:'POST',body:JSON.stringify({message,top_k:6,provider_config_id:'default'})});
+    const history=response.messages||response.history;
+    if(Array.isArray(history))state.chat.messages=history;
+    else state.chat.messages=[...(state.chat.messages||[]),{role:'assistant',content:response.answer||response.message||'服务未返回回答。',citations:response.citations||[],retrieval:response.retrieval,created_at:response.created_at||new Date().toISOString()}];
+    if(response.retrieval)state.chat.index_status={...state.chat.index_status,...response.retrieval,status:response.retrieval.mode==='lexical_fallback'?'fallback':'ready'};
+  }catch(error){state.chat.messages=[...(state.chat.messages||[]),{role:'assistant',content:`对话未完成：${error.message}`,error:true,created_at:new Date().toISOString()}];}
+  finally{state.chat.busy=false;renderChat();syncButtons();}
+}
+async function clearChat(){
+  if(!state.scene||state.chat.busy)return;
+  try{await api(`${chatPath()}/history`,{method:'DELETE'});state.chat.messages=[];renderChat();note('当前场景的对话记录已清空。');}
+  catch(error){showError(error);}
+}
+async function rebuildChatIndex(){
+  if(state.chat.busy)return;
+  state.chat.busy=true;renderChat();syncButtons();
+  try{state.chat.index_status=await api('/api/knowledge/vector/rebuild',{method:'POST',body:JSON.stringify({provider_config_id:'default'})});note('知识向量索引已重建。');}
+  catch(error){state.chat.index_status={status:'failed',message:error.message};}
+  finally{state.chat.busy=false;renderChat();syncButtons();}
+}
+function syncButtons(){const hasScene=!!state.scene,hasTask=!!$('source-task').value;for(const id of ['scene-new','scene-save','scene-select'])$(id).disabled=state.busy;for(const input of document.querySelectorAll('.controls input,.controls select'))input.disabled=state.busy;$('section-add').disabled=state.busy||!hasScene||!hasTask;$('demo-layout').disabled=state.busy||!hasScene||!hasTask;$('export-scene').disabled=state.busy||!hasScene;$('save-screenshot').disabled=state.busy||!hasScene||!state.renderer;$('placement-save').disabled=state.busy||!state.selected;for(const button of document.querySelectorAll('.section-row button,.section-row input,.geology-connection-row button,.geology-connection-row input'))button.disabled=state.busy;for(const id of ['geology-mode','geology-opacity','geology-source-lines'])$(id).disabled=state.busy||!hasScene;$('geology-build').disabled=state.busy||!hasScene||(state.scene.sections||[]).length<2;$('geology-read-objects').disabled=state.busy||!hasScene||!(state.scene.sections||[]).some(section=>section.visible!==false);$('geology-manual-add').disabled=state.busy||!manualConnectionReady();renderChat();}
 async function perform(action){if(state.busy)return;state.busy=true;$('error-banner').hidden=true;status('正在保存…','busy');syncButtons();try{await action();status('已保存在本机');}catch(error){showError(error);}finally{state.busy=false;syncButtons();}}
 function displayNumber(value){return typeof value==='number'&&Number.isFinite(value)?Number(value.toFixed(8)):value;}
 function fillSceneForm(scene){for(const[key,id]of Object.entries(sceneFields))$(id).value=displayNumber(scene[key]??defaults[key]);$('scene-save').textContent=state.scene?'保存隧道设置':'创建场景';}
@@ -26,7 +109,7 @@ async function refreshTasks(){const response=await api('/api/tasks');state.tasks
 function selectedSection(){return state.scene?.sections.find(section=>section.id===state.selected);}
 function selectSection(id,{open=false}={}){state.selected=id;const section=selectedSection();state.renderer?.selectSection(id);$('section-settings').hidden=!section;$('selected-caption').hidden=!section;if(section){for(const[key,field]of Object.entries(placementFields))$(field).value=displayNumber(section[key]??(key==='label'?'':0));$('placement-flip').checked=!!section.flip_horizontal;if(open)$('section-settings').open=true;$('selected-caption').textContent=`${section.label} · ${formatChainage(section.chainage_m)} · 来源：${section.source?.kind==='original'?'原始照片':'综合素描'}${section.demo_copy?' · 同一成果重复示意':''}`;const source=section.source||{};const link=element('a',{href:`/?task=${encodeURIComponent(source.task_id||'')}`,text:'查看来源识别任务 ↗'});$('source-provenance').replaceChildren(element('p',{text:`来源任务 ${source.task_id||'—'}`}),element('p',{text:`成果记录 ${source.execution_id||'原始照片'}`}),element('p',{text:`${source.filename||'源图像'} · ${source.image_width_px||'—'} × ${source.image_height_px||'—'} px`}),link);}renderSections();syncButtons();}
 function renderSections(){const sections=state.scene?.sections||[];$('section-count').textContent=sections.length;$('demo-notice').hidden=!sections.some(section=>section.demo_copy);if(!sections.length){$('section-list').replaceChildren(element('p',{class:'list-empty',text:'加入断面后，在这里管理位置与显隐。'}));return;}$('section-list').replaceChildren(...[...sections].sort((a,b)=>a.chainage_m-b.chainage_m).map(section=>{const checkbox=element('input',{type:'checkbox',checked:section.visible!==false,'aria-label':`显示 ${section.label}`,'data-testid':`section-visible-${section.id}`});checkbox.addEventListener('change',()=>perform(async()=>{await updateSection(section.id,{visible:checkbox.checked});}));const visible=element('label',{class:'visibility'},[checkbox]);const title=element('strong',{text:section.label});if(section.demo_copy)title.append(element('span',{class:'copy-tag',text:'重复示意'}));const source=state.tasks.find(task=>task.id===section.source?.task_id);const pick=element('button',{class:'section-pick',type:'button','data-testid':`section-select-${section.id}`},[title,element('small',{text:`${formatChainage(section.chainage_m)} · ${section.source?.kind==='original'?'原照片':'素描'} · ${source?.filename||section.source?.filename||'掌子面'}`})]);pick.addEventListener('click',()=>selectSection(section.id,{open:true}));const remove=element('button',{class:'remove-section',type:'button',text:'×',title:'从场景移除，不删除源成果','aria-label':`移除 ${section.label}`,'data-testid':`section-remove-${section.id}`});remove.addEventListener('click',()=>perform(async()=>{const result=await api(`${scenePath()}/sections/${encodeURIComponent(section.id)}`,{method:'DELETE'});await acceptMutation(result);note('断面已从场景移除，源成果保留。');}));return element('div',{class:`section-row${state.selected===section.id?' selected':''}`,'data-section-id':section.id},[visible,pick,remove]);}));}
-async function applyScene(scene,{preserveSelection=true}={}){state.scene=unwrap(scene);fillSceneForm(state.scene);renderGeology();$('scene-select').value=state.scene.id;$('scene-title').textContent=state.scene.name;$('scene-description').textContent=`${formatChainage(state.scene.start_chainage_m)} — ${formatChainage(state.scene.end_chainage_m)} · 直线中线 · ${state.scene.width_m} × ${state.scene.height_m} m 示意断面`;$('empty-state').hidden=(state.scene.sections||[]).length>0;try{localStorage.setItem('face-mapping-tunnel-scene',state.scene.id);}catch{}const url=new URL(location.href);url.searchParams.set('scene',state.scene.id);history.replaceState(null,'',url);if(state.renderer)await state.renderer.setScene(state.scene);const id=preserveSelection&&state.scene.sections.some(section=>section.id===state.selected)?state.selected:null;selectSection(id);syncButtons();}
+async function applyScene(scene,{preserveSelection=true}={}){const previousSceneId=state.scene?.id;state.scene=unwrap(scene);fillSceneForm(state.scene);renderGeology();$('scene-select').value=state.scene.id;$('scene-title').textContent=state.scene.name;$('scene-description').textContent=`${formatChainage(state.scene.start_chainage_m)} — ${formatChainage(state.scene.end_chainage_m)} · 直线中线 · ${state.scene.width_m} × ${state.scene.height_m} m 示意断面`;$('empty-state').hidden=(state.scene.sections||[]).length>0;try{localStorage.setItem('face-mapping-tunnel-scene',state.scene.id);}catch{}const url=new URL(location.href);url.searchParams.set('scene',state.scene.id);history.replaceState(null,'',url);if(state.renderer)await state.renderer.setScene(state.scene);const id=preserveSelection&&state.scene.sections.some(section=>section.id===state.selected)?state.selected:null;selectSection(id);if(previousSceneId!==state.scene.id)await loadChatHistory(state.scene.id);syncButtons();}
 async function acceptMutation(result){const value=unwrap(result);if(value.id&&Array.isArray(value.sections))await applyScene(value);else await applyScene(await api(scenePath()));}
 async function loadScene(id){const result=await api(`/api/tunnel-scenes/${encodeURIComponent(id)}`);await applyScene(result,{preserveSelection:false});$('scene-settings').open=state.scene.sections.length===0;$('section-chainage').value=(state.scene.start_chainage_m+state.scene.end_chainage_m)/2;revealGeology();status('已加载本机场景');}
 async function updateSection(id,changes){const result=await api(`${scenePath()}/sections/${encodeURIComponent(id)}`,{method:'PUT',body:JSON.stringify(changes)});await acceptMutation(result);}
@@ -76,8 +159,15 @@ $('shell-opacity').addEventListener('input',event=>state.renderer?.setShellOpaci
 $('section-opacity').addEventListener('input',event=>state.renderer?.setSectionOpacity(Number(event.target.value)));
 $('save-screenshot').addEventListener('click',()=>{try{state.renderer?.downloadScreenshot();}catch(error){showError(error);}});
 $('export-scene').addEventListener('click',()=>{if(!state.scene)return;const link=element('a',{href:`${scenePath()}/export`,download:`tunnel_scene_${state.scene.id.slice(0,8)}.json`});document.body.append(link);link.click();link.remove();});
+$('chat-form').addEventListener('submit',sendChat);
+$('chat-input').addEventListener('input',renderChat);
+$('chat-input').addEventListener('keydown',event=>{if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat(event);}});
+$('chat-clear').addEventListener('click',()=>perform(clearChat));
+$('chat-rebuild-index').addEventListener('click',()=>perform(rebuildChatIndex));
+for(const button of document.querySelectorAll('[data-chat-prompt]'))button.addEventListener('click',()=>{const input=$('chat-input');if(!input)return;input.value=button.dataset.chatPrompt||'';input.focus();renderChat();});
 window.addEventListener('resize',()=>state.renderer?.resize());
 window.addEventListener('beforeunload',()=>state.renderer?.dispose());
 
 async function initialize(){const params=new URLSearchParams(location.search);const task=params.get('task');const back=task?`/?task=${encodeURIComponent(task)}`:'/';$('back-workbench').href=back;$('back-identification').href=back;try{const {TunnelRenderer}=await import('/tunnel_renderer.js');state.renderer=new TunnelRenderer($('tunnel-viewport'),{onSelect:id=>selectSection(id,{open:true})});state.renderer.setShellOpacity(Number($('shell-opacity').value));state.renderer.setSectionOpacity(Number($('section-opacity').value));}catch(error){showError(new Error(`三维视图初始化失败：${error.message}`));}try{await Promise.all([refreshScenes(),refreshTasks()]);let remembered='';try{remembered=localStorage.getItem('face-mapping-tunnel-scene')||'';}catch{}const id=params.get('scene')||remembered;if(id&&state.scenes.some(scene=>scene.id===id))await loadScene(id);else{fillSceneForm(defaults);if(state.renderer)status('准备就绪');}syncButtons();}catch(error){showError(error);}}
+loadChatIndexStatus();
 initialize();

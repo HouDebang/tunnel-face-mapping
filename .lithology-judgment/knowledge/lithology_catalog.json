@@ -1,0 +1,2701 @@
+{
+  "schema_version": "2.3",
+  "kind": "lithology_catalog",
+  "status": "available",
+  "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+  "source_refs": [
+    {
+      "path": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "role": "项目岩性库目录"
+    },
+    {
+      "path": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\地质素描记录表-样表.xlsx",
+      "sha256": "64de1f9ea6cac411f83d28eaa40a80493ac4acbd95b25217325b61e5e18e7cde",
+      "role": "字段定义与可获取性分类"
+    },
+    {
+      "path": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\01技术资料\\任务包\\T01_28字段摄影测量可获取性分类_最小任务包.txt",
+      "sha256": "7264768bba5c463838ab07a907d62990810631dc7f5e7a0782993d7ec2c1cf86",
+      "role": "字段定义与可获取性分类"
+    }
+  ],
+  "groups": [
+    {
+      "id": "G01",
+      "name": "变质岩类",
+      "source_paragraph": 4,
+      "rock_count": 28,
+      "subgroups": [
+        "花岗岩·岩石学标准",
+        "花岗岩·暗色矿物",
+        "花岗岩·结构构造"
+      ]
+    },
+    {
+      "id": "G02",
+      "name": "火成岩类",
+      "source_paragraph": 10,
+      "rock_count": 7,
+      "subgroups": [
+        "酸性-中酸性火山岩系"
+      ]
+    },
+    {
+      "id": "G03",
+      "name": "沉积岩类",
+      "source_paragraph": 12,
+      "rock_count": 19,
+      "subgroups": [
+        "土体",
+        "沉积岩"
+      ]
+    }
+  ],
+  "records": [
+    {
+      "record_id": "B-R001",
+      "standard_name": "黑云片岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "黑云片岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 5,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.38,
+        "C": 0.09,
+        "G": 0.82,
+        "S": 0.14,
+        "A": 0.62,
+        "B": 0.52,
+        "Z": 0.18,
+        "archetype": "schist",
+        "family": "片岩类",
+        "descriptors": [
+          "深色",
+          "片状构造",
+          "鳞片变晶"
+        ],
+        "distinguishing": "明显片理，云母类矿物呈定向鳞片，易沿面剥开",
+        "confusable_with": [
+          "云母石英片岩",
+          "板岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R002",
+      "standard_name": "云母石英片岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "云母石英片岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 5,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.4,
+        "C": 0.09,
+        "G": 0.82,
+        "S": 0.14,
+        "A": 0.62,
+        "B": 0.52,
+        "Z": 0.18,
+        "archetype": "schist",
+        "family": "片岩类",
+        "descriptors": [
+          "深色",
+          "片状构造",
+          "鳞片变晶",
+          "石英条带"
+        ],
+        "distinguishing": "明显片理，云母类矿物呈定向鳞片，易沿面剥开",
+        "confusable_with": [
+          "黑云片岩",
+          "片麻状花岗岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R003",
+      "standard_name": "石英岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "石英岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 5,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.8,
+        "C": 0.02,
+        "G": 0.38,
+        "S": 0.08,
+        "A": 0.16,
+        "B": 0.1,
+        "Z": 0.3,
+        "archetype": "quartzite",
+        "family": "石英岩类",
+        "descriptors": [
+          "极浅色",
+          "低彩度",
+          "致密块状"
+        ],
+        "distinguishing": "灰白致密，石英为主，断口呈油脂光泽，几乎无暗色矿物",
+        "confusable_with": [
+          "大理岩",
+          "结晶灰岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R004",
+      "standard_name": "变粒岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "变粒岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 5,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.62,
+        "C": 0.07,
+        "G": 0.55,
+        "S": 0.16,
+        "A": 0.3,
+        "B": 0.28,
+        "Z": 0.3,
+        "archetype": "metasandstone",
+        "family": "变质砂岩类",
+        "descriptors": [
+          "中浅色",
+          "变余砂状结构",
+          "弱定向",
+          "细粒变晶"
+        ],
+        "distinguishing": "保留砂状颗粒外形，轻微定向重结晶",
+        "confusable_with": [
+          "变质砂岩",
+          "石英岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R005",
+      "standard_name": "条带状混合岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "条带状混合岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 5,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.58,
+        "C": 0.06,
+        "G": 0.6,
+        "S": 0.18,
+        "A": 0.52,
+        "B": 0.5,
+        "Z": 0.45,
+        "archetype": "migmatite_banded",
+        "family": "混合岩类",
+        "descriptors": [
+          "条带状",
+          "明暗交替",
+          "混合岩化"
+        ],
+        "distinguishing": "浅色花岗质条带与深色变质残留体交替成带",
+        "confusable_with": [
+          "混合花岗岩",
+          "片麻状花岗岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R006",
+      "standard_name": "花岗岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 5,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.68,
+        "C": 0.04,
+        "G": 0.56,
+        "S": 0.24,
+        "A": 0.15,
+        "B": 0.1,
+        "Z": 0.45,
+        "archetype": "granite_medium",
+        "family": "花岗岩类",
+        "descriptors": [
+          "浅色",
+          "中粗粒",
+          "等粒花岗结构",
+          "块状构造"
+        ],
+        "distinguishing": "灰白—肉红色，石英与长石颗粒均匀，暗色矿物呈散点状，无定向排列",
+        "confusable_with": [
+          "二长花岗岩",
+          "花岗闪长岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R007",
+      "standard_name": "混合花岗岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "混合花岗岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 5,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.6,
+        "C": 0.05,
+        "G": 0.6,
+        "S": 0.2,
+        "A": 0.48,
+        "B": 0.42,
+        "Z": 0.45,
+        "archetype": "granite_gneissose",
+        "family": "花岗岩类",
+        "descriptors": [
+          "浅色",
+          "片麻状构造",
+          "定向排列",
+          "混合岩化"
+        ],
+        "distinguishing": "浅色矿物与暗色矿物成条带定向排列",
+        "confusable_with": [
+          "片麻状花岗岩",
+          "条带状混合岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R008",
+      "standard_name": "变质长石石英砂岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "变质长石石英砂岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 5,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.58,
+        "C": 0.07,
+        "G": 0.64,
+        "S": 0.16,
+        "A": 0.3,
+        "B": 0.28,
+        "Z": 0.3,
+        "archetype": "metasandstone",
+        "family": "变质砂岩类",
+        "descriptors": [
+          "中浅色",
+          "变余砂状结构",
+          "弱定向"
+        ],
+        "distinguishing": "保留砂状颗粒外形，轻微定向重结晶",
+        "confusable_with": [
+          "变质砂岩",
+          "砂岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R009",
+      "standard_name": "变质砂岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "变质砂岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 5,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.62,
+        "C": 0.07,
+        "G": 0.64,
+        "S": 0.16,
+        "A": 0.3,
+        "B": 0.28,
+        "Z": 0.3,
+        "archetype": "metasandstone",
+        "family": "变质砂岩类",
+        "descriptors": [
+          "中浅色",
+          "变余砂状结构",
+          "弱定向"
+        ],
+        "distinguishing": "保留砂状颗粒外形，轻微定向重结晶",
+        "confusable_with": [
+          "砂岩",
+          "变粒岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R010",
+      "standard_name": "千枚岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "千枚岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 5,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.34,
+        "C": 0.07,
+        "G": 0.76,
+        "S": 0.1,
+        "A": 0.55,
+        "B": 0.45,
+        "Z": 0.1,
+        "archetype": "phyllite_slate",
+        "family": "板岩/千枚岩类",
+        "descriptors": [
+          "深色",
+          "板状/千枚状构造",
+          "细粒",
+          "千枚状构造"
+        ],
+        "distinguishing": "极细粒定向构造，板理平整，断面呈丝绢光泽",
+        "confusable_with": [
+          "板岩",
+          "黑云片岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R011",
+      "standard_name": "板岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "板岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 5,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.26,
+        "C": 0.07,
+        "G": 0.76,
+        "S": 0.1,
+        "A": 0.55,
+        "B": 0.45,
+        "Z": 0.1,
+        "archetype": "phyllite_slate",
+        "family": "板岩/千枚岩类",
+        "descriptors": [
+          "深色",
+          "板状/千枚状构造",
+          "细粒",
+          "板状构造"
+        ],
+        "distinguishing": "极细粒定向构造，板理平整，断面呈丝绢光泽",
+        "confusable_with": [
+          "千枚岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R012",
+      "standard_name": "结晶灰岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "结晶灰岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 5,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.72,
+        "C": 0.04,
+        "G": 0.46,
+        "S": 0.1,
+        "A": 0.18,
+        "B": 0.15,
+        "Z": 0.3,
+        "archetype": "crystalline_limestone",
+        "family": "灰岩类",
+        "descriptors": [
+          "浅灰",
+          "细晶",
+          "致密"
+        ],
+        "distinguishing": "浅灰致密，与大理岩视觉相近，需酸反应区分",
+        "confusable_with": [
+          "大理岩",
+          "白云质灰岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R013",
+      "standard_name": "大理岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "大理岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 5,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.78,
+        "C": 0.03,
+        "G": 0.3,
+        "S": 0.08,
+        "A": 0.12,
+        "B": 0.08,
+        "Z": 0.25,
+        "archetype": "marble",
+        "family": "大理岩类",
+        "descriptors": [
+          "浅色",
+          "低纹理",
+          "块状"
+        ],
+        "distinguishing": "浅色均质，糖粒状晶粒，常带方解石解理反光",
+        "confusable_with": [
+          "结晶灰岩",
+          "石英岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R014",
+      "standard_name": "碱长花岗岩",
+      "aliases": [
+        "钾长花岗岩"
+      ],
+      "rock_group": "变质岩类",
+      "subgroup": "花岗岩·岩石学标准",
+      "parent_name": "花岗岩",
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩·岩石学标准",
+        "碱长花岗岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 7,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.68,
+        "C": 0.05,
+        "G": 0.56,
+        "S": 0.24,
+        "A": 0.15,
+        "B": 0.1,
+        "Z": 0.45,
+        "archetype": "granite_medium",
+        "family": "花岗岩类",
+        "descriptors": [
+          "浅色",
+          "中粗粒",
+          "等粒花岗结构",
+          "块状构造",
+          "钾长石偏红"
+        ],
+        "distinguishing": "灰白—肉红色，石英与长石颗粒均匀，暗色矿物呈散点状，无定向排列",
+        "confusable_with": [
+          "二长花岗岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R015",
+      "standard_name": "二长花岗岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "花岗岩·岩石学标准",
+      "parent_name": "花岗岩",
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩·岩石学标准",
+        "二长花岗岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 7,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.68,
+        "C": 0.04,
+        "G": 0.56,
+        "S": 0.24,
+        "A": 0.15,
+        "B": 0.1,
+        "Z": 0.45,
+        "archetype": "granite_medium",
+        "family": "花岗岩类",
+        "descriptors": [
+          "浅色",
+          "中粗粒",
+          "等粒花岗结构",
+          "块状构造",
+          "钾长石与斜长石近等量"
+        ],
+        "distinguishing": "灰白—肉红色，石英与长石颗粒均匀，暗色矿物呈散点状，无定向排列",
+        "confusable_with": [
+          "碱长花岗岩",
+          "花岗闪长岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R016",
+      "standard_name": "花岗闪长岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "花岗岩·岩石学标准",
+      "parent_name": "花岗岩",
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩·岩石学标准",
+        "花岗闪长岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 7,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.52,
+        "C": 0.04,
+        "G": 0.56,
+        "S": 0.22,
+        "A": 0.15,
+        "B": 0.1,
+        "Z": 0.45,
+        "archetype": "granite_medium",
+        "family": "花岗岩类",
+        "descriptors": [
+          "浅色",
+          "中粗粒",
+          "等粒花岗结构",
+          "块状构造",
+          "暗色矿物略多"
+        ],
+        "distinguishing": "灰白—肉红色，石英与长石颗粒均匀，暗色矿物呈散点状，无定向排列",
+        "confusable_with": [
+          "二长花岗岩",
+          "角闪石花岗岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R017",
+      "standard_name": "黑云母花岗岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "花岗岩·暗色矿物",
+      "parent_name": "花岗岩",
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩·暗色矿物",
+        "黑云母花岗岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 8,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.48,
+        "C": 0.04,
+        "G": 0.56,
+        "S": 0.22,
+        "A": 0.15,
+        "B": 0.1,
+        "Z": 0.45,
+        "archetype": "granite_medium",
+        "family": "花岗岩类",
+        "descriptors": [
+          "浅色",
+          "中粗粒",
+          "等粒花岗结构",
+          "块状构造",
+          "黑云母散点"
+        ],
+        "distinguishing": "灰白—肉红色，石英与长石颗粒均匀，暗色矿物呈散点状，无定向排列",
+        "confusable_with": [
+          "角闪石花岗岩",
+          "二云母花岗岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R018",
+      "standard_name": "白云母花岗岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "花岗岩·暗色矿物",
+      "parent_name": "花岗岩",
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩·暗色矿物",
+        "白云母花岗岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 8,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.68,
+        "C": 0.04,
+        "G": 0.56,
+        "S": 0.12,
+        "A": 0.15,
+        "B": 0.1,
+        "Z": 0.45,
+        "archetype": "granite_medium",
+        "family": "花岗岩类",
+        "descriptors": [
+          "浅色",
+          "中粗粒",
+          "等粒花岗结构",
+          "块状构造",
+          "白云母银白反光"
+        ],
+        "distinguishing": "灰白—肉红色，石英与长石颗粒均匀，暗色矿物呈散点状，无定向排列",
+        "confusable_with": [
+          "二云母花岗岩",
+          "石英岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R019",
+      "standard_name": "二云母花岗岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "花岗岩·暗色矿物",
+      "parent_name": "花岗岩",
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩·暗色矿物",
+        "二云母花岗岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 8,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.6,
+        "C": 0.04,
+        "G": 0.56,
+        "S": 0.24,
+        "A": 0.15,
+        "B": 0.1,
+        "Z": 0.45,
+        "archetype": "granite_medium",
+        "family": "花岗岩类",
+        "descriptors": [
+          "浅色",
+          "中粗粒",
+          "等粒花岗结构",
+          "块状构造",
+          "黑白云母共存"
+        ],
+        "distinguishing": "灰白—肉红色，石英与长石颗粒均匀，暗色矿物呈散点状，无定向排列",
+        "confusable_with": [
+          "黑云母花岗岩",
+          "白云母花岗岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R020",
+      "standard_name": "角闪石花岗岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "花岗岩·暗色矿物",
+      "parent_name": "花岗岩",
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩·暗色矿物",
+        "角闪石花岗岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 8,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.48,
+        "C": 0.04,
+        "G": 0.56,
+        "S": 0.24,
+        "A": 0.15,
+        "B": 0.1,
+        "Z": 0.45,
+        "archetype": "granite_medium",
+        "family": "花岗岩类",
+        "descriptors": [
+          "浅色",
+          "中粗粒",
+          "等粒花岗结构",
+          "块状构造",
+          "角闪石长柱状"
+        ],
+        "distinguishing": "灰白—肉红色，石英与长石颗粒均匀，暗色矿物呈散点状，无定向排列",
+        "confusable_with": [
+          "黑云母花岗岩",
+          "花岗闪长岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R021",
+      "standard_name": "紫苏花岗岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "花岗岩·暗色矿物",
+      "parent_name": "花岗岩",
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩·暗色矿物",
+        "紫苏花岗岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 8,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.42,
+        "C": 0.04,
+        "G": 0.56,
+        "S": 0.24,
+        "A": 0.15,
+        "B": 0.1,
+        "Z": 0.45,
+        "archetype": "granite_medium",
+        "family": "花岗岩类",
+        "descriptors": [
+          "浅色",
+          "中粗粒",
+          "等粒花岗结构",
+          "块状构造",
+          "暗色矿物偏多"
+        ],
+        "distinguishing": "灰白—肉红色，石英与长石颗粒均匀，暗色矿物呈散点状，无定向排列",
+        "confusable_with": [
+          "角闪石花岗岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R022",
+      "standard_name": "细粒花岗岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "花岗岩·结构构造",
+      "parent_name": "花岗岩",
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩·结构构造",
+        "细粒花岗岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 9,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.66,
+        "C": 0.04,
+        "G": 0.7,
+        "S": 0.18,
+        "A": 0.18,
+        "B": 0.08,
+        "Z": 0.22,
+        "archetype": "granite_fine",
+        "family": "花岗岩类",
+        "descriptors": [
+          "浅色",
+          "细粒",
+          "等粒",
+          "块状构造"
+        ],
+        "distinguishing": "颗粒细而均匀，肉眼难分辨单矿物，整体色浅",
+        "confusable_with": [
+          "中粒花岗岩",
+          "流纹岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R023",
+      "standard_name": "中粒花岗岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "花岗岩·结构构造",
+      "parent_name": "花岗岩",
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩·结构构造",
+        "中粒花岗岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 9,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.68,
+        "C": 0.04,
+        "G": 0.56,
+        "S": 0.24,
+        "A": 0.15,
+        "B": 0.1,
+        "Z": 0.45,
+        "archetype": "granite_medium",
+        "family": "花岗岩类",
+        "descriptors": [
+          "浅色",
+          "中粗粒",
+          "等粒花岗结构",
+          "块状构造"
+        ],
+        "distinguishing": "灰白—肉红色，石英与长石颗粒均匀，暗色矿物呈散点状，无定向排列",
+        "confusable_with": [
+          "细粒花岗岩",
+          "粗粒花岗岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R024",
+      "standard_name": "粗粒花岗岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "花岗岩·结构构造",
+      "parent_name": "花岗岩",
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩·结构构造",
+        "粗粒花岗岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 9,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.7,
+        "C": 0.04,
+        "G": 0.48,
+        "S": 0.28,
+        "A": 0.13,
+        "B": 0.1,
+        "Z": 0.7,
+        "archetype": "granite_coarse",
+        "family": "花岗岩类",
+        "descriptors": [
+          "浅色",
+          "粗粒",
+          "等粒",
+          "块状构造"
+        ],
+        "distinguishing": "单矿物颗粒粗大，可见明显石英/长石晶体",
+        "confusable_with": [
+          "中粒花岗岩",
+          "似斑状花岗岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R025",
+      "standard_name": "斑状花岗岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "花岗岩·结构构造",
+      "parent_name": "花岗岩",
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩·结构构造",
+        "斑状花岗岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 9,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.64,
+        "C": 0.05,
+        "G": 0.62,
+        "S": 0.34,
+        "A": 0.15,
+        "B": 0.1,
+        "Z": 0.64,
+        "archetype": "granite_porphyritic",
+        "family": "花岗岩类",
+        "descriptors": [
+          "斑状结构",
+          "浅色基质",
+          "粗大斑晶"
+        ],
+        "distinguishing": "粗大斑晶散布于细粒基质中，明暗反差强",
+        "confusable_with": [
+          "似斑状花岗岩",
+          "粗粒花岗岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R026",
+      "standard_name": "似斑状花岗岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "花岗岩·结构构造",
+      "parent_name": "花岗岩",
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩·结构构造",
+        "似斑状花岗岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 9,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.64,
+        "C": 0.05,
+        "G": 0.62,
+        "S": 0.34,
+        "A": 0.15,
+        "B": 0.1,
+        "Z": 0.64,
+        "archetype": "granite_porphyritic",
+        "family": "花岗岩类",
+        "descriptors": [
+          "斑状结构",
+          "浅色基质",
+          "粗大斑晶"
+        ],
+        "distinguishing": "粗大斑晶散布于细粒基质中，明暗反差强",
+        "confusable_with": [
+          "斑状花岗岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R027",
+      "standard_name": "晶洞花岗岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "花岗岩·结构构造",
+      "parent_name": "花岗岩",
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩·结构构造",
+        "晶洞花岗岩"
+      ],
+      "descriptors": [
+        "带孔洞，常发育晶簇"
+      ],
+      "source_paragraph": 9,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.7,
+        "C": 0.04,
+        "G": 0.48,
+        "S": 0.26,
+        "A": 0.13,
+        "B": 0.1,
+        "Z": 0.7,
+        "archetype": "granite_coarse",
+        "family": "花岗岩类",
+        "descriptors": [
+          "浅色",
+          "粗粒",
+          "等粒",
+          "块状构造",
+          "孔洞与晶簇"
+        ],
+        "distinguishing": "单矿物颗粒粗大，可见明显石英/长石晶体",
+        "confusable_with": [
+          "粗粒花岗岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R028",
+      "standard_name": "片麻状花岗岩",
+      "aliases": [],
+      "rock_group": "变质岩类",
+      "subgroup": "花岗岩·结构构造",
+      "parent_name": "花岗岩",
+      "record_type": "rock",
+      "hierarchy_path": [
+        "变质岩类",
+        "花岗岩·结构构造",
+        "片麻状花岗岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 9,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.6,
+        "C": 0.05,
+        "G": 0.6,
+        "S": 0.2,
+        "A": 0.48,
+        "B": 0.42,
+        "Z": 0.45,
+        "archetype": "granite_gneissose",
+        "family": "花岗岩类",
+        "descriptors": [
+          "浅色",
+          "片麻状构造",
+          "定向排列"
+        ],
+        "distinguishing": "浅色矿物与暗色矿物成条带定向排列",
+        "confusable_with": [
+          "混合花岗岩",
+          "条带状混合岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R029",
+      "standard_name": "流纹岩",
+      "aliases": [],
+      "rock_group": "火成岩类",
+      "subgroup": "酸性-中酸性火山岩系",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "火成岩类",
+        "酸性-中酸性火山岩系",
+        "流纹岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 11,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.64,
+        "C": 0.05,
+        "G": 0.68,
+        "S": 0.12,
+        "A": 0.28,
+        "B": 0.3,
+        "Z": 0.12,
+        "archetype": "volcanic_felsic",
+        "family": "火山岩类",
+        "descriptors": [
+          "浅色",
+          "隐晶质",
+          "流纹构造"
+        ],
+        "distinguishing": "极细粒，流纹呈平行条带，可见气孔或杏仁体",
+        "confusable_with": [
+          "英安岩",
+          "细粒花岗岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R030",
+      "standard_name": "流纹质熔结凝灰岩",
+      "aliases": [],
+      "rock_group": "火成岩类",
+      "subgroup": "酸性-中酸性火山岩系",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "火成岩类",
+        "酸性-中酸性火山岩系",
+        "流纹质熔结凝灰岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 11,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.55,
+        "C": 0.08,
+        "G": 0.86,
+        "S": 0.3,
+        "A": 0.26,
+        "B": 0.36,
+        "Z": 0.45,
+        "archetype": "pyroclastic",
+        "family": "火山碎屑岩类",
+        "descriptors": [
+          "碎屑结构",
+          "明暗斑杂",
+          "火山角砾",
+          "熔结条带"
+        ],
+        "distinguishing": "大小碎屑杂乱分布，可有塑性玻屑与角砾轮廓",
+        "confusable_with": [
+          "熔结凝灰岩",
+          "流纹岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R031",
+      "standard_name": "熔结凝灰岩",
+      "aliases": [],
+      "rock_group": "火成岩类",
+      "subgroup": "酸性-中酸性火山岩系",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "火成岩类",
+        "酸性-中酸性火山岩系",
+        "熔结凝灰岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 11,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.55,
+        "C": 0.08,
+        "G": 0.86,
+        "S": 0.3,
+        "A": 0.26,
+        "B": 0.22,
+        "Z": 0.45,
+        "archetype": "pyroclastic",
+        "family": "火山碎屑岩类",
+        "descriptors": [
+          "碎屑结构",
+          "明暗斑杂",
+          "火山角砾"
+        ],
+        "distinguishing": "大小碎屑杂乱分布，可有塑性玻屑与角砾轮廓",
+        "confusable_with": [
+          "流纹质熔结凝灰岩",
+          "火山碎屑岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R032",
+      "standard_name": "火山碎屑岩",
+      "aliases": [],
+      "rock_group": "火成岩类",
+      "subgroup": "酸性-中酸性火山岩系",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "火成岩类",
+        "酸性-中酸性火山岩系",
+        "火山碎屑岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 11,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.55,
+        "C": 0.08,
+        "G": 0.86,
+        "S": 0.3,
+        "A": 0.26,
+        "B": 0.22,
+        "Z": 0.45,
+        "archetype": "pyroclastic",
+        "family": "火山碎屑岩类",
+        "descriptors": [
+          "碎屑结构",
+          "明暗斑杂",
+          "火山角砾"
+        ],
+        "distinguishing": "大小碎屑杂乱分布，可有塑性玻屑与角砾轮廓",
+        "confusable_with": [
+          "熔结凝灰岩",
+          "火山角砾岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R033",
+      "standard_name": "火山角砾岩",
+      "aliases": [],
+      "rock_group": "火成岩类",
+      "subgroup": "酸性-中酸性火山岩系",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "火成岩类",
+        "酸性-中酸性火山岩系",
+        "火山角砾岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 11,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.55,
+        "C": 0.08,
+        "G": 0.86,
+        "S": 0.3,
+        "A": 0.26,
+        "B": 0.22,
+        "Z": 0.72,
+        "archetype": "pyroclastic",
+        "family": "火山碎屑岩类",
+        "descriptors": [
+          "碎屑结构",
+          "明暗斑杂",
+          "火山角砾",
+          "角砾轮廓"
+        ],
+        "distinguishing": "大小碎屑杂乱分布，可有塑性玻屑与角砾轮廓",
+        "confusable_with": [
+          "集块岩",
+          "砾岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R034",
+      "standard_name": "集块岩",
+      "aliases": [],
+      "rock_group": "火成岩类",
+      "subgroup": "酸性-中酸性火山岩系",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "火成岩类",
+        "酸性-中酸性火山岩系",
+        "集块岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 11,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.55,
+        "C": 0.08,
+        "G": 0.86,
+        "S": 0.3,
+        "A": 0.26,
+        "B": 0.22,
+        "Z": 0.88,
+        "archetype": "pyroclastic",
+        "family": "火山碎屑岩类",
+        "descriptors": [
+          "碎屑结构",
+          "明暗斑杂",
+          "火山角砾",
+          "大块集块"
+        ],
+        "distinguishing": "大小碎屑杂乱分布，可有塑性玻屑与角砾轮廓",
+        "confusable_with": [
+          "火山角砾岩",
+          "砾岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R035",
+      "standard_name": "英安岩",
+      "aliases": [],
+      "rock_group": "火成岩类",
+      "subgroup": "酸性-中酸性火山岩系",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "火成岩类",
+        "酸性-中酸性火山岩系",
+        "英安岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 11,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.48,
+        "C": 0.05,
+        "G": 0.68,
+        "S": 0.12,
+        "A": 0.28,
+        "B": 0.3,
+        "Z": 0.12,
+        "archetype": "volcanic_felsic",
+        "family": "火山岩类",
+        "descriptors": [
+          "浅色",
+          "隐晶质",
+          "流纹构造"
+        ],
+        "distinguishing": "极细粒，流纹呈平行条带，可见气孔或杏仁体",
+        "confusable_with": [
+          "流纹岩",
+          "安山岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R036",
+      "standard_name": "粉砂岩",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "沉积岩",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "沉积岩",
+        "粉砂岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 13,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.52,
+        "C": 0.08,
+        "G": 0.68,
+        "S": 0.14,
+        "A": 0.28,
+        "B": 0.32,
+        "Z": 0.18,
+        "archetype": "sandstone",
+        "family": "砂岩类",
+        "descriptors": [
+          "中浅色",
+          "砂状结构",
+          "层理"
+        ],
+        "distinguishing": "可见砂粒与层理，颗粒间有胶结物",
+        "confusable_with": [
+          "泥质粉砂岩",
+          "砂岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R037",
+      "standard_name": "泥岩",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "沉积岩",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "沉积岩",
+        "泥岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 13,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.46,
+        "C": 0.06,
+        "G": 0.6,
+        "S": 0.1,
+        "A": 0.32,
+        "B": 0.36,
+        "Z": 0.15,
+        "archetype": "siltstone_mudstone",
+        "family": "泥质岩类",
+        "descriptors": [
+          "中深色",
+          "细粒",
+          "薄层"
+        ],
+        "distinguishing": "细粒均质，层理薄而平直，断口平整",
+        "confusable_with": [
+          "泥质粉砂岩",
+          "炭质页岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R038",
+      "standard_name": "白云质灰岩",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "沉积岩",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "沉积岩",
+        "白云质灰岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 13,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.76,
+        "C": 0.03,
+        "G": 0.38,
+        "S": 0.09,
+        "A": 0.14,
+        "B": 0.12,
+        "Z": 0.28,
+        "archetype": "carbonate_dolomite",
+        "family": "白云岩类",
+        "descriptors": [
+          "浅灰白",
+          "低彩度",
+          "致密",
+          "白云质"
+        ],
+        "distinguishing": "浅灰白致密，白云石化后略带黄褐风化色",
+        "confusable_with": [
+          "白云岩",
+          "结晶灰岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R039",
+      "standard_name": "白云岩",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "沉积岩",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "沉积岩",
+        "白云岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 13,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.76,
+        "C": 0.03,
+        "G": 0.38,
+        "S": 0.09,
+        "A": 0.14,
+        "B": 0.12,
+        "Z": 0.28,
+        "archetype": "carbonate_dolomite",
+        "family": "白云岩类",
+        "descriptors": [
+          "浅灰白",
+          "低彩度",
+          "致密"
+        ],
+        "distinguishing": "浅灰白致密，白云石化后略带黄褐风化色",
+        "confusable_with": [
+          "白云质灰岩",
+          "大理岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R040",
+      "standard_name": "石英砂岩",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "沉积岩",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "沉积岩",
+        "石英砂岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 13,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.66,
+        "C": 0.05,
+        "G": 0.68,
+        "S": 0.14,
+        "A": 0.28,
+        "B": 0.32,
+        "Z": 0.26,
+        "archetype": "sandstone",
+        "family": "砂岩类",
+        "descriptors": [
+          "中浅色",
+          "砂状结构",
+          "层理",
+          "石英颗粒为主"
+        ],
+        "distinguishing": "可见砂粒与层理，颗粒间有胶结物",
+        "confusable_with": [
+          "砂岩",
+          "石英岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R041",
+      "standard_name": "砾岩",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "沉积岩",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "沉积岩",
+        "砾岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 13,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.54,
+        "C": 0.08,
+        "G": 0.78,
+        "S": 0.3,
+        "A": 0.22,
+        "B": 0.2,
+        "Z": 0.6,
+        "archetype": "conglomerate",
+        "family": "砾岩类",
+        "descriptors": [
+          "砾状结构",
+          "粗大砾石",
+          "基质胶结"
+        ],
+        "distinguishing": "明显砾石轮廓散布于基质中，砾径差别大",
+        "confusable_with": [
+          "含砾砂岩",
+          "火山角砾岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R042",
+      "standard_name": "含砾砂岩",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "沉积岩",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "沉积岩",
+        "含砾砂岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 13,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.62,
+        "C": 0.08,
+        "G": 0.68,
+        "S": 0.24,
+        "A": 0.28,
+        "B": 0.32,
+        "Z": 0.4,
+        "archetype": "sandstone",
+        "family": "砂岩类",
+        "descriptors": [
+          "中浅色",
+          "砂状结构",
+          "层理",
+          "含砾"
+        ],
+        "distinguishing": "可见砂粒与层理，颗粒间有胶结物",
+        "confusable_with": [
+          "砾岩",
+          "砂岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R043",
+      "standard_name": "砂岩",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "沉积岩",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "沉积岩",
+        "砂岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 13,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.62,
+        "C": 0.08,
+        "G": 0.68,
+        "S": 0.14,
+        "A": 0.28,
+        "B": 0.32,
+        "Z": 0.26,
+        "archetype": "sandstone",
+        "family": "砂岩类",
+        "descriptors": [
+          "中浅色",
+          "砂状结构",
+          "层理"
+        ],
+        "distinguishing": "可见砂粒与层理，颗粒间有胶结物",
+        "confusable_with": [
+          "石英砂岩",
+          "粉砂岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R044",
+      "standard_name": "泥质粉砂岩",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "沉积岩",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "沉积岩",
+        "泥质粉砂岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 13,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.46,
+        "C": 0.06,
+        "G": 0.6,
+        "S": 0.1,
+        "A": 0.32,
+        "B": 0.36,
+        "Z": 0.22,
+        "archetype": "siltstone_mudstone",
+        "family": "泥质岩类",
+        "descriptors": [
+          "中深色",
+          "细粒",
+          "薄层",
+          "泥质"
+        ],
+        "distinguishing": "细粒均质，层理薄而平直，断口平整",
+        "confusable_with": [
+          "粉砂岩",
+          "泥岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R045",
+      "standard_name": "炭质页岩",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "沉积岩",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "沉积岩",
+        "炭质页岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 13,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.22,
+        "C": 0.03,
+        "G": 0.52,
+        "S": 0.1,
+        "A": 0.3,
+        "B": 0.3,
+        "Z": 0.12,
+        "archetype": "coal_carbonaceous",
+        "family": "炭质岩类",
+        "descriptors": [
+          "黑色",
+          "低彩度",
+          "污手",
+          "炭质"
+        ],
+        "distinguishing": "黑色、低反光，常呈薄层或透镜状夹层",
+        "confusable_with": [
+          "煤岩",
+          "泥岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R046",
+      "standard_name": "煤岩",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "沉积岩",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "沉积岩",
+        "煤岩"
+      ],
+      "descriptors": [],
+      "source_paragraph": 13,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.12,
+        "C": 0.03,
+        "G": 0.52,
+        "S": 0.1,
+        "A": 0.3,
+        "B": 0.3,
+        "Z": 0.12,
+        "archetype": "coal_carbonaceous",
+        "family": "炭质岩类",
+        "descriptors": [
+          "黑色",
+          "低彩度",
+          "污手",
+          "煤层"
+        ],
+        "distinguishing": "黑色、低反光，常呈薄层或透镜状夹层",
+        "confusable_with": [
+          "炭质页岩"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R047",
+      "standard_name": "砾质黏土",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "土体",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "土体",
+        "砾质黏土"
+      ],
+      "descriptors": [],
+      "source_paragraph": 14,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.52,
+        "C": 0.12,
+        "G": 0.26,
+        "S": 0.2,
+        "A": 0.1,
+        "B": 0.08,
+        "Z": 0.08,
+        "archetype": "soil",
+        "family": "土体",
+        "descriptors": [
+          "松散",
+          "无结构面",
+          "颜色随含水变化",
+          "含砾"
+        ],
+        "distinguishing": "无岩块结构，颗粒松散或可塑，无定向构造",
+        "confusable_with": [
+          "砂质黏土",
+          "杂填土"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R048",
+      "standard_name": "砂质黏土",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "土体",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "土体",
+        "砂质黏土"
+      ],
+      "descriptors": [],
+      "source_paragraph": 14,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.52,
+        "C": 0.12,
+        "G": 0.26,
+        "S": 0.08,
+        "A": 0.1,
+        "B": 0.08,
+        "Z": 0.08,
+        "archetype": "soil",
+        "family": "土体",
+        "descriptors": [
+          "松散",
+          "无结构面",
+          "颜色随含水变化"
+        ],
+        "distinguishing": "无岩块结构，颗粒松散或可塑，无定向构造",
+        "confusable_with": [
+          "砾质黏土",
+          "粉细砂土"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R049",
+      "standard_name": "砂土",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "土体",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "土体",
+        "砂土"
+      ],
+      "descriptors": [],
+      "source_paragraph": 14,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.52,
+        "C": 0.12,
+        "G": 0.32,
+        "S": 0.08,
+        "A": 0.1,
+        "B": 0.08,
+        "Z": 0.08,
+        "archetype": "soil",
+        "family": "土体",
+        "descriptors": [
+          "松散",
+          "无结构面",
+          "颜色随含水变化"
+        ],
+        "distinguishing": "无岩块结构，颗粒松散或可塑，无定向构造",
+        "confusable_with": [
+          "粉细砂土",
+          "砂质黏土"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R050",
+      "standard_name": "粉细砂土",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "土体",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "土体",
+        "粉细砂土"
+      ],
+      "descriptors": [],
+      "source_paragraph": 14,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.52,
+        "C": 0.12,
+        "G": 0.28,
+        "S": 0.08,
+        "A": 0.1,
+        "B": 0.08,
+        "Z": 0.08,
+        "archetype": "soil",
+        "family": "土体",
+        "descriptors": [
+          "松散",
+          "无结构面",
+          "颜色随含水变化"
+        ],
+        "distinguishing": "无岩块结构，颗粒松散或可塑，无定向构造",
+        "confusable_with": [
+          "砂土",
+          "淤泥"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R051",
+      "standard_name": "黏土",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "土体",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "土体",
+        "黏土"
+      ],
+      "descriptors": [],
+      "source_paragraph": 14,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.52,
+        "C": 0.12,
+        "G": 0.22,
+        "S": 0.08,
+        "A": 0.1,
+        "B": 0.08,
+        "Z": 0.08,
+        "archetype": "soil",
+        "family": "土体",
+        "descriptors": [
+          "松散",
+          "无结构面",
+          "颜色随含水变化"
+        ],
+        "distinguishing": "无岩块结构，颗粒松散或可塑，无定向构造",
+        "confusable_with": [
+          "淤泥质黏土",
+          "砂质黏土"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R052",
+      "standard_name": "淤泥",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "土体",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "土体",
+        "淤泥"
+      ],
+      "descriptors": [],
+      "source_paragraph": 14,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.35,
+        "C": 0.12,
+        "G": 0.18,
+        "S": 0.08,
+        "A": 0.1,
+        "B": 0.08,
+        "Z": 0.08,
+        "archetype": "soil",
+        "family": "土体",
+        "descriptors": [
+          "松散",
+          "无结构面",
+          "颜色随含水变化",
+          "饱水软塑"
+        ],
+        "distinguishing": "无岩块结构，颗粒松散或可塑，无定向构造",
+        "confusable_with": [
+          "淤泥质黏土",
+          "黏土"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R053",
+      "standard_name": "淤泥质黏土",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "土体",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "土体",
+        "淤泥质黏土"
+      ],
+      "descriptors": [],
+      "source_paragraph": 14,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.38,
+        "C": 0.12,
+        "G": 0.26,
+        "S": 0.08,
+        "A": 0.1,
+        "B": 0.08,
+        "Z": 0.08,
+        "archetype": "soil",
+        "family": "土体",
+        "descriptors": [
+          "松散",
+          "无结构面",
+          "颜色随含水变化"
+        ],
+        "distinguishing": "无岩块结构，颗粒松散或可塑，无定向构造",
+        "confusable_with": [
+          "淤泥",
+          "黏土"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    },
+    {
+      "record_id": "B-R054",
+      "standard_name": "杂填土",
+      "aliases": [],
+      "rock_group": "沉积岩类",
+      "subgroup": "土体",
+      "parent_name": null,
+      "record_type": "rock",
+      "hierarchy_path": [
+        "沉积岩类",
+        "土体",
+        "杂填土"
+      ],
+      "descriptors": [],
+      "source_paragraph": 14,
+      "basis": "项目岩性库 DOCX 原文目录",
+      "visual_profile": {
+        "L": 0.52,
+        "C": 0.12,
+        "G": 0.26,
+        "S": 0.26,
+        "A": 0.1,
+        "B": 0.08,
+        "Z": 0.08,
+        "archetype": "soil",
+        "family": "土体",
+        "descriptors": [
+          "松散",
+          "无结构面",
+          "颜色随含水变化",
+          "成分杂乱"
+        ],
+        "distinguishing": "无岩块结构，颗粒松散或可塑，无定向构造",
+        "confusable_with": [
+          "砾质黏土",
+          "砂土"
+        ],
+        "basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+        "profile_level": "rock"
+      },
+      "profile_basis": "通用岩石学视觉鉴定要点（非本项目实测），仅作为候选排序依据，需现场或薄片复核",
+      "profile_status": "general_reference",
+      "source": "E:\\横向项目\\5=侨城东路\\掌子面智能地质素描开发\\00原始数据\\20261026深圳侨城项目掌子面岩性库.docx",
+      "source_sha256": "e1061d9678826118d5a11ee506444ba559d52752f095364e3f8f3563544d3b16",
+      "classification_status": "source_catalog_candidate"
+    }
+  ],
+  "categories": [
+    "变质岩类",
+    "火成岩类",
+    "沉积岩类"
+  ],
+  "archetypes": {
+    "granite_medium": {
+      "L": 0.68,
+      "C": 0.04,
+      "G": 0.56,
+      "S": 0.24,
+      "A": 0.15,
+      "B": 0.1,
+      "Z": 0.45
+    },
+    "granite_fine": {
+      "L": 0.66,
+      "C": 0.04,
+      "G": 0.7,
+      "S": 0.18,
+      "A": 0.18,
+      "B": 0.08,
+      "Z": 0.22
+    },
+    "granite_coarse": {
+      "L": 0.7,
+      "C": 0.04,
+      "G": 0.48,
+      "S": 0.28,
+      "A": 0.13,
+      "B": 0.1,
+      "Z": 0.7
+    },
+    "granite_porphyritic": {
+      "L": 0.64,
+      "C": 0.05,
+      "G": 0.62,
+      "S": 0.34,
+      "A": 0.15,
+      "B": 0.1,
+      "Z": 0.64
+    },
+    "granite_gneissose": {
+      "L": 0.6,
+      "C": 0.05,
+      "G": 0.6,
+      "S": 0.2,
+      "A": 0.48,
+      "B": 0.42,
+      "Z": 0.45
+    },
+    "schist": {
+      "L": 0.38,
+      "C": 0.09,
+      "G": 0.82,
+      "S": 0.14,
+      "A": 0.62,
+      "B": 0.52,
+      "Z": 0.18
+    },
+    "phyllite_slate": {
+      "L": 0.32,
+      "C": 0.07,
+      "G": 0.76,
+      "S": 0.1,
+      "A": 0.55,
+      "B": 0.45,
+      "Z": 0.1
+    },
+    "quartzite": {
+      "L": 0.8,
+      "C": 0.02,
+      "G": 0.38,
+      "S": 0.08,
+      "A": 0.16,
+      "B": 0.1,
+      "Z": 0.3
+    },
+    "marble": {
+      "L": 0.78,
+      "C": 0.03,
+      "G": 0.3,
+      "S": 0.08,
+      "A": 0.12,
+      "B": 0.08,
+      "Z": 0.25
+    },
+    "crystalline_limestone": {
+      "L": 0.72,
+      "C": 0.04,
+      "G": 0.46,
+      "S": 0.1,
+      "A": 0.18,
+      "B": 0.15,
+      "Z": 0.3
+    },
+    "carbonate_dolomite": {
+      "L": 0.76,
+      "C": 0.03,
+      "G": 0.38,
+      "S": 0.09,
+      "A": 0.14,
+      "B": 0.12,
+      "Z": 0.28
+    },
+    "metasandstone": {
+      "L": 0.62,
+      "C": 0.07,
+      "G": 0.64,
+      "S": 0.16,
+      "A": 0.3,
+      "B": 0.28,
+      "Z": 0.3
+    },
+    "migmatite_banded": {
+      "L": 0.58,
+      "C": 0.06,
+      "G": 0.6,
+      "S": 0.18,
+      "A": 0.52,
+      "B": 0.5,
+      "Z": 0.45
+    },
+    "volcanic_felsic": {
+      "L": 0.64,
+      "C": 0.05,
+      "G": 0.68,
+      "S": 0.12,
+      "A": 0.28,
+      "B": 0.3,
+      "Z": 0.12
+    },
+    "pyroclastic": {
+      "L": 0.55,
+      "C": 0.08,
+      "G": 0.86,
+      "S": 0.3,
+      "A": 0.26,
+      "B": 0.22,
+      "Z": 0.45
+    },
+    "sandstone": {
+      "L": 0.62,
+      "C": 0.08,
+      "G": 0.68,
+      "S": 0.14,
+      "A": 0.28,
+      "B": 0.32,
+      "Z": 0.26
+    },
+    "siltstone_mudstone": {
+      "L": 0.46,
+      "C": 0.06,
+      "G": 0.6,
+      "S": 0.1,
+      "A": 0.32,
+      "B": 0.36,
+      "Z": 0.15
+    },
+    "conglomerate": {
+      "L": 0.54,
+      "C": 0.08,
+      "G": 0.78,
+      "S": 0.3,
+      "A": 0.22,
+      "B": 0.2,
+      "Z": 0.6
+    },
+    "soil": {
+      "L": 0.52,
+      "C": 0.12,
+      "G": 0.26,
+      "S": 0.08,
+      "A": 0.1,
+      "B": 0.08,
+      "Z": 0.08
+    },
+    "coal_carbonaceous": {
+      "L": 0.18,
+      "C": 0.03,
+      "G": 0.52,
+      "S": 0.1,
+      "A": 0.3,
+      "B": 0.3,
+      "Z": 0.12
+    }
+  },
+  "profiled_count": 54,
+  "notice": "目录来自项目岩性库 DOCX 原文；视觉期望档案是通用岩石学要点，不是本项目实测特征，也不能替代现场鉴定。",
+  "updated_at": "2026-10-27T18:49:36.937700+00:00"
+}

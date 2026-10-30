@@ -85,6 +85,18 @@ class CalibrationConfig(StrictConfig):
         return self
 
 
+class GeometryConfig(StrictConfig):
+    """Parameters for image-observable geometry submodules.
+
+    ``image_axis_azimuth_deg`` is optional camera/face orientation metadata.  It
+    lets the image-plane direction be expressed as a horizontal projection, but
+    it cannot create a geological dip measurement from a single 2-D image.
+    """
+
+    image_axis_azimuth_deg: float | None = Field(None, ge=-360, le=360)
+    attitude_min_trace_length_px: float = Field(0.0, ge=0)
+
+
 class PipelineConfig(StrictConfig):
     preprocessing: PreprocessConfig = Field(default_factory=PreprocessConfig)
     face: FaceConfig = Field(default_factory=FaceConfig)
@@ -92,6 +104,7 @@ class PipelineConfig(StrictConfig):
     fracture: FractureConfig = Field(default_factory=FractureConfig)
     vectorization: VectorizationConfig = Field(default_factory=VectorizationConfig)
     calibration: CalibrationConfig = Field(default_factory=CalibrationConfig)
+    geometry: GeometryConfig = Field(default_factory=GeometryConfig)
 
 
 def load_config(path: str | Path | None = None) -> PipelineConfig:

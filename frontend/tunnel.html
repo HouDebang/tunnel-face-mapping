@@ -7,7 +7,7 @@
   <title>岩面 · 隧道三维展示</title>
   <link rel="stylesheet" href="/tunnel.css">
   <script type="importmap">{"imports":{"three":"/vendor/three.module.js","three/addons/":"/vendor/"}}</script>
-  <script type="module" src="/tunnel.js"></script>
+  <script type="module" src="/tunnel.js?v=chat2"></script>
 </head>
 <body>
   <header class="topbar">
@@ -113,6 +113,34 @@
           <div class="opacity-controls"><label class="check"><input id="shell-visible" type="checkbox" checked>隧道外壳</label><label>外壳<input id="shell-opacity" type="range" min="0" max="0.5" step="0.01" value="0.14" aria-label="隧道外壳透明度"></label><label>断面<input id="section-opacity" type="range" min="0.1" max="1" step="0.01" value="0.96" aria-label="断面透明度"></label></div>
         </div>
       </div>
+      <section id="chat-card" class="chat-card" aria-label="项目知识对话">
+        <header class="chat-head">
+          <div>
+            <div class="eyebrow">PROJECT KNOWLEDGE / 对话检索</div>
+            <h2>项目知识对话</h2>
+            <p>结合当前隧道场景、识别任务结果、岩性知识库和 Neo4j 关系图谱回答问题。</p>
+          </div>
+          <div class="chat-head-actions">
+            <span id="chat-index-status" class="chat-status">向量索引检查中…</span>
+            <button id="chat-rebuild-index" type="button" class="text-button">重建索引</button>
+            <button id="chat-clear" type="button" class="text-button" disabled>清空记录</button>
+          </div>
+        </header>
+        <div id="chat-quick-prompts" class="chat-quick-prompts" aria-label="快捷问题">
+          <button type="button" data-chat-prompt="当前场景有哪些断面？">当前场景有哪些断面？</button>
+          <button type="button" data-chat-prompt="哪些岩性判定需要复核？">哪些岩性判定需要复核？</button>
+          <button type="button" data-chat-prompt="当前裂隙连接有哪些限制？">当前裂隙连接有哪些限制？</button>
+        </div>
+        <div id="chat-messages" class="chat-messages" role="log" aria-live="polite">
+          <div class="chat-empty">创建或加载隧道场景后，可以询问当前项目的地质信息。</div>
+        </div>
+        <form id="chat-form" class="chat-form">
+          <label class="sr-only" for="chat-input">输入项目知识问题</label>
+          <textarea id="chat-input" rows="2" maxlength="4000" placeholder="例如：RK4+970 断面的岩性判定有哪些证据？" disabled></textarea>
+          <button id="chat-send" type="submit" class="button primary" disabled>发送</button>
+        </form>
+        <p id="chat-hint" class="chat-hint">回答来自当前场景和项目知识库；证据不足时会明确提示需要人工核验。</p>
+      </section>
       <div class="scene-footnotes"><span><i></i>里程定位 · 断面独立摆放 · 历史成果引用</span><span>拖动旋转 / 滚轮缩放 / 右键拖动平移</span></div>
       <div id="demo-notice" class="demo-notice" hidden>场景含重复示意断面。同一来源图像的重复排布仅用于展示流程，不能据此推断地质连续性。</div>
     </section>

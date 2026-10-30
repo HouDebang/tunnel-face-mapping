@@ -1,0 +1,12 @@
+{
+  "package": "force-graph",
+  "version": "1.52.0",
+  "source": "https://registry.npmjs.org/force-graph/-/force-graph-1.52.0.tgz",
+  "integrity": "sha512-0fpxrZzW6qwm9zM7wgh54d7GbxQfQSDV71I0apo+75PVYQPpPHGVPQFLsE9WAu+hOS4VdLd53g0Hua/bxDJKSg==",
+  "license": "MIT",
+  "purpose": "Obsidian-style force-directed knowledge graph rendering in the workbench (canvas, zoom/pan/drag, hover neighbourhood).",
+  "files": {
+    "force-graph.min.js": "f59db59ba92ff5a76ed93d7a4d77a703b176260e5d9cd29f4f8eb4f6c369a629",
+    "force-graph.LICENSE.txt": "5b6dc9ce44c7b73620b191c567339212bd00537af46fdedaf98304c34214cc9c"
+  }
+}

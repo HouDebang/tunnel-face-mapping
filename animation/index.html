@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>隧道智能地质素描机器人 · 60s Concept Film</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <!-- ================= TUNNEL / LIVE ACTION STAGE ================= -->
+  <div id="liveStage">
+    <svg id="tunnelSvg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-label="隧道场景">
+      <defs>
+        <radialGradient id="bgGrad" cx="50%" cy="43%" r="72%">
+          <stop offset="0%" stop-color="#182b34"/>
+          <stop offset="42%" stop-color="#0a151b"/>
+          <stop offset="100%" stop-color="#03070a"/>
+        </radialGradient>
+        <radialGradient id="tunnelFog" cx="50%" cy="44%" r="50%">
+          <stop offset="0%" stop-color="#6f9ba6" stop-opacity=".18"/>
+          <stop offset="40%" stop-color="#36545f" stop-opacity=".07"/>
+          <stop offset="100%" stop-color="#03070a" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="floorGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1a2a31"/>
+          <stop offset="55%" stop-color="#0d171c"/>
+          <stop offset="100%" stop-color="#05090c"/>
+        </linearGradient>
+        <linearGradient id="wallGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#0a1419"/>
+          <stop offset="30%" stop-color="#182a32"/>
+          <stop offset="70%" stop-color="#12232a"/>
+          <stop offset="100%" stop-color="#060d11"/>
+        </linearGradient>
+        <linearGradient id="beamGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#e8f7ff" stop-opacity=".32"/>
+          <stop offset="100%" stop-color="#9fe8f4" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#6f8791"/>
+          <stop offset="42%" stop-color="#3a4d56"/>
+          <stop offset="100%" stop-color="#18252b"/>
+        </linearGradient>
+        <linearGradient id="deckGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#849ba3"/>
+          <stop offset="48%" stop-color="#4b6069"/>
+          <stop offset="100%" stop-color="#273a41"/>
+        </linearGradient>
+        <linearGradient id="trackGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#4b5f67"/>
+          <stop offset="40%" stop-color="#27363d"/>
+          <stop offset="100%" stop-color="#101a1f"/>
+        </linearGradient>
+        <linearGradient id="metalGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#101b20"/>
+          <stop offset="35%" stop-color="#5b747e"/>
+          <stop offset="62%" stop-color="#293d45"/>
+          <stop offset="100%" stop-color="#0b1418"/>
+        </linearGradient>
+        <linearGradient id="lensGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#7de4f2"/>
+          <stop offset="22%" stop-color="#16323f"/>
+          <stop offset="52%" stop-color="#060b10"/>
+          <stop offset="75%" stop-color="#2b6d7f"/>
+          <stop offset="100%" stop-color="#d7fbff"/>
+        </linearGradient>
+        <radialGradient id="tealGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#73f5ef" stop-opacity=".95"/>
+          <stop offset="40%" stop-color="#32cbd5" stop-opacity=".4"/>
+          <stop offset="100%" stop-color="#32cbd5" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="amberGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ffd18a" stop-opacity=".95"/>
+          <stop offset="38%" stop-color="#ff9f43" stop-opacity=".36"/>
+          <stop offset="100%" stop-color="#ff9f43" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="blur6"><feGaussianBlur stdDeviation="6"/></filter>
+        <filter id="blur14"><feGaussianBlur stdDeviation="14"/></filter>
+        <filter id="blur28"><feGaussianBlur stdDeviation="28"/></filter>
+        <filter id="glowTeal" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur stdDeviation="5" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="glowAmber" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur stdDeviation="7" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+          <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#000" flood-opacity=".65"/>
+        </filter>
+
+        <!-- ================= ROBOT ================= -->
+        <symbol id="robotArt" viewBox="0 0 700 520">
+          <ellipse cx="350" cy="480" rx="292" ry="26" fill="#000" opacity=".62" filter="url(#blur6)"/>
+          <ellipse cx="350" cy="477" rx="215" ry="12" fill="#7fe7e4" opacity=".08" filter="url(#blur6)"/>
+
+          <!-- left track -->
+          <g>
+            <path d="M96 340 C78 349 70 368 70 390 L70 430 C70 455 87 467 112 467 L224 467 C247 467 260 454 260 431 L260 362 L236 340 Z" fill="url(#trackGrad)" stroke="#31434b" stroke-width="2"/>
+            <path d="M94 348 C82 357 79 372 79 391 L79 427 C79 445 91 455 112 455 L222 455 C239 455 249 446 249 429 L249 370 L231 352 Z" fill="#0a1115" opacity=".7"/>
+            <g stroke="#3a4c53" stroke-width="3.2" opacity=".9">
+              <path d="M78 382 L249 375"/><path d="M78 398 L249 392"/><path d="M78 414 L249 409"/>
+              <path d="M78 430 L249 426"/><path d="M78 446 L249 442"/>
+            </g>
+            <g stroke="#0a1115" stroke-width="5" opacity=".9">
+              <path d="M90 365 L100 452"/><path d="M118 360 L126 458"/><path d="M146 357 L152 461"/>
+              <path d="M174 355 L178 463"/><path d="M202 353 L204 465"/><path d="M230 352 L230 466"/>
+            </g>
+            <g fill="#26363c" stroke="#455b63" stroke-width="2">
+              <circle cx="116" cy="422" r="21"/><circle cx="166" cy="422" r="21"/><circle cx="216" cy="422" r="21"/>
+              <circle cx="116" cy="422" r="9" fill="#0b1216"/><circle cx="166" cy="422" r="9" fill="#0b1216"/><circle cx="216" cy="422" r="9" fill="#0b1216"/>
+            </g>
+            <path d="M72 389 C79 378 88 371 100 366" fill="none" stroke="#6c8a94" stroke-width="1.4" opacity=".5"/>
+            <path d="M250 370 L257 379" stroke="#6d8c96" stroke-width="1.5" opacity=".5"/>
+          </g>
+
+          <!-- right track (foreshortened) -->
+          <g>
+            <path d="M454 328 C439 337 433 353 433 374 L433 414 C433 438 448 449 471 449 L577 449 C598 449 610 437 610 415 L610 347 L588 328 Z" fill="url(#trackGrad)" stroke="#2d3e45" stroke-width="2"/>
+            <path d="M453 337 C443 345 442 357 442 375 L442 412 C442 428 452 437 471 437 L576 437 C591 437 601 429 601 413 L601 356 L584 339 Z" fill="#0a1115" opacity=".72"/>
+            <g stroke="#35474e" stroke-width="2.8" opacity=".9">
+              <path d="M441 370 L601 365"/><path d="M441 387 L601 382"/><path d="M441 404 L601 400"/>
+              <path d="M441 421 L601 417"/><path d="M441 438 L601 434"/>
+            </g>
+            <g fill="#26363c" stroke="#40565e" stroke-width="2">
+              <circle cx="473" cy="407" r="18"/><circle cx="518" cy="407" r="18"/><circle cx="563" cy="407" r="18"/>
+              <circle cx="473" cy="407" r="7" fill="#0b1216"/><circle cx="518" cy="407" r="7" fill="#0b1216"/><circle cx="563" cy="407" r="7" fill="#0b1216"/>
+            </g>
+          </g>
+
+          <!-- chassis -->
+          <g filter="url(#softShadow)">
+            <path d="M137 293 L176 251 L536 237 L583 276 L572 355 C572 374 557 383 538 383 L178 393 C154 393 140 379 140 357 Z" fill="url(#bodyGrad)" stroke="#3d5159" stroke-width="2.2"/>
+            <path d="M176 251 L216 223 L519 211 L556 238 L536 249 L191 264 Z" fill="url(#deckGrad)" stroke="#4d626a" stroke-width="1.6"/>
+            <path d="M176 251 L191 264 L536 249" fill="none" stroke="#8bb9c2" stroke-width="1.3" opacity=".38"/>
+            <path d="M536 237 L583 276 L572 355" fill="none" stroke="#0b1317" stroke-width="3" opacity=".65"/>
+
+            <!-- rear service panel -->
+            <path d="M160 297 L552 284 L545 359 C545 371 535 378 523 378 L174 386 C161 386 155 378 155 366 Z" fill="#101a20" stroke="#33464e" stroke-width="1.7"/>
+            <path d="M160 297 L552 284 L548 301 L157 315 Z" fill="#1c2b32" opacity=".9"/>
+            <g stroke="#354a53" stroke-width="1.4" opacity=".9">
+              <path d="M190 320 L190 372"/><path d="M206 319 L206 373"/><path d="M222 318 L222 373"/>
+              <path d="M238 318 L238 372"/><path d="M254 317 L254 372"/><path d="M270 317 L270 371"/>
+              <path d="M286 316 L286 371"/><path d="M302 316 L302 370"/>
+            </g>
+            <path d="M190 320 L302 315 L302 370 L190 373 Z" fill="#0b1419" opacity=".38" stroke="#2b3e46" stroke-width="1"/>
+            <text x="397" y="341" font-family="Bahnschrift, Consolas, monospace" font-size="17" letter-spacing="2.2" fill="#718a94">GS-01</text>
+            <text x="397" y="360" font-family="Bahnschrift, Consolas, monospace" font-size="9" letter-spacing="1.4" fill="#4c6570">GEO SKETCH PLATFORM</text>
+
+            <!-- rear lights -->
+            <g>
+              <rect x="478" y="311" width="44" height="9" rx="4.5" fill="#203138" stroke="#49616a" stroke-width="1"/>
+              <rect class="statusLight" x="482" y="313" width="12" height="5" rx="2.5" fill="var(--status, #23343b)"/>
+              <rect class="statusLight amberLight" x="498" y="313" width="8" height="5" rx="2.5" fill="var(--amber, #34291f)"/>
+              <rect class="statusLight" x="510" y="313" width="8" height="5" rx="2.5" fill="var(--status, #23343b)"/>
+            </g>
+            <g fill="#2b3c43" stroke="#536b74" stroke-width="1">
+              <circle cx="497" cy="344" r="10"/><circle cx="497" cy="344" r="4" fill="#8c2f2c"/>
+              <rect x="523" y="333" width="14" height="22" rx="3" fill="#0b1317"/>
+            </g>
+
+            <!-- top details -->
+            <path d="M226 239 L492 228" stroke="#0c1519" stroke-width="3" opacity=".6"/>
+            <g fill="#293b42" stroke="#4a6069" stroke-width="1">
+              <rect x="244" y="232" width="66" height="14" rx="3"/>
+              <rect x="326" y="229" width="52" height="13" rx="3"/>
+            </g>
+            <g stroke="#0b1418" stroke-width="1.5" opacity=".7">
+              <path d="M250 236 L304 233"/><path d="M332 233 L372 231"/>
+            </g>
+
+            <!-- mast base -->
+            <path d="M302 247 L402 242 L413 270 L296 277 Z" fill="#17262d" stroke="#40565f" stroke-width="1.7"/>
+            <path d="M315 250 L396 246" stroke="#6f9aa5" stroke-width="1.2" opacity=".4"/>
+          </g>
+
+          <!-- mast -->
+          <g>
+            <path d="M316 249 L338 247 L334 114 L314 118 Z" fill="url(#metalGrad)" stroke="#40555d" stroke-width="1.6"/>
+            <path d="M384 246 L406 245 L402 112 L382 114 Z" fill="url(#metalGrad)" stroke="#40555d" stroke-width="1.6"/>
+            <path d="M326 225 L395 222" stroke="#0b1317" stroke-width="5" opacity=".7"/>
+            <path d="M328 183 L397 180" stroke="#0b1317" stroke-width="4" opacity=".6"/>
+            <path d="M318 126 L404 122" stroke="#0b1317" stroke-width="7" opacity=".55"/>
+            <path d="M316 114 L406 110 L408 132 L314 136 Z" fill="#1a2a31" stroke="#4d636c" stroke-width="1.5"/>
+            <path d="M292 108 L438 101 L440 127 L290 135 Z" fill="#1b2a31" stroke="#4c626b" stroke-width="1.8"/>
+            <path d="M296 110 L434 104" stroke="#87b5c0" stroke-width="1.2" opacity=".42"/>
+            <path d="M324 112 L326 246" stroke="#6e929c" stroke-width="1" opacity=".3"/>
+          </g>
+
+          <!-- camera payload -->
+          <g>
+            <!-- left camera -->
+            <path d="M225 92 L333 79 L347 143 L239 157 Z" fill="#17262d" stroke="#425962" stroke-width="1.8"/>
+            <path d="M225 92 L239 157 L219 162 L205 98 Z" fill="#0c171c" stroke="#3c515a" stroke-width="1.5"/>
+            <path d="M205 98 L219 162 L211 164 L197 101 Z" fill="#25373f"/>
+            <ellipse cx="207" cy="132" rx="14" ry="31" fill="url(#lensGrad)" stroke="#75b9c7" stroke-width="2"/>
+            <ellipse cx="207" cy="132" rx="8" ry="21" fill="#071015" opacity=".9"/>
+            <ellipse cx="204" cy="124" rx="4" ry="10" fill="#a8f4ff" opacity=".3"/>
+            <path d="M333 79 L347 143" stroke="#79a9b4" stroke-width="1.2" opacity=".4"/>
+            <rect x="248" y="102" width="56" height="5" rx="2.5" fill="#2d4149"/>
+            <circle class="statusLight" cx="317" cy="101" r="3.2" fill="var(--status, #26373e)"/>
+
+            <!-- right camera -->
+            <path d="M392 79 L499 92 L483 157 L376 143 Z" fill="#17262d" stroke="#425962" stroke-width="1.8"/>
+            <path d="M499 92 L483 157 L503 162 L517 98 Z" fill="#0c171c" stroke="#3c515a" stroke-width="1.5"/>
+            <path d="M517 98 L503 162 L511 164 L525 101 Z" fill="#25373f"/>
+            <ellipse cx="515" cy="132" rx="14" ry="31" fill="url(#lensGrad)" stroke="#75b9c7" stroke-width="2"/>
+            <ellipse cx="515" cy="132" rx="8" ry="21" fill="#071015" opacity=".9"/>
+            <ellipse cx="518" cy="124" rx="4" ry="10" fill="#a8f4ff" opacity=".3"/>
+            <path d="M392 79 L376 143" stroke="#79a9b4" stroke-width="1.2" opacity=".4"/>
+            <rect x="399" y="102" width="56" height="5" rx="2.5" fill="#2d4149"/>
+            <circle class="statusLight" cx="401" cy="101" r="3.2" fill="var(--status, #26373e)"/>
+
+            <!-- fill lights -->
+            <rect class="amberLight" x="296" y="94" width="7" height="42" rx="3.5" fill="var(--amber, #33291f)" filter="url(#glowAmber)"/>
+            <rect class="amberLight" x="374" y="94" width="7" height="42" rx="3.5" fill="var(--amber, #33291f)" filter="url(#glowAmber)"/>
+            <rect x="303" y="92" width="66" height="9" rx="4.5" fill="#101b20" stroke="#3b5058" stroke-width="1"/>
+
+            <!-- cables -->
+            <path d="M285 158 C276 194 292 219 322 232" fill="none" stroke="#0a1216" stroke-width="5" opacity=".9"/>
+            <path d="M443 158 C454 196 430 224 400 234" fill="none" stroke="#0a1216" stroke-width="5" opacity=".9"/>
+            <path d="M286 157 C279 190 294 213 320 226" fill="none" stroke="#3c525b" stroke-width="1.4" opacity=".55"/>
+            <path d="M442 157 C451 190 432 216 402 228" fill="none" stroke="#3c525b" stroke-width="1.4" opacity=".55"/>
+          </g>
+
+          <!-- beacon + antenna -->
+          <g>
+            <rect x="335" y="70" width="30" height="35" rx="7" fill="#17262d" stroke="#425861" stroke-width="1.4"/>
+            <rect class="statusLight beacon" x="340" y="75" width="20" height="14" rx="7" fill="var(--status, #23343b)"/>
+            <ellipse class="beaconGlow" cx="350" cy="80" rx="26" ry="17" fill="url(#tealGlow)" opacity="0"/>
+            <path d="M423 225 L451 149" stroke="#2d4048" stroke-width="2.2"/>
+            <circle cx="452" cy="146" r="4" fill="#6a8892"/>
+            <path d="M432 210 L446 210" stroke="#5a747e" stroke-width="1" opacity=".5"/>
+          </g>
+
+          <!-- rim / edge light -->
+          <g fill="none" stroke="#7ce9ec" opacity=".45">
+            <path d="M216 223 L519 211" stroke-width="1.5"/>
+            <path d="M292 108 L438 101" stroke-width="1.2"/>
+            <path d="M225 92 L333 79" stroke-width="1.1"/>
+            <path d="M392 79 L499 92" stroke-width="1.1"/>
+            <path d="M176 251 L191 264" stroke-width="1"/>
+          </g>
+        </symbol>
+      </defs>
+
+      <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+      <g id="tunnelRibs"></g>
+      <g id="wallSeams"></g>
+      <g id="floorLines"></g>
+      <g id="tunnelLights"></g>
+      <rect width="1920" height="1080" fill="url(#tunnelFog)" opacity=".9"/>
+      <g id="dustLayer"></g>
+      <g id="portal"></g>
+      <g id="groundFx"></g>
+      <g id="robotAura" opacity="0">
+        <ellipse cx="960" cy="790" rx="380" ry="250" fill="url(#tealGlow)" opacity=".10"/>
+        <ellipse cx="960" cy="884" rx="300" ry="54" fill="url(#tealGlow)" opacity=".18"/>
+        <ellipse cx="960" cy="890" rx="170" ry="26" fill="url(#amberGlow)" opacity=".10"/>
+      </g>
+      <g id="robotWrap" opacity="0">
+        <use id="robotUse" href="#robotArt" x="610" y="530" width="700" height="520"/>
+      </g>
+      <g id="foregroundDust"></g>
+    </svg>
+
+    <div id="liveVignette"></div>
+    <div id="liveGrain"></div>
+    <div id="liveLetterbox"></div>
+  </div>
+
+  <!-- ================= FACE / PHOTOGRAMMETRY STAGE ================= -->
+  <div id="faceStage">
+    <div class="face-photo-wrap">
+      <img id="facePhoto" src="assets/face.jpg" alt="RK4+970 掌子面实拍">
+    </div>
+    <div class="face-shade"></div>
+    <svg id="faceArch" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="archMetal" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#050b0e" stop-opacity=".96"/>
+          <stop offset="45%" stop-color="#1b2d34" stop-opacity=".55"/>
+          <stop offset="100%" stop-color="#03070a" stop-opacity=".96"/>
+        </linearGradient>
+        <radialGradient id="faceSpot" cx="58%" cy="40%" r="54%">
+          <stop offset="0%" stop-color="#f4d8ae" stop-opacity=".2"/>
+          <stop offset="58%" stop-color="#9c7a51" stop-opacity=".04"/>
+          <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="1920" height="1080" fill="url(#faceSpot)"/>
+      <path d="M0 0 H1920 V1080 H0 Z M210 210 Q210 118 302 118 H1618 Q1710 118 1710 210 V1080 H210 Z" fill="url(#archMetal)" fill-rule="evenodd" opacity=".92"/>
+      <path d="M210 210 Q210 118 302 118 H1618 Q1710 118 1710 210" fill="none" stroke="#7e9aa2" stroke-width="2" opacity=".22"/>
+      <g opacity=".2" stroke="#9dbac2" stroke-width="1">
+        <path d="M240 1080 V228 Q240 156 312 156 H1608 Q1680 156 1680 228 V1080"/>
+        <path d="M180 1080 V206 Q180 104 282 104 H1638 Q1740 104 1740 206 V1080"/>
+      </g>
+    </svg>
+
+    <div id="faceRobot">
+      <svg viewBox="0 0 700 520"><use href="#robotArt"/></svg>
+    </div>
+
+    <div id="cameraHud">
+      <div class="cam-top">
+        <span class="cam-dot"></span>
+        <span>CAM 01 / 02</span>
+        <span class="cam-right">PHOTOGRAMMETRY · 12 VIEWS</span>
+      </div>
+      <div class="cam-reticle">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <span class="reticle-cross"></span>
+      </div>
+      <div class="cam-readout">
+        <div><b>4096 × 3072</b><span>IMAGE</span></div>
+        <div><b>35 mm</b><span>LENS</span></div>
+        <div><b>1/125 s</b><span>SHUTTER</span></div>
+        <div><b>ISO 400</b><span>SENSOR</span></div>
+      </div>
+    </div>
+
+    <div id="shutterFlash"></div>
+
+    <div id="captureStrip">
+      <div class="capture-card"><img src="assets/capture_1.jpg" alt=""><span>V01</span></div>
+      <div class="capture-card"><img src="assets/capture_2.jpg" alt=""><span>V02</span></div>
+      <div class="capture-card"><img src="assets/capture_3.jpg" alt=""><span>V03</span></div>
+      <div class="capture-more">+ 09</div>
+    </div>
+
+    <div id="cameraCloseup">
+      <svg viewBox="0 0 760 620" aria-label="摄影测量采集装置">
+        <defs>
+          <linearGradient id="camBody" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#42575f"/>
+            <stop offset="45%" stop-color="#1a292f"/>
+            <stop offset="100%" stop-color="#0a1115"/>
+          </linearGradient>
+          <linearGradient id="camEdge" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#a9dbe3"/>
+            <stop offset="100%" stop-color="#30505a"/>
+          </linearGradient>
+          <radialGradient id="bigLens" cx="42%" cy="38%" r="62%">
+            <stop offset="0%" stop-color="#e8fdff"/>
+            <stop offset="10%" stop-color="#7ee6f2"/>
+            <stop offset="22%" stop-color="#12303c"/>
+            <stop offset="42%" stop-color="#04090c"/>
+            <stop offset="65%" stop-color="#1b4a59"/>
+            <stop offset="82%" stop-color="#8cebf4"/>
+            <stop offset="100%" stop-color="#061116"/>
+          </radialGradient>
+          <radialGradient id="camAmber" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffe0ac" stop-opacity=".95"/>
+            <stop offset="40%" stop-color="#ffb04d" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#ffb04d" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <g transform="translate(34 24)">
+          <path d="M110 510 L650 510 L650 560 L110 560 Z" fill="#060c0f" opacity=".7"/>
+          <path d="M168 330 L610 288 L642 470 L196 520 Z" fill="#0b1418" stroke="#3b525b" stroke-width="3"/>
+          <path d="M210 258 L610 220 L626 326 L222 362 Z" fill="url(#camBody)" stroke="#516b75" stroke-width="3"/>
+          <path d="M210 258 L222 362 L186 369 L174 266 Z" fill="#101b20" stroke="#3d535c" stroke-width="2"/>
+          <path d="M610 220 L626 326 L660 318 L644 214 Z" fill="#16262d" stroke="#405861" stroke-width="2"/>
+          <path d="M222 362 L626 326 L642 470 L196 520 Z" fill="#0a1216" opacity=".42"/>
+          <path d="M610 220 L626 326 L642 470 L610 452 Z" fill="#1c3038" opacity=".7"/>
+          <ellipse cx="620" cy="368" rx="64" ry="104" fill="url(#bigLens)" stroke="#9adbe4" stroke-width="5"/>
+          <ellipse cx="620" cy="368" rx="46" ry="82" fill="#03080b" opacity=".9"/>
+          <ellipse cx="620" cy="368" rx="31" ry="60" fill="#071116" stroke="#3d707e" stroke-width="2"/>
+          <ellipse cx="612" cy="350" rx="12" ry="27" fill="#b8f8ff" opacity=".28"/>
+          <path d="M548 274 Q620 238 690 272" fill="none" stroke="#bfeef4" stroke-width="2" opacity=".3"/>
+          <g stroke="#0b1317" stroke-width="3">
+            <path d="M238 280 L610 244"/><path d="M246 306 L615 270"/><path d="M254 332 L620 296"/>
+          </g>
+          <g fill="#2f454d" stroke="#5d7982" stroke-width="1.5">
+            <circle cx="242" cy="286" r="6"/><circle cx="250" cy="314" r="6"/><circle cx="258" cy="342" r="6"/>
+            <circle cx="600" cy="244" r="6"/><circle cx="606" cy="272" r="6"/><circle cx="612" cy="300" r="6"/>
+          </g>
+          <rect x="278" y="214" width="156" height="18" rx="8" fill="#101b20" stroke="#405860" stroke-width="2"/>
+          <rect x="290" y="219" width="132" height="7" rx="3.5" fill="#2a3e46"/>
+          <circle cx="572" cy="228" r="8" fill="#6ff3ea" opacity=".95"/>
+          <circle cx="572" cy="228" r="24" fill="url(#tealGlow)" opacity=".9"/>
+          <g>
+            <rect x="126" y="284" width="42" height="166" rx="15" fill="#1b2a30" stroke="#48616a" stroke-width="2"/>
+            <rect x="136" y="298" width="22" height="138" rx="10" fill="url(#camAmber)"/>
+          </g>
+          <g>
+            <rect x="686" y="284" width="42" height="166" rx="15" fill="#1b2a30" stroke="#48616a" stroke-width="2"/>
+            <rect x="696" y="298" width="22" height="138" rx="10" fill="url(#camAmber)"/>
+          </g>
+          <path d="M196 520 C176 566 204 588 250 588" fill="none" stroke="#0a1216" stroke-width="12"/>
+          <path d="M196 520 C176 566 204 588 250 588" fill="none" stroke="#3b525b" stroke-width="2" opacity=".5"/>
+        </g>
+      </svg>
+    </div>
+
+    <div id="faceLabels">
+      <div class="face-label l1"><i></i><span>掌子面 / FACE</span></div>
+      <div class="face-label l2"><i></i><span>摄影测量采集区</span></div>
+    </div>
+
+    <div id="photoWindow" class="glass-window">
+      <div class="win-head">
+        <span class="win-kicker">02</span>
+        <span class="win-title">摄影测量成果</span>
+        <span class="live-pill">RECON</span>
+        <span class="win-code">PHOTO / 3D</span>
+      </div>
+      <div class="win-tabs">
+        <span class="tab active" data-tab="ortho">正射影像</span>
+        <span class="tab" data-tab="mesh">三维重建</span>
+        <span class="tab" data-tab="texture">纹理网格</span>
+      </div>
+      <div class="photo-body">
+        <img id="orthoImg" src="assets/face.jpg" alt="掌子面正射影像">
+        <svg id="meshOverlay" viewBox="0 0 4096 3072" preserveAspectRatio="none"></svg>
+        <div class="capture-frame">
+          <span class="corner tl"></span><span class="corner tr"></span>
+          <span class="corner bl"></span><span class="corner br"></span>
+          <span class="scan-line"></span>
+        </div>
+        <div class="photo-tag">ORTHO / RK4+970</div>
+        <div class="mesh-tag">MESH · 1.24 M FACES</div>
+      </div>
+      <div class="photo-strip">
+        <div class="strip-item"><img src="assets/capture_1.jpg" alt=""><span>V01</span></div>
+        <div class="strip-item"><img src="assets/capture_2.jpg" alt=""><span>V02</span></div>
+        <div class="strip-item"><img src="assets/capture_3.jpg" alt=""><span>V03</span></div>
+        <div class="strip-progress"><b id="viewCount">12 / 12</b><span>视角采集完成</span></div>
+      </div>
+      <div class="win-foot">
+        <span><i class="dot teal"></i>配准误差 0.018 m</span>
+        <span><i class="dot amber"></i>纹理分辨率 0.4 mm/px</span>
+        <span class="win-foot-right">重建完成</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ANALYSIS / SKETCH STAGE ================= -->
+  <div id="analysisStage">
+    <div class="ana-bg"></div>
+    <div class="ana-grid"></div>
+    <header class="ana-top">
+      <div class="ana-brand">
+        <span class="brand-mark small"></span>
+        <div><b>掌子面智能素描</b><span>FACE SKETCH AI / RK4+970</span></div>
+      </div>
+      <div class="ana-steps">
+        <span class="ana-step done">01 影像配准</span>
+        <span class="ana-step done">02 岩性分区</span>
+        <span class="ana-step done">03 结构面提取</span>
+        <span class="ana-step active">04 素描成图</span>
+      </div>
+      <div class="ana-status"><i></i>自动处理中</div>
+    </header>
+
+    <div class="ana-viewer" id="anaViewer">
+      <div class="viewer-head">
+        <span>掌子面正射影像</span>
+        <span class="viewer-meta">4096 × 3072 px · 未标定</span>
+      </div>
+      <div class="viewer-canvas" id="viewerCanvas">
+        <img id="anaFace" src="assets/face.jpg" alt="掌子面正射影像">
+        <img id="anaSketch" src="assets/sketch.jpg" alt="掌子面地质素描">
+        <svg id="anaRegions" viewBox="0 0 4096 3072" preserveAspectRatio="none"></svg>
+        <svg id="anaTraces" viewBox="0 0 4096 3072" preserveAspectRatio="none"></svg>
+        <div class="ana-scan" id="anaScan"></div>
+        <div class="viewer-corner tl"></div><div class="viewer-corner tr"></div>
+        <div class="viewer-corner bl"></div><div class="viewer-corner br"></div>
+        <div class="viewer-badge" id="viewerBadge">原始影像</div>
+        <div class="viewer-scale">图像坐标 · 4096 × 3072</div>
+      </div>
+      <div class="viewer-foot">
+        <div class="legend" id="regionLegend"></div>
+        <div class="trace-legend"><span class="trace-swatch"></span>结构面迹线（候选）</div>
+      </div>
+    </div>
+
+    <aside class="process-panel" id="processPanel">
+      <div class="panel-kicker">AUTOMATED INTERPRETATION</div>
+      <h2>从影像到地质素描</h2>
+      <p class="panel-sub">同一掌子面 · 同一坐标系 · 可追溯处理链</p>
+      <div class="process-list">
+        <div class="process-item" data-step="1">
+          <div class="process-icon">01</div>
+          <div class="process-copy"><b>影像配准与去畸变</b><span>多视角几何对齐</span></div>
+          <div class="process-state">DONE</div>
+        </div>
+        <div class="process-item" data-step="2">
+          <div class="process-icon">02</div>
+          <div class="process-copy"><b>岩性视觉分区</b><span id="regionCountLabel">10 个候选区域</span></div>
+          <div class="process-state">RUN</div>
+        </div>
+        <div class="process-item" data-step="3">
+          <div class="process-icon">03</div>
+          <div class="process-copy"><b>结构面迹线提取</b><span>骨架化 · 矢量追踪</span></div>
+          <div class="process-state">RUN</div>
+        </div>
+        <div class="process-item" data-step="4">
+          <div class="process-icon">04</div>
+          <div class="process-copy"><b>素描成图与成果表</b><span>标准化工程表达</span></div>
+          <div class="process-state">WAIT</div>
+        </div>
+      </div>
+      <div class="process-meter">
+        <div class="meter-label"><span>处理进度</span><b id="processPct">0%</b></div>
+        <div class="meter-track"><i id="processBar"></i></div>
+      </div>
+      <div class="panel-note">
+        <i></i>
+        <span>分区与迹线为算法候选结果，需地质人员复核；未进行尺度标定。</span>
+      </div>
+      <div class="process-log" id="processLog">
+        <div class="log-head"><span>PROCESS LOG</span><b>LIVE</b></div>
+        <div class="log-line" data-log="0"><em>12:04:21</em><span>影像配准完成 · RMS 0.42 px</span></div>
+        <div class="log-line" data-log="1"><em>12:04:23</em><span>视觉分区 10 个 · 边界矢量化</span></div>
+        <div class="log-line" data-log="2"><em>12:04:25</em><span>候选迹线 3,035 条 · 骨架追踪</span></div>
+        <div class="log-line" data-log="3"><em>12:04:27</em><span>综合素描生成 · 等待复核</span></div>
+      </div>
+    </aside>
+
+    <section class="result-table" id="tablePanel">
+      <div class="table-head">
+        <div>
+          <div class="panel-kicker">DELIVERABLE / 04</div>
+          <h2>掌子面素描成果表</h2>
+        </div>
+        <div class="table-id">GS-RK4-970-027</div>
+      </div>
+      <div class="table-sub">侨城东路隧道 · 掌子面 RK4+970 · 自动提取结果</div>
+      <div class="table-wrap">
+        <table>
+          <tbody>
+            <tr><th>掌子面编号</th><td>RK4+970</td><th>采集日期</th><td>2026-10-27</td></tr>
+            <tr><th>采集方式</th><td>多视角摄影测量</td><th>影像分辨率</th><td>4096 × 3072 px</td></tr>
+            <tr><th>岩性分区</th><td>10 个候选区域</td><th>结构面迹线</th><td>3,035 条候选</td></tr>
+            <tr><th>迹线总长</th><td>98,883 px</td><th>迹线密度 P21</th><td>0.00786 px⁻¹</td></tr>
+            <tr><th>尺度标定</th><td>未标定</td><th>坐标基准</th><td>原始图像像素</td></tr>
+            <tr><th>成果状态</th><td><span class="status-warn">待地质复核</span></td><th>成果版本</th><td>V1.0 / 自动生成</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-quality">
+        <div><span>影像配准</span><b>通过</b></div>
+        <div><span>分区完整性</span><b>10 / 10</b></div>
+        <div><span>迹线矢量化</span><b>3,035</b></div>
+        <div><span>尺度标定</span><b class="warn">未标定</b></div>
+      </div>
+      <div class="table-foot">
+        <div class="table-legend">
+          <span><i class="sw teal"></i>候选分区</span>
+          <span><i class="sw amber"></i>候选迹线</span>
+          <span><i class="sw grey"></i>待复核字段</span>
+        </div>
+        <div class="table-actions"><span>导出</span><b>PDF</b><b>DXF</b><b>CSV</b></div>
+      </div>
+      <div class="table-stamp">AUTO<br>SKETCH</div>
+    </section>
+
+    <div class="ana-bottom">
+      <span>PIPELINE / PHOTOGRAMMETRY → SEGMENTATION → VECTOR TRACE → SKETCH</span>
+      <span id="anaClock">00:40:12</span>
+    </div>
+  </div>
+
+  <!-- ================= FINAL FRAME ================= -->
+  <div id="finalStage">
+    <div class="final-bg"></div>
+    <div class="final-glow"></div>
+    <div class="final-copy">
+      <div class="final-kicker">AUTONOMOUS TUNNEL GEOLOGICAL SKETCHING</div>
+      <h1>隧道智能<br><span>地质素描机器人</span></h1>
+      <div class="final-rule"></div>
+      <p>自主建图 · 精准到位 · 摄影测量 · 自动素描</p>
+      <div class="final-source">实测样例 · 侨城东路隧道 RK4+970</div>
+    </div>
+    <div class="final-robot">
+      <svg viewBox="0 0 700 520"><use href="#robotArt"/></svg>
+    </div>
+    <div class="final-cards">
+      <article class="final-card" data-card="1">
+        <div class="card-index">01</div>
+        <div class="card-visual map-mini">
+          <svg viewBox="0 0 360 200">
+            <g fill="none" stroke="#4de0e8" stroke-width="1" opacity=".8">
+              <path d="M40 154 Q180 24 320 154"/><path d="M58 166 Q180 54 302 166"/><path d="M80 178 Q180 86 280 178"/>
+              <path d="M20 142 L180 36 L340 142"/><path d="M30 158 L180 62 L330 158"/>
+            </g>
+            <path d="M180 176 C190 138 198 104 208 74" fill="none" stroke="#7ff5ef" stroke-width="3" stroke-dasharray="6 7"/>
+            <circle cx="208" cy="74" r="9" fill="none" stroke="#ffb45c" stroke-width="3"/>
+            <circle cx="208" cy="74" r="3" fill="#ffb45c"/>
+            <g fill="#8ff6ef" opacity=".8">
+              <circle cx="98" cy="128" r="1.5"/><circle cx="112" cy="116" r="1.5"/><circle cx="130" cy="101" r="1.5"/>
+              <circle cx="150" cy="88" r="1.5"/><circle cx="236" cy="90" r="1.5"/><circle cx="254" cy="104" r="1.5"/>
+              <circle cx="270" cy="120" r="1.5"/><circle cx="286" cy="136" r="1.5"/>
+            </g>
+          </svg>
+        </div>
+        <h3>隧道空间地图</h3><p>SLAM · 点云 · 规划路径</p>
+      </article>
+      <article class="final-card" data-card="2">
+        <div class="card-index">02</div>
+        <div class="card-visual"><img src="assets/face.jpg" alt=""><span class="card-corner tl"></span><span class="card-corner br"></span></div>
+        <h3>摄影测量重建</h3><p>正射影像 · 三维纹理模型</p>
+      </article>
+      <article class="final-card" data-card="3">
+        <div class="card-index">03</div>
+        <div class="card-visual"><img src="assets/sketch_thumb.jpg" alt=""></div>
+        <h3>掌子面素描成果</h3><p>岩性分区 · 结构面 · 成果表</p>
+      </article>
+    </div>
+    <div class="final-credit">
+      <span>概念演示 · 机器人与隧道为视觉示意</span>
+      <span>掌子面数据：RK4+970 实测样例 / 自动提取结果待复核</span>
+      <span>GEO-SKETCH · 2026</span>
+    </div>
+  </div>
+
+  <!-- ================= GLOBAL HUD ================= -->
+  <div id="hud">
+    <div class="topbar">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <div class="brand-copy"><b>GEO-SKETCH</b><span>隧道智能地质素描系统</span></div>
+      </div>
+      <div class="topbar-center">
+        <span class="top-chip"><i class="dot teal"></i>SYSTEM ONLINE</span>
+        <span class="top-chip muted">AUTONOMOUS SURVEY</span>
+      </div>
+      <div class="topbar-right">
+        <div class="site"><b>侨城东路隧道</b><span>RK4+970 · 掌子面 P-03</span></div>
+        <div class="timecode" id="timecode">00:00:00</div>
+      </div>
+    </div>
+
+    <div id="chapterTag">
+      <div class="chapter-num" id="chapterNum">01</div>
+      <div class="chapter-copy"><b id="chapterTitle">开机与自主建图</b><span id="chapterEn">AUTONOMOUS MAPPING</span></div>
+    </div>
+
+    <div id="telemetry">
+      <div class="tel-row"><span>MODE</span><b id="telMode">STANDBY</b></div>
+      <div class="tel-row"><span>SPEED</span><b id="telSpeed">0.00 <i>m/s</i></b></div>
+      <div class="tel-row"><span>DIST</span><b id="telDist">12.6 <i>m</i></b></div>
+      <div class="tel-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+
+    <div id="subtitle">
+      <span id="subText">设备自主启动，实时构建隧道三维地图。</span>
+    </div>
+
+    <div id="bottomBar">
+      <div class="progress-track"><i id="progressFill"></i><span class="progress-head" id="progressHead"></span></div>
+      <div class="progress-labels">
+        <span>00:00</span><span>01 建图</span><span>02 行进</span><span>03 采集</span><span>04 成果</span><span>01:00</span>
+      </div>
+    </div>
+
+    <div id="mapWindow" class="glass-window">
+      <div class="win-head">
+        <span class="win-kicker">01</span>
+        <span class="win-title">实时空间建图</span>
+        <span class="live-pill">LIVE</span>
+        <span class="win-code">SLAM / 3D</span>
+      </div>
+      <div class="map-body">
+        <svg id="mapSvg" viewBox="0 0 620 330" preserveAspectRatio="none">
+          <defs>
+            <radialGradient id="mapBg" cx="50%" cy="50%" r="60%">
+              <stop offset="0%" stop-color="#0b2730"/>
+              <stop offset="100%" stop-color="#050d12"/>
+            </radialGradient>
+            <filter id="mapGlow"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <rect width="620" height="330" fill="url(#mapBg)"/>
+          <g id="mapGrid" stroke="#2f6872" stroke-width=".7" opacity=".26"></g>
+          <g id="mapCloud"></g>
+          <g id="mapPath"></g>
+          <g id="mapTarget"></g>
+          <g id="mapRobot"></g>
+          <g id="mapScan"></g>
+          <g id="mapLabels" font-family="Bahnschrift, Consolas, monospace" font-size="10" fill="#7fb7c0"></g>
+        </svg>
+        <div class="map-side">
+          <div class="map-stat"><span>点云</span><b id="cloudCount">0</b><i>pts</i></div>
+          <div class="map-stat"><span>配准误差</span><b>0.018</b><i>m</i></div>
+          <div class="map-stat"><span>建图进度</span><b id="mapPct">0</b><i>%</i></div>
+          <div class="map-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="win-foot">
+        <span><i class="dot teal"></i>特征点跟踪</span>
+        <span><i class="dot amber"></i>目标测量点</span>
+        <span class="win-foot-right" id="mapStatus">正在初始化</span>
+      </div>
+    </div>
+
+    <div id="arrivalToast">
+      <i></i><b>测量位置已到达</b><span>ARRIVED / TARGET LOCKED</span>
+    </div>
+
+    <div id="titleCard">
+      <div class="title-kicker">PRODUCT CONCEPT FILM / 60 SEC</div>
+      <h1>隧道智能<br><span>地质素描机器人</span></h1>
+      <div class="title-rule"></div>
+      <p>自主建图 · 精准到位 · 摄影测量 · 自动素描</p>
+      <div class="title-meta"><span>侨城东路隧道 · RK4+970</span><span>2026 / CONCEPT DEMO</span></div>
+    </div>
+
+    <div id="cutFlash"></div>
+    <div id="fadeBlack"></div>
+  </div>
+
+  <div id="debugOverlay"></div>
+</div>
+
+<script src="data/geometry.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
