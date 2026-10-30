@@ -1,0 +1,203 @@
+/* 机器人交互工作台 —— 复用 style.css 的设计令牌，不引入第二套视觉体系 */
+.rb-body { min-height: 100vh; }
+
+.rb-brand-title { font-size: 21px; font-weight: 700; letter-spacing: 1px; }
+.rb-brand-title span { font-size: 15px; font-weight: 500; letter-spacing: 0; margin-left: 5px; }
+.rb-brand-sub { display: block; color: var(--muted); font-size: 9px; letter-spacing: 1.6px; margin-top: 3px; }
+.brand { text-decoration: none; color: inherit; }
+
+/* ---------- 流程指示器 ---------- */
+.rb-stepper {
+  display: flex; align-items: stretch; gap: 0; margin: 0; padding: 0 27px;
+  list-style: none; background: var(--paper); border-bottom: 1px solid var(--line);
+}
+.rb-step {
+  display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0;
+  padding: 11px 16px 11px 0; border-right: 1px solid #eef2f3;
+}
+.rb-step:last-child { border-right: 0; }
+.rb-step-no {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%; flex: none;
+  background: #eef2f3; color: #93a5ac; font-size: 10px; font-weight: 700;
+}
+.rb-step-body { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+.rb-step-body strong { font-size: 12px; font-weight: 650; color: #7c9098; }
+.rb-step-body small { font-size: 9px; color: #a2b1b7; letter-spacing: .4px; }
+.rb-step-state { margin-left: auto; font-size: 9px; color: #a2b1b7; font-style: normal; white-space: nowrap; }
+.rb-step.is-done .rb-step-no { background: #e7f4ed; color: #338665; }
+.rb-step.is-done .rb-step-body strong { color: #338665; }
+.rb-step.is-done .rb-step-state { color: #4f9c7c; }
+.rb-step.is-active { background: linear-gradient(90deg, #f2fafa, #fff); }
+.rb-step.is-active .rb-step-no { background: var(--teal); color: #fff; }
+.rb-step.is-active .rb-step-body strong { color: var(--teal-dark); }
+.rb-step.is-active .rb-step-state { color: var(--teal); font-weight: 600; }
+.rb-step.is-paused .rb-step-no { background: var(--warning-bg); color: var(--warning); }
+
+/* ---------- 三栏工作区 ---------- */
+.rb-workspace {
+  display: grid; grid-template-columns: 300px minmax(0, 1fr) 322px;
+  align-items: start; min-height: calc(100vh - 182px);
+}
+.rb-side {
+  background: var(--paper); align-self: stretch;
+  max-height: calc(100vh - 182px); overflow-y: auto; scrollbar-width: thin;
+}
+.rb-side-left { border-right: 1px solid var(--line); }
+.rb-side-right { border-left: 1px solid var(--line); }
+.rb-card { padding: 15px 18px 17px; border-bottom: 1px solid #edf1f3; }
+.rb-card-grow { border-bottom: 0; }
+.rb-card h2 { font-size: 13px; font-weight: 650; margin: 4px 0 11px; color: var(--ink); }
+.rb-card .panel-eyebrow { font-size: 9px; font-weight: 700; color: #8a9aa1; letter-spacing: 1.2px; }
+
+.rb-kv { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 6px 8px; margin: 0; font-size: 11px; }
+.rb-kv dt { color: var(--muted); font-weight: 400; }
+.rb-kv dd { margin: 0; color: #355662; text-align: right; overflow-wrap: anywhere; }
+.rb-kv dd .status-pill { font-size: 9px; }
+
+.rb-actions { display: grid; gap: 7px; }
+.rb-actions .button { width: 100%; min-height: 34px; font-size: 11px; }
+.rb-actions .button:disabled { opacity: .45; cursor: not-allowed; }
+.rb-actions .button.danger { background: #fff; border-color: #edd2d3; color: var(--danger); }
+.rb-actions .button.danger:hover:not(:disabled) { background: #fff6f6; }
+.rb-hint { font-size: 9.5px; color: #95a6ae; line-height: 1.75; margin: 10px 0 0; }
+.rb-hint.warn { color: var(--warning); }
+
+.rb-log { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; font-size: 10px; color: #5b757e; max-height: 210px; overflow-y: auto; }
+.rb-log li { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 6px; line-height: 1.5; }
+.rb-log time { color: #a4b3b9; font-variant-numeric: tabular-nums; }
+.rb-log .rb-log-empty { display: block; color: #a4b3b9; }
+
+/* ---------- 中央双场景 ---------- */
+.rb-center { padding: 12px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.rb-views { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; flex: 1; min-height: 0; }
+.rb-view {
+  display: flex; flex-direction: column; min-width: 0; min-height: 0;
+  border: 1px solid var(--line); border-radius: 7px; background: var(--paper); overflow: hidden;
+}
+.rb-view-head {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 10px;
+  padding: 9px 12px; border-bottom: 1px solid #eef2f3; min-height: 48px;
+}
+.rb-view-head h2 { font-size: 13px; font-weight: 650; margin: 2px 0 0; }
+.rb-view-tools { display: flex; gap: 3px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+.rb-mini {
+  font-size: 10px; color: #7e959e; padding: 4px 8px; border: 1px solid transparent; border-radius: 4px;
+}
+.rb-mini:hover { background: #f1f6f7; }
+.rb-mini.active { color: var(--teal); background: var(--light-teal); border-color: #d2e9e6; }
+.rb-mini:disabled { opacity: .45; cursor: not-allowed; }
+.rb-canvas { position: relative; flex: 1; min-height: 420px; overflow: hidden; background: #eef3f5; }
+.rb-canvas-real { background: #10171a; }
+.rb-canvas canvas { display: block; }
+.rb-view-foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 6px 12px; border-top: 1px solid #eef2f3; font-size: 9px; color: #9eafb7; min-height: 30px;
+}
+.rb-layer-toggles { display: flex; gap: 10px; }
+.rb-layer-toggles label { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
+.rb-layer-toggles input { width: 11px; height: 11px; margin: 0; accent-color: var(--teal); }
+
+.rb-live { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; color: #7e959e; }
+.rb-live i { width: 6px; height: 6px; border-radius: 50%; background: #b9c7cc; }
+.rb-live.on i { background: #2f9e6f; box-shadow: 0 0 0 3px #2f9e6f22; animation: rb-pulse 1.4s infinite; }
+.rb-live.busy i { background: var(--teal); animation: rb-pulse 1s infinite; }
+.rb-live.warn i { background: #c08a2e; }
+@keyframes rb-pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+
+.rb-error {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 9px 12px; font-size: 11px; border: 1px solid #edc8cb; border-left: 3px solid #c75c61;
+  border-radius: 5px; background: #fff7f7; color: #aa464c; line-height: 1.7;
+}
+.rb-error button { font-size: 17px; color: #ae797f; }
+
+/* ---------- 右侧状态 ---------- */
+.rb-stage-line { display: flex; align-items: center; gap: 8px; margin-bottom: 13px; }
+.rb-stage-name { font-size: 11px; color: #5b757e; }
+.rb-meter { margin-bottom: 11px; }
+.rb-meter:last-child { margin-bottom: 0; }
+.rb-meter-head { display: flex; align-items: baseline; justify-content: space-between; font-size: 10px; color: #6f858d; margin-bottom: 5px; }
+.rb-meter-head b { font-size: 11px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.rb-progress { height: 6px; border-radius: 3px; background: #eef2f4; overflow: hidden; }
+.rb-progress i { display: block; height: 100%; width: 0; background: var(--teal); border-radius: 3px; transition: width .18s linear; }
+.rb-progress i.done { background: #338665; }
+.rb-meter-note { margin: 5px 0 0; font-size: 9px; color: #a2b1b7; line-height: 1.5; }
+
+.rb-thumbs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.rb-thumb { margin: 0; border: 1px solid #e6edef; border-radius: 5px; overflow: hidden; background: #f7fafb; }
+.rb-thumb img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #eef3f5; }
+.rb-thumb-empty {
+  display: flex; align-items: center; justify-content: center; aspect-ratio: 4 / 3;
+  font-size: 9px; color: #b3c1c7; background: repeating-linear-gradient(45deg, #f6f9fa, #f6f9fa 7px, #f1f6f7 7px, #f1f6f7 14px);
+}
+.rb-thumb figcaption { padding: 3px 5px; font-size: 9px; color: #8b9da5; text-align: center; border-top: 1px solid #eef2f3; }
+.rb-wide { width: 100%; margin-top: 9px; }
+
+/* ---------- 成果抽屉 ---------- */
+.rb-drawer { position: fixed; inset: 0; z-index: 30; background: #12272c66; display: flex; justify-content: flex-end; }
+.rb-drawer[hidden] { display: none; }
+.rb-drawer-panel {
+  width: min(1000px, 94vw); height: 100%; background: var(--paper);
+  display: flex; flex-direction: column; box-shadow: -8px 0 30px #0d242a26;
+  animation: rb-slide .18s ease-out;
+}
+@keyframes rb-slide { from { transform: translateX(24px); opacity: .6; } to { transform: none; opacity: 1; } }
+.rb-drawer-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 16px 20px 12px; border-bottom: 1px solid var(--line); }
+.rb-drawer-head h2 { font-size: 15px; margin: 3px 0 0; }
+.rb-close { font-size: 22px; color: #93a5ac; line-height: 1; padding: 2px 6px; border-radius: 4px; }
+.rb-close:hover { background: #f1f6f7; color: var(--ink); }
+.rb-tabs { display: flex; gap: 2px; padding: 0 14px; border-bottom: 1px solid var(--line); background: #fbfcfc; }
+.rb-tabs button { font-size: 11px; color: #7c9098; padding: 9px 12px; border-bottom: 2px solid transparent; }
+.rb-tabs button.active { color: var(--teal); border-bottom-color: var(--teal); font-weight: 600; }
+.rb-drawer-body { flex: 1; overflow: auto; padding: 16px 20px; background: #fbfcfc; }
+.rb-drawer-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 20px; border-top: 1px solid var(--line); font-size: 9px; color: #9eafb7; }
+.rb-figure { margin: 0; }
+.rb-figure img { display: block; width: 100%; border: 1px solid var(--line); border-radius: 5px; background: #fff; }
+.rb-figure figcaption { margin-top: 7px; font-size: 10px; color: #8b9da5; line-height: 1.7; }
+.rb-split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 14px; align-items: start; }
+.rb-table { width: 100%; border-collapse: collapse; font-size: 11px; background: #fff; }
+.rb-table th, .rb-table td { border: 1px solid #e8eef0; padding: 6px 8px; text-align: left; vertical-align: top; }
+.rb-table th { background: #f4f8f9; font-weight: 600; color: #5b757e; font-size: 10px; }
+.rb-table td.val { color: #2f4d57; }
+.rb-table td.blank { color: #b3c1c7; }
+.rb-tag { display: inline-block; font-size: 9px; padding: 1px 5px; border-radius: 3px; background: #eef2f3; color: #7c9098; }
+.rb-tag.auto { background: #e7f4ed; color: #338665; }
+.rb-tag.review { background: var(--warning-bg); color: var(--warning); }
+.rb-tag.external { background: #eef2f3; color: #8b9da5; }
+.rb-empty { padding: 40px 20px; text-align: center; color: #a2b1b7; font-size: 11px; line-height: 1.9; }
+.rb-metrics { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; margin-bottom: 12px; }
+.rb-metric { border: 1px solid #e8eef0; border-radius: 5px; background: #fff; padding: 8px 10px; }
+.rb-metric span { display: block; font-size: 9px; color: #8b9da5; }
+.rb-metric b { font-size: 15px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.rb-mesh-note { border: 1px dashed #cfdde1; border-radius: 5px; padding: 14px; background: #fff; }
+.rb-mesh-note strong { display: block; font-size: 11px; color: #5b757e; margin-bottom: 6px; }
+.rb-mesh-note p { margin: 0; font-size: 10px; color: #8b9da5; line-height: 1.8; }
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 1440px) {
+  .rb-workspace { grid-template-columns: 272px minmax(0, 1fr) 296px; }
+  .rb-canvas { min-height: 380px; }
+}
+@media (max-width: 1180px) {
+  .rb-workspace { grid-template-columns: 250px minmax(0, 1fr) 272px; }
+  .rb-step { padding-right: 9px; }
+  .rb-step-body small { display: none; }
+}
+@media (max-width: 1024px) {
+  .rb-workspace { grid-template-columns: minmax(0, 1fr); }
+  .rb-side { max-height: none; border: 0; border-top: 1px solid var(--line); }
+  .rb-side-left { order: 2; }
+  .rb-side-right { order: 3; }
+  .rb-center { order: 1; }
+  .rb-views { grid-template-columns: minmax(0, 1fr); }
+  .rb-canvas { min-height: 340px; }
+  .rb-stepper { padding: 0 12px; overflow-x: auto; }
+  .rb-step { min-width: 150px; }
+}
+@media (max-width: 720px) {
+  .rb-split { grid-template-columns: minmax(0, 1fr); }
+  .rb-stepper { padding: 0 8px; }
+  .rb-step-state { display: none; }
+  .rb-drawer-panel { width: 100vw; }
+}

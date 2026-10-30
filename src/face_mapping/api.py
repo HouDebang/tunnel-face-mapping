@@ -177,6 +177,12 @@ def create_app(workspace_root: Path | None = None) -> FastAPI:
     from .lithology_judgment import register_lithology_judgment_routes
     register_lithology_judgment_routes(app, get_workspace)
 
+    # The robot module reads its GLB straight from robot/ instead of duplicating
+    # a 10 MB asset into frontend/. Registered before the catch-all mount.
+    robot_assets = project/"robot"
+    if robot_assets.is_dir():
+        app.mount("/robot-assets",StaticFiles(directory=robot_assets),name="robot-assets")
+
     frontend = project/"frontend"
     if frontend.is_dir():
         app.mount("/",StaticFiles(directory=frontend,html=True),name="frontend")

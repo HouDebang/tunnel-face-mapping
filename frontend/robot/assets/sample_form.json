@@ -1,0 +1,442 @@
+{
+  "schema_version": "geological_sketch_form_v1",
+  "coordinate_system": "original_image_pixels",
+  "status": "candidate_form_with_review",
+  "notice": "自动填充字段来自当前成果；空值表示没有可靠影像证据或需要现场/管理资料。",
+  "fields": [
+    {
+      "record_id": "A-F01",
+      "field": "工程名称",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "项目资料带入，影像不提供。",
+      "option_values": [
+        "侨城东路北延通道2标****"
+      ]
+    },
+    {
+      "record_id": "A-F02",
+      "field": "工程部位",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "洞别、里程和台阶由任务记录带入；定位成果可辅助核验。",
+      "option_values": [
+        "*****",
+        "试验条件",
+        "掌子面开挖排险后"
+      ]
+    },
+    {
+      "record_id": "A-F03",
+      "field": "试验条件",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "施工及检测流程记录确认。",
+      "option_values": [
+        "工程部位",
+        "*****",
+        "掌子面开挖排险后"
+      ]
+    },
+    {
+      "record_id": "A-F04",
+      "field": "委托编号",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "委托资料带入。",
+      "option_values": [
+        "/",
+        "检测日期",
+        "****年**月**日"
+      ]
+    },
+    {
+      "record_id": "A-F05",
+      "field": "检测日期",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "检测任务记录；照片时间仅供核验。",
+      "option_values": [
+        "委托编号",
+        "/",
+        "****年**月**日"
+      ]
+    },
+    {
+      "record_id": "A-F06",
+      "field": "检测依据",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "项目采用的标准。",
+      "option_values": [
+        "JTG/T3660-2020",
+        "判定依据",
+        "JTG3370/-2018"
+      ]
+    },
+    {
+      "record_id": "A-F07",
+      "field": "判定依据",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "项目采用的标准。",
+      "option_values": [
+        "检测依据",
+        "JTG/T3660-2020",
+        "JTG3370/-2018"
+      ]
+    },
+    {
+      "record_id": "A-F08",
+      "field": "主要仪器设备名称",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "设备台账和采集记录。",
+      "option_values": [
+        "地质罗盘、钢卷尺",
+        "设备编号",
+        "SD-0008、SD-0034"
+      ]
+    },
+    {
+      "record_id": "A-F09",
+      "field": "设备编号",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "设备台账。",
+      "option_values": [
+        "主要仪器设备名称",
+        "地质罗盘、钢卷尺",
+        "SD-0008、SD-0034"
+      ]
+    },
+    {
+      "record_id": "A-F10",
+      "field": "岩土类型（名称）",
+      "category": "影像辅助",
+      "obtainability": "影像辅助",
+      "value": null,
+      "status": "candidate_or_review",
+      "source": "knowledge_schema_only",
+      "note": "颜色、纹理和颗粒外观；岩性名称需地质资料或岩样鉴定。",
+      "option_values": [
+        "岩性指标",
+        "******中粒花岗岩"
+      ]
+    },
+    {
+      "record_id": "A-F11",
+      "field": "岩石硬度",
+      "category": "需外部测试或鉴定",
+      "obtainability": "需外部测试或鉴定",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "现场鉴定或强度试验，不能从几何模型直接测定。",
+      "option_values": [
+        "极硬岩□",
+        "硬岩□",
+        "较软岩□",
+        "软岩  □",
+        "极软岩□"
+      ]
+    },
+    {
+      "record_id": "A-F12",
+      "field": "掌子面状态",
+      "category": "影像辅助",
+      "obtainability": "影像辅助",
+      "value": "影像候选范围已生成，稳定性需现场确认",
+      "status": "auto_filled",
+      "source": "pipeline_candidate_result",
+      "note": "同一岩面多期影像可提供变形和掉块证据；自稳状态需工程判断。",
+      "option_values": [
+        "稳定□",
+        "较稳定□",
+        "随时间松弛掉块□",
+        "自稳困难需及时支护 □",
+        "正面不能自稳，需超前支护□"
+      ]
+    },
+    {
+      "record_id": "A-F13",
+      "field": "地质构造影响程度",
+      "category": "影像辅助",
+      "obtainability": "影像辅助",
+      "value": "检测到 926 条候选裂隙迹线，工程影响程度需地质判读",
+      "status": "auto_filled",
+      "source": "pipeline_candidate_result",
+      "note": "结构面和破碎带外观证据；影响程度需地质判读。",
+      "option_values": [
+        "岩体完整状态",
+        "轻微□",
+        "较重□",
+        "严重□",
+        "极严重□"
+      ]
+    },
+    {
+      "record_id": "A-F14",
+      "field": "间距（m）",
+      "category": "条件可量测",
+      "obtainability": "条件可量测",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "同组面确认且几何充分时测法向间距；只有迹线时仅输出二维表观间距。",
+      "option_values": [
+        "地质结构",
+        ">1.5 □",
+        "1.5～0.6 □",
+        "0.6～0.2 □",
+        "0.2～0.06 □",
+        "<0.06 □"
+      ]
+    },
+    {
+      "record_id": "A-F15",
+      "field": "延伸性",
+      "category": "部分可量测",
+      "obtainability": "部分可量测",
+      "value": "候选迹线总长 24188.02 px；不等于完整延续性",
+      "status": "auto_filled",
+      "source": "pipeline_candidate_result",
+      "note": "可见迹线长度、连续段和截断状态；不等于完整延续范围或原表等级。",
+      "option_values": [
+        "极差 £",
+        "差 □",
+        "中等 □",
+        "好 □",
+        "极好 □"
+      ]
+    },
+    {
+      "record_id": "A-F16",
+      "field": "粗糙度",
+      "category": "部分可量测",
+      "obtainability": "部分可量测",
+      "value": "图像候选指数 0.3719（未标定，不等同 JRC）",
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "真实结构面露面的起伏；需采样尺度、方向和噪声检核，不能直接给 JRC。",
+      "option_values": [
+        "明显台阶状□",
+        "粗糙波纹状□",
+        "平整光滑有擦痕 □",
+        "平整光滑□"
+      ]
+    },
+    {
+      "record_id": "A-F17",
+      "field": "张开性（mm）",
+      "category": "部分可量测",
+      "obtainability": "部分可量测",
+      "value": "平均可见带宽 4.125 px（缺少尺度标定）",
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "两壁边界可见且分辨率足够处的局部表观开口；充填性质另行确认。",
+      "option_values": [
+        "密闭 <0.1 □",
+        "部分张开 0.1～0.5 □",
+        "张开 0.5～1.0 □",
+        "无充填张开 >1.0□",
+        "黏土充填 □"
+      ]
+    },
+    {
+      "record_id": "A-F18",
+      "field": "风化程度",
+      "category": "影像辅助",
+      "obtainability": "影像辅助",
+      "value": null,
+      "status": "candidate_or_review",
+      "source": "knowledge_schema_only",
+      "note": "变色和表面破坏证据；正式等级需现场确认。",
+      "option_values": [
+        "未风化 □",
+        "微风化  □",
+        "中风化 □",
+        "强风化 □",
+        "全风化 □"
+      ]
+    },
+    {
+      "record_id": "A-F19",
+      "field": "完整状态",
+      "category": "影像辅助",
+      "obtainability": "影像辅助",
+      "value": null,
+      "status": "candidate_or_review",
+      "source": "knowledge_schema_only",
+      "note": "裂隙分布和表面块度；不能以表面裂隙密度替代 RQD 或完整性系数。",
+      "option_values": [
+        "地质构造影响程度",
+        "轻微□",
+        "较重□",
+        "严重□",
+        "极严重□",
+        "完整□",
+        "较完整 □",
+        "较破碎 □",
+        "破碎 □",
+        "极破碎□"
+      ]
+    },
+    {
+      "record_id": "A-F20",
+      "field": "岩层产状",
+      "category": "条件可量测",
+      "obtainability": "条件可量测",
+      "value": "图像平面主方向 178.66°；未提供方位元数据；倾角未定",
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "确认真层理、有足够层面几何并完成定向后量测；节理产状不得替代岩层产状。",
+      "option_values": [
+        "围岩级别",
+        "I □",
+        "II □",
+        "III □",
+        "IV □",
+        "V □",
+        "Ⅵ □"
+      ]
+    },
+    {
+      "record_id": "A-F21",
+      "field": "围岩级别",
+      "category": "需综合评价",
+      "obtainability": "需综合评价",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "结合强度、完整性、地下水、主要软弱结构面及应力资料判定。",
+      "option_values": [
+        "岩层产状",
+        "I □",
+        "II □",
+        "III □",
+        "IV □",
+        "V □",
+        "Ⅵ □"
+      ]
+    },
+    {
+      "record_id": "A-F22",
+      "field": "岩体含水状态/渗水量",
+      "category": "需现场测量",
+      "obtainability": "需现场测量",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "干湿和滴流外观可辅助；L/min·10m 流量需实测。",
+      "option_values": []
+    },
+    {
+      "record_id": "A-F23",
+      "field": "开挖工作面素描图",
+      "category": "组合成果生成",
+      "obtainability": "组合成果生成",
+      "value": "geological_sketch.png",
+      "status": "auto_filled",
+      "source": "pipeline_candidate_result",
+      "note": "摄影测量提供正射底图和几何定位；地质界线、迹线和符号需识别及复核。",
+      "option_values": [
+        "地质简要描述"
+      ]
+    },
+    {
+      "record_id": "A-F24",
+      "field": "地质简要描述",
+      "category": "辅助生成",
+      "obtainability": "辅助生成",
+      "value": "图像候选分区 10 个；候选裂隙迹线 926 条；迹线总长 24188.02 px；像素 P21=0.012598 px^-1；掌子面范围状态：full_image_fallback",
+      "status": "auto_filled",
+      "source": "pipeline_candidate_result",
+      "note": "根据已核实的量测、地质判读及现场资料组织文字。",
+      "option_values": [
+        "开挖工作面素描图"
+      ]
+    },
+    {
+      "record_id": "A-F25",
+      "field": "附加声明",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "value": "本表自动填充项来自照片候选识别；需外部测试或地质复核的字段保持空值。",
+      "status": "auto_filled",
+      "source": "pipeline_candidate_result",
+      "note": "模板及实际检测情况。",
+      "option_values": []
+    },
+    {
+      "record_id": "A-F26",
+      "field": "记录人",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "人员账号或签字流程。",
+      "option_values": [
+        "监理员：",
+        "年",
+        "月",
+        "日"
+      ]
+    },
+    {
+      "record_id": "A-F27",
+      "field": "监理员",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "监理确认或签字流程。",
+      "option_values": [
+        "记录人：",
+        "年",
+        "月",
+        "日"
+      ]
+    },
+    {
+      "record_id": "A-F28",
+      "field": "签署日期",
+      "category": "管理信息",
+      "obtainability": "管理信息",
+      "value": null,
+      "status": "needs_external_input",
+      "source": "knowledge_schema_only",
+      "note": "签署流程记录。",
+      "option_values": []
+    }
+  ]
+}

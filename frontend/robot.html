@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>岩面 · 机器人交互</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/robot.css">
+  <script type="importmap">{"imports":{"three":"/vendor/three.module.js","three/addons/":"/vendor/"}}</script>
+  <script>
+    // 脚本级错误也要可见：三维初始化失败时不能让页面"看起来正常但什么都没发生"。
+    window.addEventListener("error", event => {
+      const banner = document.getElementById("error-banner");
+      if (!banner) return;
+      // 资源加载失败（例如三维依赖 404）不会冒泡，需要捕获阶段监听。
+      const message = event.message || (event.target && event.target.src ? `资源加载失败：${event.target.src}` : "");
+      if (!message) return;
+      banner.hidden = false;
+      document.getElementById("error-text").textContent = `页面脚本错误：${message}`;
+    }, true);
+    window.addEventListener("unhandledrejection", event => {
+      const banner = document.getElementById("error-banner");
+      if (!banner) return;
+      banner.hidden = false;
+      document.getElementById("error-text").textContent = `页面脚本异常：${event.reason?.message || event.reason || "未知异常"}`;
+    });
+  </script>
+  <script type="module" src="/robot.js?v=1"></script>
+</head>
+<body class="rb-body">
+  <header class="topbar">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true">▱</span>
+      <span><strong class="rb-brand-title">岩面 <span>/ 机器人交互</span></strong><small class="rb-brand-sub">ROBOT OPERATION · MAPPING → PLANNING → NAVIGATION → ACQUISITION</small></span>
+    </a>
+    <div class="top-actions">
+      <span class="demo-badge">产品仿真 · 非真实设备遥测</span>
+      <a class="button secondary" href="/tunnel.html">隧道三维</a>
+      <a class="button secondary" href="/">← 单张识别</a>
+    </div>
+  </header>
+
+  <nav class="workspace-switcher" aria-label="工作台模式">
+    <a href="/">单张识别</a>
+    <a href="/tunnel.html">隧道三维 <span>里程与断面示意 ↗</span></a>
+    <a href="/robot.html" class="active" aria-current="page">机器人交互 <span>建图 · 规划 · 行进 · 采集</span></a>
+  </nav>
+
+  <ol class="rb-stepper" id="stepper" aria-label="任务流程">
+    <li class="rb-step" data-step="1"><span class="rb-step-no">01</span><span class="rb-step-body"><strong>建图</strong><small>空间建图 Mapping</small></span><em class="rb-step-state">待执行</em></li>
+    <li class="rb-step" data-step="2"><span class="rb-step-no">02</span><span class="rb-step-body"><strong>规划</strong><small>路径规划 Planning</small></span><em class="rb-step-state">待执行</em></li>
+    <li class="rb-step" data-step="3"><span class="rb-step-no">03</span><span class="rb-step-body"><strong>行进</strong><small>自主行进 Navigation</small></span><em class="rb-step-state">待执行</em></li>
+    <li class="rb-step" data-step="4"><span class="rb-step-no">04</span><span class="rb-step-body"><strong>采集</strong><small>摄影测量 Acquisition</small></span><em class="rb-step-state">待执行</em></li>
+  </ol>
+
+  <main class="rb-workspace">
+    <aside class="rb-side rb-side-left">
+      <section class="rb-card">
+        <div class="panel-eyebrow">MISSION / 任务信息</div>
+        <h2 id="mission-title">侨城东路 · 掌子面智能素描</h2>
+        <dl class="rb-kv">
+          <dt>隧道</dt><dd id="kv-tunnel">—</dd>
+          <dt>里程范围</dt><dd id="kv-range">—</dd>
+          <dt>机器人</dt><dd id="kv-robot">TPR-900 履带式</dd>
+          <dt>电量</dt><dd id="kv-battery">86%</dd>
+          <dt>任务状态</dt><dd id="kv-state"><span class="status-pill pending">待机</span></dd>
+        </dl>
+      </section>
+
+      <section class="rb-card">
+        <div class="panel-eyebrow">ACTION / 操作</div>
+        <h2>任务控制</h2>
+        <div class="rb-actions" id="actions"></div>
+        <p class="rb-hint" id="action-hint">点击「开始建图」启动任务。建图完成后才能进行路径规划。</p>
+      </section>
+
+      <section class="rb-card rb-card-grow">
+        <div class="panel-eyebrow">LOG / 任务记录</div>
+        <h2>执行记录</h2>
+        <ol class="rb-log" id="log"><li class="rb-log-empty">尚无记录</li></ol>
+      </section>
+    </aside>
+
+    <section class="rb-center">
+      <div class="rb-views">
+        <article class="rb-view" id="view-card-virtual">
+          <header class="rb-view-head">
+            <div>
+              <div class="panel-eyebrow">VIRTUAL / 数字空间</div>
+              <h2>虚拟规划视图</h2>
+            </div>
+            <div class="rb-view-tools" id="virtual-tools">
+              <button class="rb-mini active" data-view="perspective">透视</button>
+              <button class="rb-mini" data-view="top">俯视</button>
+              <button class="rb-mini" data-view="front">正视</button>
+              <button class="rb-mini" data-view="side">侧视</button>
+            </div>
+          </header>
+          <div class="rb-canvas" id="view-virtual" data-testid="virtual-viewport"></div>
+          <footer class="rb-view-foot">
+            <span id="virtual-hint">拖动旋转 · 滚轮缩放 · 右键平移</span>
+            <span class="rb-layer-toggles">
+              <label><input type="checkbox" id="layer-cloud" checked> 点云</label>
+              <label><input type="checkbox" id="layer-shell" checked> 隧道外壳</label>
+              <label><input type="checkbox" id="layer-path" checked> 路径</label>
+            </span>
+          </footer>
+        </article>
+
+        <article class="rb-view" id="view-card-real">
+          <header class="rb-view-head">
+            <div>
+              <div class="panel-eyebrow">ON-SITE / 现场仿真</div>
+              <h2>现场执行视图</h2>
+            </div>
+            <div class="rb-view-tools">
+              <span class="rb-live"><i></i><span id="real-state">待机</span></span>
+            </div>
+          </header>
+          <div class="rb-canvas rb-canvas-real" id="view-real" data-testid="real-viewport"></div>
+          <footer class="rb-view-foot">
+            <span>机器人模型 TPR-900 · 隧道为程序化仿真环境</span>
+            <span id="real-foot">停车 · 装置关闭</span>
+          </footer>
+        </article>
+      </div>
+      <div class="rb-error" id="error-banner" role="alert" hidden><span id="error-text"></span><button id="error-close" type="button" aria-label="关闭">×</button></div>
+    </section>
+
+    <aside class="rb-side rb-side-right">
+      <section class="rb-card">
+        <div class="panel-eyebrow">STATUS / 运行状态</div>
+        <h2>当前阶段</h2>
+        <div class="rb-stage-line">
+          <span class="status-pill pending" id="stage-pill">待机</span>
+          <span class="rb-stage-name" id="stage-name">S0 · 待机</span>
+        </div>
+        <div class="rb-meter">
+          <div class="rb-meter-head"><span>建图进度</span><b id="mapping-pct">0%</b></div>
+          <div class="rb-progress"><i id="mapping-bar" style="width:0%"></i></div>
+          <p class="rb-meter-note" id="mapping-note">未开始</p>
+        </div>
+        <div class="rb-meter">
+          <div class="rb-meter-head"><span>行进进度</span><b id="nav-pct">0%</b></div>
+          <div class="rb-progress"><i id="nav-bar" style="width:0%"></i></div>
+          <p class="rb-meter-note" id="nav-note">未开始</p>
+        </div>
+        <div class="rb-meter">
+          <div class="rb-meter-head"><span>采集进度</span><b id="capture-pct">0%</b></div>
+          <div class="rb-progress"><i id="capture-bar" style="width:0%"></i></div>
+          <p class="rb-meter-note" id="capture-note">未开始</p>
+        </div>
+      </section>
+
+      <section class="rb-card">
+        <div class="panel-eyebrow">TELEMETRY / 机器人</div>
+        <h2>设备状态</h2>
+        <dl class="rb-kv">
+          <dt>位置</dt><dd id="kv-pos">—</dd>
+          <dt>里程</dt><dd id="kv-chainage">—</dd>
+          <dt>朝向</dt><dd id="kv-yaw">—</dd>
+          <dt>速度</dt><dd id="kv-speed">0.00 m/s</dd>
+          <dt>路径</dt><dd id="kv-path">—</dd>
+          <dt>目标点</dt><dd id="kv-target">—</dd>
+        </dl>
+      </section>
+
+      <section class="rb-card rb-card-grow">
+        <div class="panel-eyebrow">RESULT / 成果</div>
+        <h2>摄影测量成果</h2>
+        <div class="rb-thumbs">
+          <figure class="rb-thumb"><img id="thumb-raw" alt="掌子面原始影像" hidden><div class="rb-thumb-empty" id="thumb-raw-empty">原始影像</div><figcaption>原始影像</figcaption></figure>
+          <figure class="rb-thumb"><img id="thumb-ortho" alt="掌子面正射影像" hidden><div class="rb-thumb-empty" id="thumb-ortho-empty">正射影像</div><figcaption>正射影像</figcaption></figure>
+          <figure class="rb-thumb"><img id="thumb-mesh" alt="三维重建预览" hidden><div class="rb-thumb-empty" id="thumb-mesh-empty">三维重建</div><figcaption>三维重建</figcaption></figure>
+          <figure class="rb-thumb"><img id="thumb-sketch" alt="掌子面素描" hidden><div class="rb-thumb-empty" id="thumb-sketch-empty">素描图</div><figcaption>素描图</figcaption></figure>
+        </div>
+        <button class="button secondary rb-wide" id="open-result" disabled>查看成果详情</button>
+        <p class="rb-hint" id="result-note">采集完成后可查看原始影像、正射影像、重建预览与素描成果。</p>
+      </section>
+    </aside>
+  </main>
+
+  <div class="rb-drawer" id="drawer" hidden>
+    <div class="rb-drawer-panel" role="dialog" aria-modal="true" aria-label="摄影测量与素描成果">
+      <header class="rb-drawer-head">
+        <div>
+          <div class="panel-eyebrow">DELIVERABLE / 成果</div>
+          <h2>掌子面摄影测量与自动化素描</h2>
+        </div>
+        <button class="rb-close" id="drawer-close" aria-label="关闭">×</button>
+      </header>
+      <nav class="rb-tabs" id="drawer-tabs">
+        <button class="active" data-tab="raw">原始影像</button>
+        <button data-tab="ortho">正射影像</button>
+        <button data-tab="mesh">三维重建</button>
+        <button data-tab="sketch">素描图</button>
+        <button data-tab="form">28 字段表</button>
+      </nav>
+      <div class="rb-drawer-body" id="drawer-body"></div>
+      <footer class="rb-drawer-foot"><span id="drawer-source">—</span><span id="drawer-trace">—</span></footer>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

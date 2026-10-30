@@ -1,0 +1,25 @@
+{
+  "source": "本机 pipeline 预生成样例（outputs/robot_demo_sample）",
+  "input_sha256": "ea5695c223975c6684bb74a410d0f711c202e4067f16200be2acbc3115b3a05e",
+  "status": "completed_with_warnings",
+  "coordinate_system": "original_image_pixels",
+  "region_count": 10,
+  "fracture_count": 926,
+  "statistics": {
+    "fracture_count": 926,
+    "lithology_region_count": 10,
+    "total_length_px": 24188.024807139078,
+    "observation_area_px2": 1920000,
+    "p21_per_px": 0.012597929587051603,
+    "statistics_status": "candidate"
+  },
+  "quality": {
+    "status": "completed_with_warnings",
+    "warnings": [
+      "Automatic ROI area ratio 0.9985 is outside the configured range or no central component exists",
+      "ROI is unverified: automatic image segmentation does not semantically exclude equipment, people, lining or shadows",
+      "ROI unverified: densities and area fractions describe candidate analysis area, not qualified tunnel-face parameters.",
+      "Geometry submodules are image-observable candidate metrics; roughness is not JRC, aperture is visible Mask width, and dip requires external 3-D orientation evidence."
+    ]
+  }
+}
