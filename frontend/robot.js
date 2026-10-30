@@ -11,6 +11,7 @@ const ui = {
   processText: "",
   drawerTab: "raw",
   lastPaint: 0,
+  lastClock: 0,
   prevS: 0,
   booted: false,
 };
@@ -457,6 +458,13 @@ function loop(now) {
     ui.lastPaint = now;
     renderStatus();
   }
+  if (now - ui.lastClock > 1000) {
+    ui.lastClock = now;
+    const clock = new Date();
+    const pad = value => String(value).padStart(2, "0");
+    const osd = $("osd-monitor");
+    if (osd) osd.textContent = `CAM-01 · ${pad(clock.getHours())}:${pad(clock.getMinutes())}:${pad(clock.getSeconds())}`;
+  }
   requestAnimationFrame(loop);
 }
 
@@ -558,7 +566,11 @@ async function boot() {
   }
 
   try {
-    realView = new RealView($("view-real"));
+    realView = new RealView({
+      monitor: $("view-monitor"),
+      fpv: $("view-fpv"),
+      fused: $("view-fused"),
+    });
     await realView.loadRobot();
     realView.setStatus("idle");
   } catch (error) {

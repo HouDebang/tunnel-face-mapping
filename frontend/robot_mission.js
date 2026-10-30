@@ -128,7 +128,7 @@ export class Mission {
 
   setTarget(x, z) {
     const { chainage, u } = worldToTunnel(this.scene, x, z);
-    const maxU = this.scene.width_m / 2 - 1.2;
+    const maxU = this.scene.width_m / 2 - 2.0;
     this.target = {
       id: "P1",
       x, z: clamp(z, -maxU, maxU),

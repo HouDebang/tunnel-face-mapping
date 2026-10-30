@@ -54,7 +54,7 @@
 | `MissionTaskPanel` | 左栏「任务信息 / 操作 / 执行记录」三张卡片 |
 | `WorkflowStepper` | `renderStepper()`，01 建图 / 02 规划 / 03 行进 / 04 采集 |
 | `VirtualPlanningView` | `VirtualView extends TunnelRenderer`（`robot_scene.js`） |
-| `RealExecutionView` | `RealView`（`robot_scene.js`，独立场景 + GLB） |
+| `RealExecutionView` | `RealView`（`robot_scene.js`，一套场景 + 三路相机：固定监控 / 机载第一人称 / 融合第三人称） |
 | `RobotStatusPanel` | 右栏「当前阶段 / 三组进度条 / 设备状态」 |
 | `MappingPanel` `PlanningPanel` `NavigationPanel` `AcquisitionPanel` | `renderActions()` 按状态分支渲染的上下文按钮 + `renderStatus()` 的进度 |
 | `ResultPanel` | 右栏成果缩略图 + 成果抽屉（`#drawer`，5 个页签） |
@@ -148,6 +148,20 @@ Mission（唯一数据源）
 
 **坐标约定**（与隧道三维一致）：+X 里程增大、+Y 向上、+Z 右侧；机器人局部 −Z 为前进方向，放置时 `rotation.y = atan2(−fx, −fz)`。
 
+### 6.1 现场执行的三路视角
+
+| 视角 | 相机 | 行为 | 实现要点 |
+|---|---|---|---|
+| 01 固定监控 | `monitorCamera` | 机位固定（隧道壁 4.55 m 高，朝洞口方向），**观察点不动、机器人动** | 独立透视相机，不参与交互；画面带 `CAM-01 + 时间码` OSD |
+| 02 机载第一人称 | `fpvCamera` | 挂在 GLB 的 `Camera_Center` 节点上，随车体与云台实时运动 | 子节点相机，局部 z = −0.62 m（越过遮光罩，不拍到自己镜筒）；≈60° 视场 |
+| 03 融合第三人称 | `camera` | 第三人称，可拖动旋转/缩放；行进与到达时自动追尾跟随 | `OrbitControls` + 逐帧 `lerp` 跟随；采集阶段切到侧后方机位 |
+
+**性能做法**：三路共用同一个场景与同一个 WebGL 上下文——每帧渲染三次到离屏缓冲，再按 cover 规则拷贝到三块 2D 画布（`drawFeed()`）。这样只上传一份 44 万面几何体，也避免三个 GL 上下文。实测 1440×900 下稳定 **60 fps**。
+
+**图层隔离**：相机视锥体放在 layer 1，监控与融合相机可见，机载相机不可见（否则第一人称里会看到"自己的视场框"）。
+
+> 说明：第三路"融合"目前是**同一场景中的第三人称机位**，用于表达"由前两路合成的第三人称画面"这一产品概念；真正的多视角重建（NeRF / 稠密重建）不在本阶段范围内。
+
 ---
 
 ## 7. 模拟数据 vs 真实数据
@@ -184,6 +198,7 @@ Mission（唯一数据源）
 | 生成素描成果 | 通过，S9→S10→S11，真实任务 `bd7b94a0e5c1` |
 | 成果抽屉 | 通过，素描图与 28 字段表（29 行含表头，6 项自动填充） |
 | 重置 | 通过，S0，目标/路径/进度清空，两视图复位 |
+| 三路现场视角 | 通过：监控机位固定、FPV 随车体移动、融合视角可拖动，1440×900 下 60 fps |
 | 控制台错误 | **0** |
 
 ### 8.2 状态机断言（浏览器内执行）
@@ -210,6 +225,7 @@ Mission（唯一数据源）
 | 真实路径规划 | 中心线趋近 | 替换 `planPath()`，`NavigationPath` 契约不变 |
 | 真实定位 | 运动学积分 | 实现 `RobotAdapter`（`getState/sendGoal`）替换数据源 |
 | 三维重建 | 仅占位说明 | 接入空三成果后新增 `mesh` 字段与加载器 |
+| 融合视角 | 同场景第三人称机位（非真实多视角重建） | 如需真实融合，接入 NeRF / 稠密重建管线 |
 | 相机内外参 | 未标定 | 数据对象预留 `intrinsics: null` |
 | 工程绝对坐标 | 无 | 场景仍是 `local_tunnel_m`，界面标注"示意" |
 | 多测量点 | 单点 P1 | 状态机已支持"完成后回到 S2"，需扩展点位列表 |

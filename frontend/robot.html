@@ -108,19 +108,50 @@
           </footer>
         </article>
 
-        <article class="rb-view" id="view-card-real">
+        <article class="rb-view rb-view-site" id="view-card-monitor">
           <header class="rb-view-head">
             <div>
-              <div class="panel-eyebrow">ON-SITE / 现场仿真</div>
-              <h2>现场执行视图</h2>
+              <div class="panel-eyebrow">ON-SITE 01 / 现场监控</div>
+              <h2>固定监控视角</h2>
             </div>
             <div class="rb-view-tools">
+              <span class="rb-badge">CAM-01 · 固定</span>
               <span class="rb-live"><i></i><span id="real-state">待机</span></span>
             </div>
           </header>
-          <div class="rb-canvas rb-canvas-real" id="view-real" data-testid="real-viewport"></div>
+          <div class="rb-canvas rb-canvas-real" id="view-monitor" data-testid="monitor-viewport"><span class="rb-osd" id="osd-monitor">CAM-01 · --:--:--</span></div>
           <footer class="rb-view-foot">
-            <span>机器人模型 TPR-900 · 隧道为程序化仿真环境</span>
+            <span>观察点固定 · 机器人移动</span>
+            <span>隧道壁装监控</span>
+          </footer>
+        </article>
+
+        <article class="rb-view rb-view-site" id="view-card-fpv">
+          <header class="rb-view-head">
+            <div>
+              <div class="panel-eyebrow">ON-SITE 02 / 机载视角</div>
+              <h2>机器人第一人称</h2>
+            </div>
+            <div class="rb-view-tools"><span class="rb-badge">CAM-C · 实时回传</span></div>
+          </header>
+          <div class="rb-canvas rb-canvas-real" id="view-fpv" data-testid="fpv-viewport"><span class="rb-osd" id="osd-fpv">CAM-C · REC ●</span></div>
+          <footer class="rb-view-foot">
+            <span>机载前视相机 · 随机器人移动</span>
+            <span>≈60° 视场</span>
+          </footer>
+        </article>
+
+        <article class="rb-view rb-view-site" id="view-card-fused">
+          <header class="rb-view-head">
+            <div>
+              <div class="panel-eyebrow">ON-SITE 03 / 融合视角</div>
+              <h2>融合第三人称</h2>
+            </div>
+            <div class="rb-view-tools"><span class="rb-badge">由前两路合成</span></div>
+          </header>
+          <div class="rb-canvas rb-canvas-real" id="view-fused" data-testid="fused-viewport"></div>
+          <footer class="rb-view-foot">
+            <span>可拖动旋转 · 滚轮缩放</span>
             <span id="real-foot">停车 · 装置关闭</span>
           </footer>
         </article>

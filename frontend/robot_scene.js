@@ -8,6 +8,10 @@ import { profilePoints } from "./tunnel_geometry.js";
 
 const TEAL = 0x087e83;
 const TEAL_LIGHT = 0x9fc9cf;
+// 三路现场视角共用一个离屏渲染缓冲；4:3 在 1.2~1.8 的面板比例下裁切最少。
+const RENDER_WIDTH = 1280;
+const RENDER_HEIGHT = 720;
+const RENDER_ASPECT = RENDER_WIDTH / RENDER_HEIGHT;
 
 function mulberry32(seed) {
   let a = seed >>> 0;
@@ -277,8 +281,9 @@ export class VirtualView extends TunnelRenderer {
     );
     const raycaster = new THREE.Raycaster();
     raycaster.setFromCamera(pointer, this.camera);
-    const targets = [this.floorPicker, this.shell].filter(Boolean);
-    const hit = raycaster.intersectObjects(targets, false)[0];
+    // 先打地面：相机常常在洞外，若先打外壳会命中近侧洞壁，落点偏到洞口。
+    const hit = (this.floorPicker && raycaster.intersectObject(this.floorPicker, false)[0])
+      || (this.shell && raycaster.intersectObject(this.shell, false)[0]);
     if (!hit) return;
     this.onPick?.({ x: hit.point.x, z: hit.point.z });
   }
@@ -437,20 +442,47 @@ export class VirtualView extends TunnelRenderer {
 // 现场执行视图
 // ---------------------------------------------------------------------------
 export class RealView {
-  constructor(container) {
-    this.container = container;
+  /**
+   * 现场执行的三路视角共用同一套场景与同一个 WebGL 上下文：
+   *   01 固定监控（观察点不动）  02 机载第一人称  03 融合第三人称（可交互）
+   * 每帧渲染三次到离屏画布，再按 cover 方式拷贝到三块 2D 画布，避免三份几何体与三个 GL 上下文。
+   */
+  constructor(containers) {
+    this.targets = {};
+    for (const key of ["monitor", "fpv", "fused"]) {
+      const element = containers[key];
+      const canvas = document.createElement("canvas");
+      canvas.className = "rb-feed";
+      canvas.dataset.feed = key;
+      element.append(canvas);
+      this.targets[key] = { element, canvas, context: canvas.getContext("2d") };
+    }
+    this.container = containers.fused;
+
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0x0d1417);
     this.scene.fog = new THREE.Fog(0x0d1417, 16, 62);
-    this.camera = new THREE.PerspectiveCamera(48, 1, 0.05, 300);
+
+    // 融合视角：第三人称，可拖动；行进时自动跟随。
+    this.camera = new THREE.PerspectiveCamera(45, RENDER_ASPECT, 0.05, 300);
+    // 监控视角：固定在隧道壁上，只随机器人位置改变画面内容。
+    this.monitorCamera = new THREE.PerspectiveCamera(48, RENDER_ASPECT, 0.1, 300);
+    this.monitorCamera.position.set(-1.5, 4.55, -3.15);
+    this.monitorCamera.lookAt(6, 0.3, 0);
+    // 机载视角：加载模型后挂到 Camera_Center 节点上。
+    this.fpvCamera = new THREE.PerspectiveCamera(38, RENDER_ASPECT, 0.05, 200);
+
     this.renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    this.renderer.setPixelRatio(1);
+    this.renderer.setSize(RENDER_WIDTH, RENDER_HEIGHT, false);
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.05;
-    this.renderer.domElement.style.cssText = "display:block;width:100%;height:100%;touch-action:none";
-    container.append(this.renderer.domElement);
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+
+    this.camera.layers.enable(1);
+    this.monitorCamera.layers.enable(1);
+
+    this.controls = new OrbitControls(this.camera, this.targets.fused.canvas);
     this.controls.enableDamping = false;
     this.controls.minDistance = 1.2;
     this.controls.maxDistance = 40;
@@ -469,7 +501,7 @@ export class RealView {
     this.wheels = [];
     this.stateLight = null;
     this.observer = new ResizeObserver(() => this.resize());
-    this.observer.observe(container);
+    for (const target of Object.values(this.targets)) this.observer.observe(target.element);
     this.buildEnvironment();
     this.resize();
     this.camera.position.set(-3.2, 2.0, 3.4);
@@ -554,7 +586,7 @@ export class RealView {
       );
       lamp.position.set(x, height - 0.55, width / 2 - 0.35);
       scene.add(lamp);
-      const light = new THREE.PointLight(0xffd9a8, 26, 30, 2);
+      const light = new THREE.PointLight(0xffd9a8, 34, 34, 1.8);
       light.position.set(x, height - 1.0, width / 2 - 1.2);
       scene.add(light);
     }
@@ -565,12 +597,6 @@ export class RealView {
       new THREE.LineBasicMaterial({ color: 0x7d9aa4 })
     );
     scene.add(portal);
-
-    // 机器人聚光灯
-    this.headlight = new THREE.SpotLight(0xfff3d8, 40, 26, 0.55, 0.45, 1.4);
-    this.headlight.position.set(0, 1.35, -0.3);
-    this.headlight.target.position.set(0, 0.4, -9);
-    scene.add(this.headlight, this.headlight.target);
   }
 
   async loadRobot(url = "/robot-assets/Tracked_Photogrammetry_Robot/Tracked_Photogrammetry_Robot.glb") {
@@ -601,6 +627,22 @@ export class RealView {
     glow.position.set(0, 1.05, 0.2);
     root.add(glow);
 
+    // 车头聚光灯随机体移动，第一人称画面才不会是黑的。
+    this.headlight = new THREE.SpotLight(0xfff3d8, 85, 32, 0.62, 0.5, 1.1);
+    this.headlight.position.set(0, 1.32, -0.45);
+    this.headlight.target.position.set(0, 0.35, -10);
+    root.add(this.headlight, this.headlight.target);
+
+    // 机载第一人称：挂到中置相机节点上，镜头略高于遮光罩，避免拍到自己的镜筒。
+    const cameraNode = root.getObjectByName("Camera_Center");
+    if (cameraNode) {
+      this.fpvCamera.position.set(0, 0.02, -0.62);
+      cameraNode.add(this.fpvCamera);
+    } else {
+      this.fpvCamera.position.set(0, 1.31, -0.62);
+      root.add(this.fpvCamera);
+    }
+
     // 状态灯柱：找 Elec_StatusTower
     const tower = root.getObjectByName("Elec_StatusTower");
     if (tower) {
@@ -609,9 +651,7 @@ export class RealView {
       tower.add(this.stateLight);
     }
 
-    this.frustums = this.buildFrustums();
-    this.frustums.visible = false;
-    this.scene.add(this.frustums);
+    this.rebuildFrustums();
     this.render();
   }
 
@@ -718,6 +758,8 @@ export class RealView {
     }
     this.frustums = this.buildFrustums();
     this.frustums.visible = false;
+    // 视锥只在监控与融合视角里出现；机载相机自己不该看到"自己的视场框"。
+    this.frustums.traverse(object => object.layers.set(1));
     this.scene.add(this.frustums);
   }
 
@@ -758,15 +800,35 @@ export class RealView {
   }
 
   render() {
-    this.renderer.render(this.scene, this.camera);
+    if (!this.renderer) return;
+    this.drawFeed("monitor", this.monitorCamera);
+    this.drawFeed("fpv", this.fpvCamera);
+    this.drawFeed("fused", this.camera);
+  }
+
+  /** 渲染一次到离屏画布，再按 cover 规则拷贝到目标 2D 画布。 */
+  drawFeed(key, camera) {
+    const target = this.targets[key];
+    if (!target || !camera) return;
+    const { canvas, context } = target;
+    const width = canvas.width, height = canvas.height;
+    if (!width || !height) return;
+    this.renderer.render(this.scene, camera);
+    const source = this.renderer.domElement;
+    const sw = source.width, sh = source.height;
+    const scale = Math.max(width / sw, height / sh);
+    const cw = width / scale, ch = height / scale;
+    context.drawImage(source, (sw - cw) / 2, (sh - ch) / 2, cw, ch, 0, 0, width, height);
   }
 
   resize() {
-    const width = Math.max(1, this.container.clientWidth);
-    const height = Math.max(1, this.container.clientHeight);
-    this.camera.aspect = width / height;
-    this.camera.updateProjectionMatrix();
-    this.renderer.setSize(width, height, false);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    for (const target of Object.values(this.targets)) {
+      const width = Math.max(1, target.element.clientWidth);
+      const height = Math.max(1, target.element.clientHeight);
+      target.canvas.width = Math.round(width * dpr);
+      target.canvas.height = Math.round(height * dpr);
+    }
     this.render();
   }
 
@@ -774,6 +836,6 @@ export class RealView {
     this.observer.disconnect();
     this.controls.dispose();
     this.renderer.dispose();
-    this.renderer.domElement.remove();
+    for (const target of Object.values(this.targets)) target.canvas.remove();
   }
 }
