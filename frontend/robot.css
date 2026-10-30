@@ -1,6 +1,12 @@
 /* 机器人交互工作台 —— 复用 style.css 的设计令牌，不引入第二套视觉体系 */
 .rb-body { min-height: 100vh; }
 
+/* 与隧道三维页一致的顶部状态徽标 */
+.demo-badge {
+  border: 1px solid #ecd7b0; border-radius: 4px; background: #fff8ea;
+  color: #9a722d; font-size: 10px; padding: 4px 8px; white-space: nowrap;
+}
+
 .rb-brand-title { font-size: 21px; font-weight: 700; letter-spacing: 1px; }
 .rb-brand-title span { font-size: 15px; font-weight: 500; letter-spacing: 0; margin-left: 5px; }
 .rb-brand-sub { display: block; color: var(--muted); font-size: 9px; letter-spacing: 1.6px; margin-top: 3px; }

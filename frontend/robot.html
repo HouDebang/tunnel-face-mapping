@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="light">
   <title>岩面 · 机器人交互</title>
   <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="/robot.css">
+  <link rel="stylesheet" href="/robot.css?v=nav1">
   <script type="importmap">{"imports":{"three":"/vendor/three.module.js","three/addons/":"/vendor/"}}</script>
   <script>
     // 脚本级错误也要可见：三维初始化失败时不能让页面"看起来正常但什么都没发生"。
@@ -26,7 +26,7 @@
       document.getElementById("error-text").textContent = `页面脚本异常：${event.reason?.message || event.reason || "未知异常"}`;
     });
   </script>
-  <script type="module" src="/robot.js?v=1"></script>
+  <script type="module" src="/robot.js?v=nav1"></script>
 </head>
 <body class="rb-body">
   <header class="topbar">
@@ -36,8 +36,6 @@
     </a>
     <div class="top-actions">
       <span class="demo-badge">产品仿真 · 非真实设备遥测</span>
-      <a class="button secondary" href="/tunnel.html">隧道三维</a>
-      <a class="button secondary" href="/">← 单张识别</a>
     </div>
   </header>
 
